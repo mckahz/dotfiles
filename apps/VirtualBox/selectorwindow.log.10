@@ -1,0 +1,37 @@
+00:00:00.770102 VirtualBox GUI VM Selector Window 7.1.10 r169112 linux.amd64 (Jun  3 2025 11:34:30) release log
+00:00:00.770104 Log opened 2025-11-17T02:53:11.522546000Z
+00:00:00.770105 Build Type: release
+00:00:00.770108 OS Product: Linux
+00:00:00.770109 OS Release: 6.12.39
+00:00:00.770110 OS Version: #1-NixOS SMP PREEMPT_DYNAMIC Thu Jul 17 16:37:24 UTC 2025
+00:00:00.770149 DMI Product Name: Inspiron 15 3535
+00:00:00.770164 DMI Product Version: 1.20.0
+00:00:00.770177 Firmware type: UEFI
+00:00:00.770348 Secure Boot: Disabled
+00:00:00.770405 Host RAM: 7136MB (6.9GB) total, 4413MB (4.3GB) available
+00:00:00.770409 Executable: /nix/store/y9n08m0qqvr7ck2m75n4yvp6w7bj7dvn-virtualbox-7.1.10/libexec/virtualbox/VirtualBox
+00:00:00.770409 Process ID: 27213
+00:00:00.770410 Package type: LINUX_64BITS_GENERIC (OSE)
+00:00:00.770454 Qt version: 6.9.1
+00:00:00.772458 GUI: UIMediumEnumerator: Initial medium-enumeration finished!
+00:00:00.802974 GUI: UIMediumEnumerator: Medium-enumeration started...
+00:00:01.748893 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:01.782628 GUI: UIDesktopWidgetWatchdog::sltHandleHostScreenAvailableGeometryCalculated: Screen 0 work area is actually resized to: 0x32 x 1920x1048
+00:00:13.208002 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:16.036855 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:17.012959 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:39.722605 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:41.409703 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:42.307583 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:49.138789 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:54.111110 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:54.909111 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:56.336560 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:01:01.097799 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:11:43.817911 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:11:44.115248 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:11:44.424355 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:11:46.922410 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:11:51.203482 GUI: UIMediumEnumerator: Medium-enumeration finished!
+01:10:25.656674 GUI: UICommon: Handling aboutToQuit request..
+01:10:25.659690 Log rotated - Log started 2025-11-17T02:53:11.522546000Z

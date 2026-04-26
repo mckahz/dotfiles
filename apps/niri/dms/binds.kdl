@@ -1,0 +1,4 @@
+binds {
+    Super+Shift+S hotkey-overlay-title="Screenshot (Interactive)" { screenshot; }
+    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+}

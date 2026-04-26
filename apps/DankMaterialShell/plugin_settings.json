@@ -1,0 +1,24 @@
+{
+  "dankBatteryAlerts": {
+    "enabled": true
+  },
+  "calculator": {
+    "enabled": true,
+    "trigger": "=",
+    "persistHistoryOnFile": true,
+    "calcEngine": "default"
+  },
+  "wallpaperBing": {
+    "enabled": false
+  },
+  "wallpaperCarousel": {
+    "enabled": true
+  },
+  "sessionPower": {
+    "enabled": false
+  },
+  "emojiLauncher": {
+    "enabled": true,
+    "trigger": "emoji"
+  }
+}

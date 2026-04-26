@@ -1,0 +1,32 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "ctrl-l": "workspace::ToggleRightDock",
+      "ctrl-j": "workspace::ToggleBottomDock",
+      "ctrl-h": "workspace::ToggleLeftDock",
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
+      "shift-u": "editor::Redo",
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-l": "workspace::ToggleRightDock",
+      "ctrl-j": "workspace::ToggleBottomDock",
+      "ctrl-h": "workspace::ToggleLeftDock",
+      "ctrl-n": ["terminal::SendKeystroke", "ctrl-n"],
+      "ctrl-p": ["terminal::SendKeystroke", "ctrl-p"],
+      "ctrl-a": ["terminal::SendKeystroke", "ctrl-a"],
+      "ctrl-e": ["terminal::SendKeystroke", "ctrl-e"],
+    },
+  },
+]

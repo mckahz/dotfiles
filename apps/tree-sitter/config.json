@@ -1,0 +1,68 @@
+{
+  "parser-directories": [
+    "/home/mckahz/github",
+    "/home/mckahz/src",
+    "/home/mckahz/source",
+    "/home/mckahz/projects",
+    "/home/mckahz/dev",
+    "/home/mckahz/git"
+  ],
+  "theme": {
+    "punctuation.special": 239,
+    "string.special": 30,
+    "punctuation": 239,
+    "embedded": null,
+    "property.builtin": {
+      "bold": true,
+      "color": 124
+    },
+    "type.builtin": {
+      "color": 23,
+      "bold": true
+    },
+    "keyword": 56,
+    "property": 124,
+    "constant": 94,
+    "comment": {
+      "italic": true,
+      "color": 245
+    },
+    "tag": 18,
+    "type": 23,
+    "function.builtin": {
+      "bold": true,
+      "color": 26
+    },
+    "constructor": 136,
+    "constant.builtin": {
+      "bold": true,
+      "color": 94
+    },
+    "module": 136,
+    "number": {
+      "color": 94,
+      "bold": true
+    },
+    "punctuation.bracket": 239,
+    "string": 28,
+    "variable": 252,
+    "variable.builtin": {
+      "bold": true,
+      "color": 252
+    },
+    "variable.parameter": {
+      "color": 252,
+      "underline": true
+    },
+    "function": 26,
+    "operator": {
+      "color": 239,
+      "bold": true
+    },
+    "attribute": {
+      "color": 124,
+      "italic": true
+    },
+    "punctuation.delimiter": 239
+  }
+}

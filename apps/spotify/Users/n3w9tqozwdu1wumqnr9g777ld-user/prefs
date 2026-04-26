@@ -1,0 +1,6 @@
+audio.play_bitrate_non_metered_migrated=true
+connect.dial_devices="[]"
+connect.mdns_devices="[]"
+audio.play_bitrate_non_metered_enumeration=5
+audio.play_bitrate_enumeration=2
+app.player.volume=31432

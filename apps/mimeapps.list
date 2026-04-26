@@ -1,0 +1,35 @@
+[Added Associations]
+application/json=dev.zed.Zed.desktop;
+application/pdf=firefox.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-4.desktop;libreoffice-3.desktop;libreoffice-2.desktop;libreoffice.desktop;
+application/x-extension-htm=firefox.desktop;
+application/x-extension-html=firefox.desktop;
+application/x-extension-shtml=firefox.desktop;
+application/x-extension-xht=firefox.desktop;
+application/x-extension-xhtml=firefox.desktop;
+application/xhtml+xml=firefox.desktop;
+image/jpeg=krita_jpeg.desktop;org.gnome.Loupe.desktop;com.interversehq.qView.desktop;
+image/png=pinta.desktop;krita_png.desktop;com.interversehq.qView.desktop;
+image/webp=krita_qimageio.desktop;org.gnome.Loupe.desktop;com.interversehq.qView.desktop;
+text/html=firefox.desktop;
+x-scheme-handler/chrome=firefox.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+
+[Default Applications]
+application/json=dev.zed.Zed.desktop
+application/pdf=firefox.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-4.desktop;
+application/x-extension-htm=firefox.desktop
+application/x-extension-html=firefox.desktop
+application/x-extension-shtml=firefox.desktop
+application/x-extension-xht=firefox.desktop
+application/x-extension-xhtml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+image/jpeg=com.interversehq.qView.desktop
+image/png=com.interversehq.qView.desktop
+image/webp=com.interversehq.qView.desktop
+text/html=firefox.desktop
+x-scheme-handler/chrome=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
