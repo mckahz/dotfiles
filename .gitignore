@@ -1,6 +1,6 @@
 quickshell/.open-meteo-logs*
 quickshell/Examples*
 nixos/.direnv*
-apps/DankMaterialShell/plugins*
+apps/DankMaterialShell/plugins/.repos*
 apps/libreoffice*
 apps/discord*
