@@ -28,7 +28,7 @@
 
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    ./laptop-hardware-configuration.nix
     inputs.dms.nixosModules.greeter
   ];
 
