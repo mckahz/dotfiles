@@ -70,7 +70,7 @@
         };
       };
 
-      homeConfigurations.${inputs.user} = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.${user.name} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
           inherit inputs;
