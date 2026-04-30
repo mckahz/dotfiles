@@ -59,7 +59,7 @@
             inherit inputs;
             inherit user;
           };
-          modules = [ ./home.nix ];
+          modules = [ ./modules/home.nix ];
         };
       };
 
