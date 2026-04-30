@@ -5,17 +5,19 @@
 }:
 {
   imports = [
-    inputs.dms.nixosModules.greeter
+    ./programs.nix
     ./network.nix
     ./keyboard.nix
-    ./programs.nix
-    ./home-help.nix
+    inputs.dms.nixosModules.greeter
   ];
 
   users.users.${user.name} = {
     isNormalUser = true;
     description = user.name;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
     packages = [ ];
   };
 

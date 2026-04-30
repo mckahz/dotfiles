@@ -20,6 +20,8 @@
     inputs.dms.homeModules.niri
   ];
 
+  programs.home-manager.enable = true;
+  programs.bash.enable = true;
   programs.dank-material-shell = {
     enable = true;
     enableSystemMonitoring = true;
@@ -29,7 +31,4 @@
       enableSpawn = true; # Auto-start DMS with niri, if enabled
     };
   };
-
-  programs.home-manager.enable = true;
-  programs.bash.enable = true;
 }

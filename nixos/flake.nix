@@ -12,7 +12,7 @@
     };
 
     dms = {
-      url = "github:AvengeMedia/DankMaterialShell/stable";
+      url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -30,19 +30,18 @@
   };
 
   outputs =
-    inputs:
+    { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages.${system};
       user = rec {
         name = "mckahz";
         home = "/home/${name}";
         config = "${home}/.dotfiles/apps";
       };
 
-      mkConfigurations =
-        hostName:
-        inputs.nixpkgs.lib.nixosSystem {
+      mkConfigurations = hostName: {
+        osConfig = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
             inherit inputs;
@@ -53,22 +52,29 @@
             ./modules/shared.nix
           ];
         };
+
+        homeConfig = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit user;
+          };
+          modules = [ ./home.nix ];
+        };
+      };
+
+      laptop = mkConfigurations "laptop";
+      desktop = mkConfigurations "desktop";
     in
     {
       nixosConfigurations = {
-        laptop = mkConfigurations "laptop";
-        desktop = mkConfigurations "desktop";
+        laptop = laptop.osConfig;
+        desktop = desktop.osConfig;
       };
 
-      homeConfigurations.${user.name} = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit inputs;
-          inherit user;
-        };
-        modules = [
-          ./modules/home.nix
-        ];
+      homeConfigurations = {
+        "${user.name}@laptop" = laptop.homeConfig;
+        "${user.name}@desktop" = desktop.homeConfig;
       };
     };
 }
