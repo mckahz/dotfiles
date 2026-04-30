@@ -26,7 +26,7 @@
     nautilus # File manager
     krita # Image editor
     libreoffice # Document editor
-    ciscoPacketTracer8
+    # ciscoPacketTracer8
     vmware-workstation
     firefox
     librespot
