@@ -30,14 +30,10 @@
   };
 
   outputs =
-    {
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
+    inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
       user = rec {
         name = "mckahz";
         home = "/home/${name}";
@@ -46,7 +42,7 @@
     in
     {
       nixosConfigurations = {
-        laptop = nixpkgs.lib.nixosSystem {
+        laptop = inputs.nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
             inherit inputs;
@@ -57,7 +53,7 @@
             ./modules/shared.nix
           ];
         };
-        desktop = nixpkgs.lib.nixosSystem {
+        desktop = inputs.nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
             inherit inputs;
@@ -68,17 +64,6 @@
             ./modules/shared.nix
           ];
         };
-      };
-
-      homeConfigurations.${user.name} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit inputs;
-          inherit user;
-        };
-        modules = [
-          ./modules/home.nix
-        ];
       };
     };
 }

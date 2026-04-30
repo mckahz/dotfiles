@@ -9,6 +9,7 @@
     ./network.nix
     ./keyboard.nix
     ./programs.nix
+    ./home-help.nix
   ];
 
   users.users.${user.name} = {
