@@ -1,4 +1,9 @@
-{ pkgs, user, ... }:
+{
+  pkgs,
+  user,
+  inputs,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
     # Ricing

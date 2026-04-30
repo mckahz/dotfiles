@@ -19,7 +19,7 @@
   };
 
   nix.extraOptions = ''
-    trusted-users = root ${inputs.user}
+    trusted-users = root ${user.name}
   '';
 
   security.pam.loginLimits = [

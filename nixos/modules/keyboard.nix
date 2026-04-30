@@ -8,8 +8,8 @@
   options = {
     keyboard = {
       enable = lib.mkEnableOption "enables keyboard macros with kmonad";
-      path = lib.mkOptionType {
-        type = lib.types.str;
+      path = lib.mkOption {
+        type = lib.types.path;
         description = "The path to the .kbd file used on the device";
       };
     };
@@ -19,7 +19,7 @@
     environment.systemPackages = [ pkgs.kmonad ];
 
     systemd.services.kmonad = {
-      script = "${pkgs.kmonad}/bin/kmonad ${builtins.toString ./keyboard.kbd}";
+      script = "${pkgs.kmonad}/bin/kmonad ${builtins.toString config.keyboard.path}";
       wantedBy = [ "multi-user.target" ];
     };
   };
