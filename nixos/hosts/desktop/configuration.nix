@@ -2,20 +2,21 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   networking.hostName = "desktop";
 
   imports = [
     ./hardware-configuration.nix
-    ./../../modules/nvidia.nix
   ];
+
+  nvidia.enable = true;
 
   keyboard = {
     enable = true;
     path = ./keyboard.kbd;
-  };  
+  };
 
   system.stateVersion = "25.11";
 }
