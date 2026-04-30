@@ -3,6 +3,7 @@
   user,
   lib,
   config,
+  pkgs,
   ...
 }:
 {
@@ -17,15 +18,6 @@
   };
 
   config = lib.mkIf config.home.enable {
-    homeConfigurations.${config.home.host} = inputs.home-manager.lib.homeManagerConfiguration {
-      extraSpecialArgs = {
-        inherit inputs;
-        inherit user;
-      };
-      modules = [
-        ./modules/home.nix
-      ];
-    };
 
   };
 }

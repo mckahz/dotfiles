@@ -1,9 +1,7 @@
 { ... }:
-let
-  hostName = "desktop";
-in
+
 {
-  networking.hostName = hostName;
+  networking.hostName = "desktop";
 
   imports = [
     ./hardware-configuration.nix
@@ -14,11 +12,6 @@ in
   keyboard = {
     enable = true;
     path = ./keyboard.kbd;
-  };
-
-  home = {
-    enable = true;
-    host = hostName;
   };
 
   system.stateVersion = "25.11";

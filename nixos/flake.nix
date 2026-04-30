@@ -39,31 +39,36 @@
         home = "/home/${name}";
         config = "${home}/.dotfiles/apps";
       };
+
+      mkConfigurations =
+        hostName:
+        inputs.nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit user;
+          };
+          modules = [
+            ./hosts/${hostName}/configuration.nix
+            ./modules/shared.nix
+          ];
+        };
     in
     {
       nixosConfigurations = {
-        laptop = inputs.nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-            inherit user;
-          };
-          modules = [
-            ./hosts/laptop/configuration.nix
-            ./modules/shared.nix
-          ];
+        laptop = mkConfigurations "laptop";
+        desktop = mkConfigurations "desktop";
+      };
+
+      homeConfigurations.${user.name} = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {
+          inherit inputs;
+          inherit user;
         };
-        desktop = inputs.nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-            inherit user;
-          };
-          modules = [
-            ./hosts/desktop/configuration.nix
-            ./modules/shared.nix
-          ];
-        };
+        modules = [
+          ./modules/home.nix
+        ];
       };
     };
 }
