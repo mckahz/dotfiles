@@ -15,6 +15,7 @@ text/html=firefox.desktop;
 x-scheme-handler/chrome=firefox.desktop;
 x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
+application/x-vmware-vm=dev.zed.Zed.desktop;
 
 [Default Applications]
 application/json=dev.zed.Zed.desktop
@@ -33,3 +34,4 @@ text/html=firefox.desktop
 x-scheme-handler/chrome=firefox.desktop
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
+application/x-vmware-vm=dev.zed.Zed.desktop

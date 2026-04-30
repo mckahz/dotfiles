@@ -1,0 +1,59 @@
+{
+    "Account": {
+        "access_token": "BQBg-mSW7AW9rgkJNHs2pjNtpGGF9Og9Wk-duQREFjymgT9_gdy2RLrUgvOWqH2oZ-HYhNc3K5Cz16Cf0oKSskkEZjDLHh5-CwW8abhArhuTOswnl1t0I02xxhI41vjbGV8uzCbj5neuunVxO1aywN_2Sw3A-iDQAZ7WZPYgTHYBlWFeVsOCPJFo-vPZ0kVf5e-842IfQyc_S-d_QVQx3qR4j1aN1kvMda02kGBZakvCO6-KXE-A4sb0LYn0_K9jy6ByZmvDeHde7wZTAA1IMwxlrSlwCQEoy8cjsYt-4zBh42yUrXiv1WnpUiQYR6BI_ewntir0oqOCEwzV5C-11E-kzwC9UVqTh3qxV_4Grq4v7itG-sAXSAlZzZCScw6-3v5i",
+        "client_id": "0141aa14dc03417f85613b1fb69b942a",
+        "client_secret": "841bc36f68b14c77b16ff55d9c63621a",
+        "last_refresh": 1777428412,
+        "refresh_token": "AQDQ3e9ohJ2gGcTxCUiItBEl-JUH7HSgRaKsl6EoqPs-i_1xiiqC6mDvMrcLr3vSt8_zDhEl4U_od9_yAsthCt2Fbnb8J8v_KSEl1jss6tNm3LmRz-gdzR534FnoehJGNZY"
+    },
+    "General": {
+        "check_for_updates": true,
+        "close_to_tray": false,
+        "custom_playlist_order": [],
+        "fallback_icons": false,
+        "hidden_song_headers": [],
+        "ignore_unavailable_index": false,
+        "last_device": "",
+        "last_playlist": "7xMLYkG7O7t0X1vJYpxR73",
+        "last_version": "v4.0.1",
+        "media_controller": false,
+        "native_window": false,
+        "notify_track_change": false,
+        "playlist_order": 0,
+        "refresh_interval": 3,
+        "relative_added": true,
+        "show_changelog": true,
+        "song_header_sort_by": -1,
+        "style": "",
+        "style_palette": 0,
+        "track_list_resize_mode": 0,
+        "track_numbers": 1,
+        "tray_album_art": false,
+        "tray_icon": true,
+        "tray_light_icon": false
+    },
+    "Qt": {
+        "album_shape": 1,
+        "album_size": 0,
+        "custom_font_name": "",
+        "custom_font_size": 0,
+        "library_layout": 0,
+        "mirror_title_bar": false,
+        "system_title_bar": false,
+        "toolbar_position": 1,
+        "track_title": ""
+    },
+    "Spotify": {
+        "additional_arguments": "",
+        "always_start": true,
+        "backend": "",
+        "bitrate": 320,
+        "device_type": 0,
+        "disable_discovery": false,
+        "global_config": false,
+        "max_queue": 500,
+        "path": "/nix/store/8v4vbzss3f396bsfksr83gjfkchgq120-system-path/bin/librespot",
+        "start_client": true,
+        "volume": 100
+    }
+}

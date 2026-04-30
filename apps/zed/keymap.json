@@ -9,7 +9,7 @@
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
-      "ctrl-l": "workspace::ToggleRightDock",
+      // "ctrl-l": "workspace::ToggleRightDock",
       "ctrl-j": "workspace::ToggleBottomDock",
       "ctrl-h": "workspace::ToggleLeftDock",
       "alt-j": "editor::MoveLineDown",
@@ -20,7 +20,7 @@
   {
     "context": "Terminal",
     "bindings": {
-      "ctrl-l": "workspace::ToggleRightDock",
+      // "ctrl-l": "workspace::ToggleRightDock",
       "ctrl-j": "workspace::ToggleBottomDock",
       "ctrl-h": "workspace::ToggleLeftDock",
       "ctrl-n": ["terminal::SendKeystroke", "ctrl-n"],

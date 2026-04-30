@@ -1,61 +1,73 @@
-00:00:00.002848 main     VirtualBox XPCOM Server 7.1.10 r169112 linux.amd64 (Jun  3 2025 11:34:30) release log
-00:00:00.002851 main     Log opened 2025-12-12T10:55:40.375061000Z
-00:00:00.002852 main     Build Type: release
-00:00:00.002855 main     OS Product: Linux
-00:00:00.002856 main     OS Release: 6.12.39
-00:00:00.002857 main     OS Version: #1-NixOS SMP PREEMPT_DYNAMIC Thu Jul 17 16:37:24 UTC 2025
-00:00:00.002889 main     DMI Product Name: Inspiron 15 3535
-00:00:00.002898 main     DMI Product Version: 1.20.0
-00:00:00.002906 main     Firmware type: UEFI
-00:00:00.003083 main     Secure Boot: Disabled
-00:00:00.003173 main     Host RAM: 7136MB (6.9GB) total, 1327MB available
-00:00:00.003176 main     Executable: /nix/store/y9n08m0qqvr7ck2m75n4yvp6w7bj7dvn-virtualbox-7.1.10/libexec/virtualbox/VBoxSVC
-00:00:00.003177 main     Process ID: 10103
-00:00:00.003177 main     Package type: LINUX_64BITS_GENERIC (OSE)
-00:00:00.005521 main     IPC socket path: /tmp/.vbox-mckahz-ipc/ipcd
-00:00:00.016541 DCon01   VirtualBox: object creation starts
-00:00:00.016634 DCon01   Home directory: '/home/mckahz/.config/VirtualBox'
-00:00:00.017012 DCon01   Loading settings file "/home/mckahz/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:00.032772 DCon01   NetIfAdpCtlOut: VBoxNetAdpCtl: Error while retrieving link speed for wlp2s0: VBoxNetAdpCtl: ioctl failed: Operation not supported
-00:00:00.051709 DCon01   HostDnsMonitor: initializing
-00:00:00.053198 DCon01   NAT: resolv.conf: nameserver 192.168.1.1
-00:00:00.053233 DCon01   NAT: resolv.conf: ignoring "options edns0"
-00:00:00.053268 DCon01   HostDnsMonitor: updating information
-00:00:00.053307 DCon01   HostDnsMonitor: old information
-00:00:00.053309 DCon01     no server entries
-00:00:00.053311 DCon01     no domain set
-00:00:00.053312 DCon01     no search string entries
-00:00:00.053314 DCon01   HostDnsMonitor: new information
-00:00:00.053316 DCon01     server 1: 192.168.1.1
-00:00:00.053318 DCon01     no domain set
-00:00:00.053319 DCon01     no search string entries
-00:00:00.056559 DCon01   VD: VDInit finished with VINF_SUCCESS
-00:00:00.058444 DCon01   Platform architecture set to 'x86'
-00:00:00.061510 DCon01   Loading settings file "/home/mckahz/VirtualBox VMs/Configure and Administor Network Operating Systems/windows11/windows11.vbox" with version "1.19-linux"
-00:00:00.061809 DCon01   Platform architecture set to 'x86'
-00:00:00.062421 DCon01   Platform architecture set to 'x86'
-00:00:00.063591 DCon01   Loading settings file "/home/mckahz/VirtualBox VMs/Configure and Administor Network Operating Systems/Windows 2022/Windows 2022.vbox" with version "1.19-linux"
-00:00:00.063744 DCon01   Platform architecture set to 'x86'
-00:00:00.063880 DCon01   Platform architecture set to 'x86'
-00:00:00.065590 DCon01   Loading settings file "/home/mckahz/VirtualBox VMs/Configure Cloud Services/erfys-server/erfys-server.vbox" with version "1.19-linux"
-00:00:00.065723 DCon01   Platform architecture set to 'x86'
-00:00:00.065857 DCon01   Platform architecture set to 'x86'
-00:00:00.066497 DCon01   Loading settings file "/home/mckahz/VirtualBox VMs/Configure Cloud Services/erfys-client/erfys-client.vbox" with version "1.19-linux"
-00:00:00.066627 DCon01   Platform architecture set to 'x86'
-00:00:00.067097 DCon01   VirtualBox: object created
-00:00:01.141041 DCon03   WARNING [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={d5dcece0-b202-4416-a138-03502784cc07} aComponent={HostWrap} aText={VirtualBox is not currently allowed to access USB devices.  You can change this by adding your user to the 'vboxusers' group.  Please see the user manual for a more detailed explanation}, preserve=true aResultDetail=0
-00:00:01.142938 DCon03   WARNING [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={d5dcece0-b202-4416-a138-03502784cc07} aComponent={HostWrap} aText={VirtualBox is not currently allowed to access USB devices.  You can change this by adding your user to the 'vboxusers' group.  Please see the user manual for a more detailed explanation}, preserve=false aResultDetail=0
-00:00:01.259023 DCon03   WARNING [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={d5dcece0-b202-4416-a138-03502784cc07} aComponent={HostWrap} aText={VirtualBox is not currently allowed to access USB devices.  You can change this by adding your user to the 'vboxusers' group.  Please see the user manual for a more detailed explanation}, preserve=true aResultDetail=0
-00:00:01.317427 DCon02   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:01.452271 DCon02   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-00:00:01.659584 DCon03   WARNING [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={d5dcece0-b202-4416-a138-03502784cc07} aComponent={HostWrap} aText={VirtualBox is not currently allowed to access USB devices.  You can change this by adding your user to the 'vboxusers' group.  Please see the user manual for a more detailed explanation}, preserve=true aResultDetail=0
-00:00:01.663332 DCon03   WARNING [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={d5dcece0-b202-4416-a138-03502784cc07} aComponent={HostWrap} aText={VirtualBox is not currently allowed to access USB devices.  You can change this by adding your user to the 'vboxusers' group.  Please see the user manual for a more detailed explanation}, preserve=true aResultDetail=0
-00:00:09.289544 main     VirtualBox: object deletion starts
-00:00:09.289663 main     ERROR [COM]: aRC=VBOX_E_OBJECT_IN_USE (0x80bb000c) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Medium '/home/mckahz/VirtualBox VMs/Configure and Administor Network Operating Systems/windows11/windows11.vdi' cannot be closed because it is still attached to 1 virtual machines}, preserve=false aResultDetail=0
-00:00:09.289961 main     ERROR [COM]: aRC=VBOX_E_OBJECT_IN_USE (0x80bb000c) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Medium '/home/mckahz/VirtualBox VMs/Configure and Administor Network Operating Systems/Windows 2022/Windows 2022_1.vdi' cannot be closed because it is still attached to 1 virtual machines}, preserve=false aResultDetail=0
-00:00:09.290090 main     ERROR [COM]: aRC=VBOX_E_OBJECT_IN_USE (0x80bb000c) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Medium '/home/mckahz/VirtualBox VMs/Configure Cloud Services/erfys-server/erfys-server.vdi' cannot be closed because it is still attached to 1 virtual machines}, preserve=false aResultDetail=0
-00:00:09.290224 main     ERROR [COM]: aRC=VBOX_E_OBJECT_IN_USE (0x80bb000c) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Medium '/home/mckahz/VirtualBox VMs/Configure Cloud Services/erfys-client/erfys-client.vdi' cannot be closed because it is still attached to 1 virtual machines}, preserve=false aResultDetail=0
-00:00:09.290808 main     HostDnsMonitor: shutting down ...
-00:00:09.291078 main     HostDnsMonitor: shut down
-00:00:09.301733 Watcher  ERROR [COM]: aRC=E_ACCESSDENIED (0x80070005) aIID={d644ad1e-c501-4fc7-9ab6-aa6d763bc540} aComponent={VirtualBoxWrap} aText={The object is not ready}, preserve=false aResultDetail=0
-00:00:09.301859 main     VirtualBox: object deleted
+00:00:00.008205 main     VirtualBox XPCOM Server 7.2.4 r170995 linux.amd64 (Oct 17 2025 09:07:46) release log
+00:00:00.008208 main     Log opened 2026-04-28T04:48:42.963655000Z
+00:00:00.008208 main     Build Type: release
+00:00:00.008210 main     OS Product: Linux
+00:00:00.008211 main     OS Release: 6.12.80
+00:00:00.008211 main     OS Version: #1-NixOS SMP PREEMPT_DYNAMIC Thu Apr  2 11:09:54 UTC 2026
+00:00:00.008241 main     DMI Product Name: Inspiron 15 3535
+00:00:00.008249 main     DMI Product Version: 1.20.0
+00:00:00.008255 main     Firmware type: UEFI
+00:00:00.008579 main     Secure Boot: Disabled
+00:00:00.008660 main     Host RAM: 7138MB (6.9GB) total, 6049MB (5.9GB) available
+00:00:00.008665 main     Executable: /nix/store/03dvx6yixrn2wqq5zia9v96hfasvrdxp-virtualbox-7.2.4/libexec/virtualbox/VBoxSVC
+00:00:00.008666 main     Process ID: 2006
+00:00:00.008667 main     Package type: LINUX_64BITS_GENERIC (OSE)
+00:00:00.013220 main     IPC socket path: /tmp/.vbox-mckahz-ipc/ipcd
+00:00:00.018343 DCon01   VirtualBox: object creation starts
+00:00:00.018493 DCon01   Home directory: '/home/mckahz/.dotfiles/apps/VirtualBox'
+00:00:00.018993 DCon01   Loading settings file "/home/mckahz/.dotfiles/apps/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:00:00.032657 DCon01   NetIfAdpCtlOut: VBoxNetAdpCtl: Error while retrieving link speed for wlp2s0: VBoxNetAdpCtl: ioctl failed: Operation not supported
+00:00:00.048272 DCon01   HostDnsMonitor: initializing
+00:00:00.048576 DCon01   NAT: resolv.conf: nameserver 8.8.8.8
+00:00:00.048585 DCon01   NAT: resolv.conf: nameserver 8.8.4.4
+00:00:00.048590 DCon01   NAT: resolv.conf: ignoring "options edns0"
+00:00:00.048612 DCon01   HostDnsMonitor: updating information
+00:00:00.048627 DCon01   HostDnsMonitor: old information
+00:00:00.048630 DCon01     no server entries
+00:00:00.048633 DCon01     no domain set
+00:00:00.048636 DCon01     no search string entries
+00:00:00.048639 DCon01   HostDnsMonitor: new information
+00:00:00.048641 DCon01     server 1: 8.8.8.8
+00:00:00.048644 DCon01     server 2: 8.8.4.4
+00:00:00.048647 DCon01     domain: mp.dom
+00:00:00.048650 DCon01     search string 1: mp.dom
+00:00:00.051844 DCon01   VD: VDInit finished with VINF_SUCCESS
+00:00:00.054181 DCon01   Platform architecture set to 'x86'
+00:00:00.059524 DCon01   Loading settings file "/home/mckahz/VirtualBox VMs/Configure and Administor Network Operating Systems/windows11/windows11.vbox" with version "1.19-linux"
+00:00:00.059988 DCon01   Platform architecture set to 'x86'
+00:00:00.060564 DCon01   Platform architecture set to 'x86'
+00:00:00.062309 DCon01   Loading settings file "/home/mckahz/VirtualBox VMs/Configure and Administor Network Operating Systems/Windows 2022/Windows 2022.vbox" with version "1.19-linux"
+00:00:00.062537 DCon01   Platform architecture set to 'x86'
+00:00:00.062692 DCon01   Platform architecture set to 'x86'
+00:00:00.065010 DCon01   Loading settings file "/home/mckahz/VirtualBox VMs/Configure Cloud Services/erfys-server/erfys-server.vbox" with version "1.19-linux"
+00:00:00.065254 DCon01   Platform architecture set to 'x86'
+00:00:00.065413 DCon01   Platform architecture set to 'x86'
+00:00:00.066248 DCon01   Loading settings file "/home/mckahz/VirtualBox VMs/Configure Cloud Services/erfys-client/erfys-client.vbox" with version "1.19-linux"
+00:00:00.066424 DCon01   Platform architecture set to 'x86'
+00:00:00.066552 DCon01   Platform architecture set to 'x86'
+00:00:00.067971 DCon01   Loading settings file "/home/mckahz/VirtualBox VMs/Test concepts and procedures for cyber security/Kali Linux/Kali Linux.vbox" with version "1.19-linux"
+00:00:00.068116 DCon01   Platform architecture set to 'x86'
+00:00:00.068229 DCon01   Platform architecture set to 'x86'
+00:00:00.068618 DCon01   Loading settings file "/home/mckahz/VirtualBox VMs/Test concepts and procedures for cyber security/Windows XP/Windows XP.vbox" with version "1.19-linux"
+00:00:00.068712 DCon01   Platform architecture set to 'x86'
+00:00:00.069336 DCon01   VirtualBox: object created
+00:00:01.092409 DCon03   WARNING [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={d5dcece0-b202-4416-a138-03502784cc07} aComponent={HostWrap} aText={VirtualBox is not currently allowed to access USB devices.  You can change this by adding your user to the 'vboxusers' group.  Please see the user manual for a more detailed explanation}, preserve=true aResultDetail=0
+00:00:01.095231 DCon05   WARNING [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={d5dcece0-b202-4416-a138-03502784cc07} aComponent={HostWrap} aText={VirtualBox is not currently allowed to access USB devices.  You can change this by adding your user to the 'vboxusers' group.  Please see the user manual for a more detailed explanation}, preserve=false aResultDetail=0
+00:00:01.155958 DCon05   WARNING [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={d5dcece0-b202-4416-a138-03502784cc07} aComponent={HostWrap} aText={VirtualBox is not currently allowed to access USB devices.  You can change this by adding your user to the 'vboxusers' group.  Please see the user manual for a more detailed explanation}, preserve=true aResultDetail=0
+00:00:01.233728 DCon05   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:01.358943 DCon05   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
+00:00:01.426802 DCon05   WARNING [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={d5dcece0-b202-4416-a138-03502784cc07} aComponent={HostWrap} aText={VirtualBox is not currently allowed to access USB devices.  You can change this by adding your user to the 'vboxusers' group.  Please see the user manual for a more detailed explanation}, preserve=true aResultDetail=0
+00:00:01.428351 DCon05   WARNING [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={d5dcece0-b202-4416-a138-03502784cc07} aComponent={HostWrap} aText={VirtualBox is not currently allowed to access USB devices.  You can change this by adding your user to the 'vboxusers' group.  Please see the user manual for a more detailed explanation}, preserve=true aResultDetail=0
+00:00:01.469309 DCon05   Saving settings file "/home/mckahz/.dotfiles/apps/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:00:01.474087 DCon05   Finished saving settings file "/home/mckahz/.dotfiles/apps/VirtualBox/VirtualBox.xml"
+00:00:08.996860 main     VirtualBox: object deletion starts
+00:00:08.996977 main     ERROR [COM]: aRC=VBOX_E_OBJECT_IN_USE (0x80bb000c) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Medium '/home/mckahz/VirtualBox VMs/Configure and Administor Network Operating Systems/windows11/windows11.vdi' cannot be closed because it is still attached to 1 virtual machines}, preserve=false aResultDetail=0
+00:00:08.997408 main     ERROR [COM]: aRC=VBOX_E_OBJECT_IN_USE (0x80bb000c) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Medium '/home/mckahz/VirtualBox VMs/Configure and Administor Network Operating Systems/Windows 2022/Windows 2022_1.vdi' cannot be closed because it is still attached to 1 virtual machines}, preserve=false aResultDetail=0
+00:00:08.997640 main     ERROR [COM]: aRC=VBOX_E_OBJECT_IN_USE (0x80bb000c) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Medium '/home/mckahz/VirtualBox VMs/Configure Cloud Services/erfys-server/erfys-server.vdi' cannot be closed because it is still attached to 1 virtual machines}, preserve=false aResultDetail=0
+00:00:08.997812 main     ERROR [COM]: aRC=VBOX_E_OBJECT_IN_USE (0x80bb000c) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Medium '/home/mckahz/VirtualBox VMs/Configure Cloud Services/erfys-client/erfys-client.vdi' cannot be closed because it is still attached to 1 virtual machines}, preserve=false aResultDetail=0
+00:00:08.997970 main     ERROR [COM]: aRC=VBOX_E_OBJECT_IN_USE (0x80bb000c) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Medium '/home/mckahz/VirtualBox VMs/Test concepts and procedures for cyber security/Kali Linux/Kali Linux.vdi' cannot be closed because it is still attached to 1 virtual machines}, preserve=false aResultDetail=0
+00:00:08.998175 main     ERROR [COM]: aRC=VBOX_E_OBJECT_IN_USE (0x80bb000c) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Medium '/home/mckahz/VirtualBox VMs/Test concepts and procedures for cyber security/Windows XP/Windows XP.vdi' cannot be closed because it is still attached to 1 virtual machines}, preserve=false aResultDetail=0
+00:00:08.998874 main     HostDnsMonitor: shutting down ...
+00:00:09.001189 main     HostDnsMonitor: shut down
+00:00:09.012322 Watcher  ERROR [COM]: aRC=E_ACCESSDENIED (0x80070005) aIID={2ce10519-3c09-45d8-a12d-e887786146b7} aComponent={VirtualBoxWrap} aText={The object is not ready}, preserve=false aResultDetail=0
+00:00:09.012486 main     VirtualBox: object deleted

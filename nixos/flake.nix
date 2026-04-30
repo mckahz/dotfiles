@@ -1,6 +1,6 @@
 {
   inputs = {
-    # NixOS official package source, here using the nixos-25.05 branch
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     home-manager.url = "github:nix-community/home-manager/release-25.11";
@@ -21,9 +21,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    utils.url = "github:numtide/flake-utils";
+    spotatui = {
+      url = "github:LargeModGames/spotatui";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    anipy-cli.url = "github:sdaqo/anipy-cli";
+    utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
@@ -35,21 +38,46 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      user = rec {
+        name = "mckahz";
+        home = "/home/${name}";
+        config = "${home}/.dotfiles/apps";
+      };
     in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./configuration.nix
-        ];
+      nixosConfigurations = {
+        laptop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit user;
+          };
+          modules = [
+            ./hosts/laptop/configuration.nix
+            ./modules/shared.nix
+          ];
+        };
+        desktop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit user;
+          };
+          modules = [
+            ./hosts/desktop/configuration.nix
+            ./modules/shared.nix
+          ];
+        };
       };
 
-      homeConfigurations.mckahz = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.${inputs.user} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = {
+          inherit inputs;
+          inherit user;
+        };
         modules = [
-          ./home.nix
+          ./modules/home.nix
         ];
       };
     };

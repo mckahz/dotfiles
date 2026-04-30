@@ -1,17 +1,12 @@
 {
-  config,
   pkgs,
   inputs,
   ...
 }:
 
-let
-  user = "mckahz";
-  homeDirectory = "/home/${user}";
-in
 {
-  home.username = user;
-  home.homeDirectory = homeDirectory;
+  home.username = inputs.user;
+  home.homeDirectory = inputs.homeDirectory;
   home.stateVersion = "25.11"; # Please read the comment before changing.
   home.packages = [
     pkgs.whitesur-gtk-theme
