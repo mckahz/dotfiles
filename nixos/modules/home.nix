@@ -1,12 +1,13 @@
 {
   pkgs,
   inputs,
+  user,
   ...
 }:
 
 {
-  home.username = inputs.user;
-  home.homeDirectory = inputs.homeDirectory;
+  home.username = user.name;
+  home.homeDirectory = user.home;
   home.stateVersion = "25.11"; # Please read the comment before changing.
   home.packages = [
     pkgs.whitesur-gtk-theme
