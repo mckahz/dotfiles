@@ -1,14 +1,9 @@
-{
-  inputs,
-  user,
-  ...
-}:
+{ user, ... }:
 {
   imports = [
     ./programs.nix
     ./network.nix
     ./keyboard.nix
-    inputs.dms.nixosModules.greeter
   ];
 
   users.users.${user.name} = {

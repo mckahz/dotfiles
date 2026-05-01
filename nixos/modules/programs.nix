@@ -47,15 +47,16 @@
     nixd
   ];
 
+  programs.niri.enable = true;
   programs.bash.promptInit = ''PS1="\n\[$(tput setaf 39)\]@ \w \n\[$(tput sgr0)\]$ "'';
+  programs.nix-ld.enable = true;
+  programs.steam.enable = true;
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
   };
-  programs.nix-ld.enable = true;
-  programs.steam.enable = true;
-  programs.niri.enable = true;
   services.upower.enable = true;
+  services.power-profiles-daemon.enable = true;
   services.printing.enable = true;
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -64,10 +65,5 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-  };
-  programs.dank-material-shell.greeter = {
-    enable = true;
-    compositor.name = "niri";
-    configHome = user.home;
   };
 }

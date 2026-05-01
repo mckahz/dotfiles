@@ -6,18 +6,8 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    niri = {
-      url = "github:niri-wm/niri";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    dms = {
-      url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    dgop = {
-      url = "github:AvengeMedia/dgop";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -39,42 +29,31 @@
         home = "/home/${name}";
         config = "${home}/.dotfiles/apps";
       };
+    in
+    {
 
-      mkConfigurations = hostName: {
-        osConfig = nixpkgs.lib.nixosSystem {
+      nixosConfigurations = {
+        laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
             inherit inputs;
             inherit user;
           };
           modules = [
-            ./hosts/${hostName}/configuration.nix
-            ./modules/shared.nix
+            ./hosts/laptop/configuration.nix
+            ./modules/common.nix
+            ./noctalia.nix
           ];
         };
+      };
 
-        homeConfig = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit user;
-          };
-          modules = [ ./modules/home.nix ];
+      homeConfigurations."${user.name}@laptop" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {
+          inherit inputs;
+          inherit user;
         };
-      };
-
-      laptop = mkConfigurations "laptop";
-      desktop = mkConfigurations "desktop";
-    in
-    {
-      nixosConfigurations = {
-        laptop = laptop.osConfig;
-        desktop = desktop.osConfig;
-      };
-
-      homeConfigurations = {
-        "${user.name}@laptop" = laptop.homeConfig;
-        "${user.name}@desktop" = desktop.homeConfig;
+        modules = [ ./modules/home.nix ];
       };
     };
 }
