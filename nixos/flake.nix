@@ -42,7 +42,7 @@
           modules = [
             ./hosts/laptop/configuration.nix
             ./modules/common.nix
-            ./noctalia.nix
+            ./modules/noctalia.nix
           ];
         };
       };
