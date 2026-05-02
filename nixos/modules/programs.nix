@@ -12,6 +12,7 @@
     papirus-nord # Icon theme
     gruppled-black-cursors
     xwayland-satellite # To make discord use xwayland (work)
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # CLI Utilities
     btop # System Monitor

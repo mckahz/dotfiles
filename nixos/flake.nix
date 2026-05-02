@@ -31,7 +31,6 @@
       };
     in
     {
-
       nixosConfigurations = {
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -41,7 +40,6 @@
           };
           modules = [
             ./hosts/laptop/configuration.nix
-            ./modules/common.nix
             ./modules/noctalia.nix
           ];
         };
