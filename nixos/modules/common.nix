@@ -1,9 +1,10 @@
-{ user, inputs, ... }:
+{ user, ... }:
 {
   imports = [
     ./programs.nix
     ./network.nix
     ./keyboard.nix
+    ./nvidia.nix
   ];
 
   users.users.${user.name} = {
