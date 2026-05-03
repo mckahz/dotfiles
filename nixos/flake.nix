@@ -24,10 +24,7 @@
         home = "/home/${name}";
         config = "${home}/.dotfiles/apps";
       };
-      hosts = [
-        "laptop"
-        "desktop"
-      ];
+      hosts = builtins.attrNames (builtins.readDir ./hosts);
     in
     {
       nixosConfigurations = nixpkgs.lib.attrsets.mergeAttrsList (
