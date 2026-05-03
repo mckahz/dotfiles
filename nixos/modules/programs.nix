@@ -11,7 +11,6 @@
     papirus-nord # Icon theme
     gruppled-black-cursors
     xwayland-satellite # To make discord use xwayland (work)
-    ntfs3g
 
     # CLI Utilities
     btop # System Monitor

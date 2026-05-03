@@ -13,15 +13,6 @@
     path = ./keyboard.kbd;
   };
 
-  services.udisks2.settings = {
-    # fix NTFS mount, from https://wiki.archlinux.org/title/NTFS#udisks_support
-    "mount_options.conf" = {
-      defaults = {
-        ntfs_defaults = "uid=$UID,gid=$GID,noatime,prealloc";
-      };
-    };
-  };
-
   fileSystems =
     let
       ntfs-drives = [
