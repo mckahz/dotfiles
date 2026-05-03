@@ -65,6 +65,7 @@
     allowUnfree = true;
     permittedInsecurePackages = [
       "ciscoPacketTracer8-8.2.2"
+      "broadcom-sta-6.30.223.271-59-6.18.26"
     ];
   };
 

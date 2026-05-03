@@ -4,3 +4,4 @@ nixos/.direnv*
 apps/DankMaterialShell/plugins/.repos*
 apps/libreoffice*
 apps/discord*
+apps/mozilla*

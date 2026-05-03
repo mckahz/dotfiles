@@ -72,6 +72,9 @@
     enable = true;
     compositor.name = "niri";
     configHome = user.home;
+    configFiles = [
+      "${user.config}/DankMaterialShell/settings.json"
+    ];
     logs = {
       save = true;
       path = "/tmp/dms-greeter.log";
