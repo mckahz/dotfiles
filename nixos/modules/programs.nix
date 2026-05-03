@@ -12,7 +12,6 @@
     papirus-nord # Icon theme
     gruppled-black-cursors
     xwayland-satellite # To make discord use xwayland (work)
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # CLI Utilities
     btop # System Monitor
@@ -20,7 +19,7 @@
     imagemagick # Edit images
     caligula # Burn ISOs to drives
     ani-cli
-    inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # GUI Applications
     qview # Image viewer
@@ -49,12 +48,35 @@
   ];
 
   programs.niri.enable = true;
+  programs.dms-shell = {
+    enable = true;
+    systemd = {
+      enable = true;
+      restartIfChanged = true;
+    };
+
+    enableSystemMonitoring = true;
+    enableVPN = true;
+    enableDynamicTheming = true;
+    enableAudioWavelength = true;
+    enableCalendarEvents = true;
+    enableClipboardPaste = true;
+  };
   programs.bash.promptInit = ''PS1="\n\[$(tput setaf 39)\]@ \w \n\[$(tput sgr0)\]$ "'';
   programs.nix-ld.enable = true;
   programs.steam.enable = true;
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
+  };
+  services.displayManager.dms-greeter = {
+    enable = true;
+    compositor.name = "niri";
+    configHome = user.home;
+    logs = {
+      save = true;
+      path = "/tmp/dms-greeter.log";
+    };
   };
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;

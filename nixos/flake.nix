@@ -1,15 +1,6 @@
 {
   inputs = {
-
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     spotatui = {
       url = "github:LargeModGames/spotatui";
@@ -20,38 +11,34 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    { nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
       user = rec {
         name = "mckahz";
         home = "/home/${name}";
         config = "${home}/.dotfiles/apps";
       };
+      hosts = [
+        "laptop"
+        "desktop"
+      ];
     in
     {
-      nixosConfigurations = {
-        laptop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-            inherit user;
+      nixosConfigurations = nixpkgs.lib.attrsets.mergeAttrsList (
+        map (host: {
+          ${host} = nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = {
+              inherit inputs;
+              inherit user;
+            };
+            modules = [
+              ./hosts/${host}/configuration.nix
+              ./modules/common.nix
+            ];
           };
-          modules = [
-            ./hosts/laptop/configuration.nix
-            ./modules/noctalia.nix
-          ];
-        };
-      };
-
-      homeConfigurations."${user.name}@laptop" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit inputs;
-          inherit user;
-        };
-        modules = [ ./modules/home.nix ];
-      };
+        }) hosts
+      );
     };
 }

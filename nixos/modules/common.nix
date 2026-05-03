@@ -1,4 +1,4 @@
-{ user, ... }:
+{ user, inputs, ... }:
 {
   imports = [
     ./programs.nix
