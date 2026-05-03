@@ -43,6 +43,10 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [
+    "ntfs"
+    "ext4"
+  ];
 
   i18n.defaultLocale = "en_AU.UTF-8";
   i18n.extraLocaleSettings = {
