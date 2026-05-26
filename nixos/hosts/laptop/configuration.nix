@@ -1,9 +1,14 @@
-{ ... }:
+{ pkgs, user, ... }:
 {
   networking.hostName = "laptop";
 
   imports = [
     ./hardware-configuration.nix
+  ];
+
+  environment.systemPackages = with pkgs; [
+    ciscoPacketTracer9
+    vmware-workstation
   ];
 
   keyboard = {

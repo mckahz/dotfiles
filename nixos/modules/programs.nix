@@ -11,6 +11,8 @@
     papirus-nord # Icon theme
     gruppled-black-cursors
     xwayland-satellite # To make discord use xwayland (work)
+    xdg-desktop-portal-gtk # For screensharing
+    xdg-desktop-portal-gnome # For screensharing
 
     # CLI Utilities
     btop # System Monitor
@@ -25,8 +27,6 @@
     nautilus # File manager
     krita # Image editor
     libreoffice # Document editor
-    # ciscoPacketTracer8
-    vmware-workstation
     firefox
     librespot
     spotify
@@ -47,6 +47,20 @@
   ];
 
   programs.niri.enable = true;
+  services.displayManager.dms-greeter = {
+    enable = true;
+    compositor.name = "niri";
+    configHome = user.home;
+    configFiles = [
+      "${user.config}/DankMaterialShell/settings.json"
+    ];
+    logs = {
+      save = true;
+      path = "/tmp/dms-greeter.log";
+    };
+  };
+
+  programs.uwsm.enable = true;
   programs.dms-shell = {
     enable = true;
     systemd = {
@@ -67,18 +81,6 @@
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
-  };
-  services.displayManager.dms-greeter = {
-    enable = true;
-    compositor.name = "niri";
-    configHome = user.home;
-    configFiles = [
-      "${user.config}/DankMaterialShell/settings.json"
-    ];
-    logs = {
-      save = true;
-      path = "/tmp/dms-greeter.log";
-    };
   };
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;

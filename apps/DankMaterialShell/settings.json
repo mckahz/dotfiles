@@ -264,7 +264,11 @@
   "launchPrefix": "",
   "brightnessDevicePins": {},
   "wifiNetworkPins": {},
-  "bluetoothDevicePins": {},
+  "bluetoothDevicePins": {
+    "preferredDevice": [
+      "A8:F5:E1:04:3A:65"
+    ]
+  },
   "audioInputDevicePins": {},
   "audioOutputDevicePins": {},
   "gtkThemingEnabled": false,
@@ -465,13 +469,13 @@
           "enabled": true
         }
       ],
-      "spacing": 4,
+      "spacing": 0,
       "innerPadding": 4,
       "bottomGap": 0,
       "transparency": 1,
       "widgetTransparency": 1,
-      "squareCorners": false,
-      "noBackground": false,
+      "squareCorners": true,
+      "noBackground": true,
       "maximizeWidgetIcons": true,
       "maximizeWidgetText": true,
       "removeWidgetPadding": false,

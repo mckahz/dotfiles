@@ -2,6 +2,7 @@
   user,
   lib,
   config,
+  pkgs,
   ...
 }:
 {
@@ -21,6 +22,8 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.kernelModules = [ "wl" ];
 
+  services.getty.autologinUser = user.name;
+
   fileSystems =
     let
       ntfs-drives = [
@@ -33,7 +36,7 @@
     });
 
   # rename linktosharedfolder???
-  system.activationScripts.linktosharedfolder.text =
+  system.activationScripts.linkToStorage.text =
     let
       createSymlink = path: ''
         if [[ ! -h "${user.home}/${path}" ]]; then

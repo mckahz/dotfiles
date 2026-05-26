@@ -19,7 +19,7 @@
     environment.systemPackages = [ pkgs.kmonad ];
 
     systemd.services.kmonad = {
-      script = "${pkgs.kmonad}/bin/kmonad ${builtins.toString config.keyboard.path}";
+      script = "${pkgs.kmonad}/bin/kmonad ${toString config.keyboard.path}";
       wantedBy = [ "multi-user.target" ];
     };
   };
