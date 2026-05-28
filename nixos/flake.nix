@@ -8,6 +8,11 @@
     };
 
     utils.url = "github:numtide/flake-utils";
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

@@ -8,6 +8,18 @@
 {
   networking.hostName = "desktop";
 
+  programs.regreet.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "${pkgs.niri}/bin/niri-session";
+        user = user.name;
+      };
+      default_session = initial_session;
+    };
+  };
+
   imports = [
     ./hardware-configuration.nix
   ];
@@ -21,8 +33,6 @@
 
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.kernelModules = [ "wl" ];
-
-  services.getty.autologinUser = user.name;
 
   fileSystems =
     let

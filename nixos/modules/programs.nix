@@ -1,6 +1,7 @@
 {
   pkgs,
   user,
+  inputs,
   ...
 }:
 {
@@ -47,33 +48,16 @@
   ];
 
   programs.niri.enable = true;
-  services.displayManager.dms-greeter = {
-    enable = true;
-    compositor.name = "niri";
-    configHome = user.home;
-    configFiles = [
-      "${user.config}/DankMaterialShell/settings.json"
-    ];
-    logs = {
-      save = true;
-      path = "/tmp/dms-greeter.log";
-    };
-  };
-
-  programs.uwsm.enable = true;
   programs.dms-shell = {
     enable = true;
-    systemd = {
-      enable = true;
-      restartIfChanged = true;
-    };
-
     enableSystemMonitoring = true;
-    enableVPN = true;
+    # enableVPN = true;
     enableDynamicTheming = true;
     enableAudioWavelength = true;
     enableCalendarEvents = true;
     enableClipboardPaste = true;
+
+    quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
   };
   programs.bash.promptInit = ''PS1="\n\[$(tput setaf 39)\]@ \w \n\[$(tput sgr0)\]$ "'';
   programs.nix-ld.enable = true;
