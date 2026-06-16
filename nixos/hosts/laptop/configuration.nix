@@ -24,6 +24,16 @@
     restartIfChanged = true;
   };
 
+  # To avoid OOM issues
+  nix.settings = {
+    max-jobs = 2;
+    cores = 0;
+  };
+  systemd.services.nix-daemon.serviceConfig = {
+    MemoryHigh = "5GB";
+    MemoryMax = "6GB";
+  };
+
   environment.systemPackages = with pkgs; [
     ciscoPacketTracer9
     vmware-workstation

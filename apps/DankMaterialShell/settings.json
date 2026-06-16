@@ -36,12 +36,6 @@
   "modalAnimationSpeed": 1,
   "modalCustomAnimationDuration": 150,
   "enableRippleEffects": true,
-  "blurEnabled": false,
-  "blurForegroundLayers": true,
-  "blurLayerOutlineOpacity": 0.12,
-  "blurBorderColor": "outline",
-  "blurBorderCustomColor": "#ffffff",
-  "blurBorderOpacity": 0.35,
   "wallpaperFillMode": "Fill",
   "blurredWallpaperLayer": false,
   "blurWallpaperOnOverview": true,
@@ -58,9 +52,6 @@
   "selectedGpuIndex": 0,
   "enabledGpuPciIds": [],
   "showSystemTray": true,
-  "systemTrayIconTintMode": "none",
-  "systemTrayIconTintSaturation": 50,
-  "systemTrayIconTintStrength": 135,
   "showClock": true,
   "showNotificationButton": true,
   "showBattery": true,
@@ -175,6 +166,12 @@
   "greeterEnableFprint": false,
   "greeterEnableU2f": false,
   "greeterWallpaperPath": "",
+  "greeterUse24HourClock": true,
+  "greeterShowSeconds": false,
+  "greeterPadHours12Hour": false,
+  "greeterLockDateFormat": "",
+  "greeterFontFamily": "",
+  "greeterWallpaperFillMode": "",
   "mediaSize": 1,
   "appLauncherViewMode": "list",
   "spotlightModalViewMode": "list",
@@ -263,7 +260,12 @@
   "fadeToDpmsGracePeriod": 5,
   "launchPrefix": "",
   "brightnessDevicePins": {},
-  "wifiNetworkPins": {},
+  "wifiNetworkPins": {
+    "preferredWifi": [
+      "Ithaca-5Ghz",
+      "Ithaca"
+    ]
+  },
   "bluetoothDevicePins": {
     "preferredDevice": [
       "A8:F5:E1:04:3A:65"
@@ -275,10 +277,6 @@
   "qtThemingEnabled": false,
   "syncModeWithPortal": true,
   "terminalsAlwaysDark": true,
-  "muxType": "tmux",
-  "muxUseCustomCommand": false,
-  "muxCustomCommand": "",
-  "muxSessionFilter": "",
   "runDmsMatugenTemplates": true,
   "matugenTemplateGtk": true,
   "matugenTemplateNiri": true,
