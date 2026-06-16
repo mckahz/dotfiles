@@ -26,13 +26,11 @@
             config.keyboard.device
           ];
           config = ''
-            (defcfg process-unmapped-keys yes)
-
-            (defsrc caps)
+            (defsrc esc caps)
 
             (defalias vim (tap-hold 200 200 esc lctl))
 
-            (deflayer my-keyboard @vim)
+            (deflayer my-keyboard caps @vim)
           '';
         };
       };
