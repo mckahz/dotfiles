@@ -41,7 +41,7 @@
 
   keyboard = {
     enable = true;
-    path = ./keyboard.kbd;
+    device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
   };
 
   system.stateVersion = "25.11";

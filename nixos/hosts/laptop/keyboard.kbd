@@ -1,7 +1,0 @@
-;;(defcfg)
-
-(defalias vim (tap-hold esc lctl))
-
-(defsrc caps)
-
-(deflayer my-keyboard @vim)

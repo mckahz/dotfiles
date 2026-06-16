@@ -28,7 +28,7 @@
 
   keyboard = {
     enable = true;
-    path = ./keyboard.kbd;
+    device = "/dev/input/by-id/usb-Razer_Razer_Cynosa_Chroma-event-kbd";
   };
 
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];

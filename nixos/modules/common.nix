@@ -13,9 +13,12 @@
     extraGroups = [
       "wheel"
       "networkmanager"
+      "input"
+      "uinput"
     ];
     packages = [ ];
   };
+  hardware.uinput.enable = true;
 
   nix.extraOptions = ''
     trusted-users = root ${user.name}

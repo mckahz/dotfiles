@@ -8,9 +8,9 @@
   options = {
     keyboard = {
       enable = lib.mkEnableOption "enables keyboard macros with kanata";
-      path = lib.mkOption {
+      device = lib.mkOption {
         type = lib.types.path;
-        description = "The path to the .kbd file used on the device";
+        description = "path to the /dev/ directory representing the keyboard";
       };
     };
   };
@@ -23,9 +23,17 @@
       keyboards = {
         myKeyboard = {
           devices = [
-            "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
+            config.keyboard.device
           ];
-          configFile = config.keyboard.path;
+          config = ''
+            (defcfg process-unmapped-keys yes)
+
+            (defsrc caps)
+
+            (defalias vim (tap-hold 200 200 esc lctl))
+
+            (deflayer my-keyboard @vim)
+          '';
         };
       };
     };
