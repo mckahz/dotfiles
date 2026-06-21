@@ -48,7 +48,7 @@
     nixd
   ];
 
-  programs.niri.enable = true;
+  # programs.niri.enable = true;
   programs.dms-shell = {
     enable = true;
     enableSystemMonitoring = true;

@@ -2,6 +2,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     spotatui = {
       url = "github:LargeModGames/spotatui";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,5 +47,16 @@
           };
         }) hosts
       );
+
+      home-manager.users.${user.name} = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        modules = [
+          ./home.nix
+        ];
+        extraSpecialArgs = {
+          inherit user;
+          inherit inputs;
+        };
+      };
     };
 }
