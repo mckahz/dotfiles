@@ -7,7 +7,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    caelestia-shell = {
+    caelestia = {
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -61,7 +61,9 @@
 
       homeConfigurations.${user.name} = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home.nix ];
+        modules = [
+          ./home.nix
+        ];
         extraSpecialArgs = {
           inherit pkgs;
           inherit system;
