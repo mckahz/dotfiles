@@ -17,6 +17,7 @@
     xdg-desktop-portal-gnome # For screensharing
 
     # CLI Utilities
+    home-manager
     btop # System Monitor
     cmatrix # Matrix hacker thingy
     imagemagick # Edit images
@@ -49,17 +50,15 @@
   ];
 
   programs.niri.enable = true;
-  programs.dms-shell = {
-    enable = true;
-    enableSystemMonitoring = true;
-    # enableVPN = true;
-    enableDynamicTheming = true;
-    enableAudioWavelength = true;
-    enableCalendarEvents = true;
-    enableClipboardPaste = true;
-
-    quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
-  };
+  # programs.dms-shell = {
+  #   enable = true;
+  #   enableSystemMonitoring = true;
+  #   # enableVPN = true;
+  #   enableDynamicTheming = true;
+  #   enableAudioWavelength = true;
+  #   enableCalendarEvents = true;
+  #   enableClipboardPaste = true;
+  # };
   programs.nix-ld.enable = true;
   programs.steam.enable = true;
   programs.zsh = {
@@ -89,10 +88,8 @@
   users.extraUsers.${user.name} = {
     shell = pkgs.zsh;
   };
-  # programs.bash.promptInit = ''PS1="\n\[$(tput setaf 39)\]@ \w \n\[$(tput sgr0)\]$ "'';
   programs.direnv = {
     enable = true;
-    # enableBashIntegration = true;
     enableZshIntegration = true;
   };
   services.upower.enable = true;

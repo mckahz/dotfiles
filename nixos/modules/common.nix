@@ -1,4 +1,4 @@
-{ user, ... }:
+{ user, pkgs, ... }:
 {
   imports = [
     ./programs.nix
@@ -25,6 +25,16 @@
     trusted-users = root ${user.name}
   '';
 
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services = {
+    greetd.enableGnomeKeyring = true;
+    greetd-password.enableGnomeKeyring = true;
+    login.enableGnomeKeyring = true;
+  };
+  services.dbus.packages = [
+    pkgs.gnome-keyring
+    pkgs.gcr
+  ];
   security.pam.loginLimits = [
     {
       domain = "*";

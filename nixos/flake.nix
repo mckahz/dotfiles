@@ -7,6 +7,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,11 +28,6 @@
     };
 
     utils.url = "github:numtide/flake-utils";
-
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -40,6 +40,7 @@
         config = "${home}/.dotfiles/apps";
       };
       hosts = builtins.attrNames (builtins.readDir ./hosts);
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       nixosConfigurations = nixpkgs.lib.attrsets.mergeAttrsList (
@@ -59,9 +60,11 @@
       );
 
       homeConfigurations.${user.name} = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+        inherit pkgs;
         modules = [ ./home.nix ];
         extraSpecialArgs = {
+          inherit pkgs;
+          inherit system;
           inherit user;
           inherit inputs;
         };
