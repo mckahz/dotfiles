@@ -5,8 +5,10 @@
     ./network.nix
     ./keyboard.nix
     ./nvidia.nix
+    <home-manager/nixos>
   ];
 
+  home-manager.users.${user.name} = ./home.nix;
   users.users.${user.name} = {
     isNormalUser = true;
     description = user.name;

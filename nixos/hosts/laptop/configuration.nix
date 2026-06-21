@@ -6,23 +6,32 @@
     ./hardware-configuration.nix
   ];
 
-  services.displayManager.dms-greeter = {
+  # services.displayManager.dms-greeter = {
+  #   enable = true;
+  #   compositor.name = "niri";
+  #   configHome = user.home;
+  #   configFiles = [
+  #     "${user.config}/DankMaterialShell/settings.json"
+  #   ];
+  #   logs = {
+  #     save = true;
+  #     path = "/tmp/dms-greeter.log";
+  #   };
+  # };
+  services.greetd = {
     enable = true;
-    compositor.name = "niri";
-    configHome = user.home;
-    configFiles = [
-      "${user.config}/DankMaterialShell/settings.json"
-    ];
-    logs = {
-      save = true;
-      path = "/tmp/dms-greeter.log";
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd}/bin/agreety --cmd ${pkgs.niri}/bin/niri-session";
+        user = user.name;
+      };
     };
   };
 
-  programs.dms-shell.systemd = {
-    enable = true;
-    restartIfChanged = true;
-  };
+  # programs.dms-shell.systemd = {
+  #   enable = true;
+  #   restartIfChanged = true;
+  # };
 
   # To avoid OOM issues
   nix.settings = {

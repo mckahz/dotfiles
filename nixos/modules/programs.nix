@@ -2,6 +2,7 @@
   pkgs,
   user,
   inputs,
+  lib,
   ...
 }:
 {
@@ -37,10 +38,10 @@
 
     # Programming
     zed-editor
-    kitty
     git
     gh
     godot_4
+    kitty
 
     # Language Support
     nil
@@ -59,12 +60,40 @@
 
     quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
   };
-  programs.bash.promptInit = ''PS1="\n\[$(tput setaf 39)\]@ \w \n\[$(tput sgr0)\]$ "'';
   programs.nix-ld.enable = true;
   programs.steam.enable = true;
+  programs.zsh = {
+    enable = true;
+
+    ohMyZsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "z"
+      ];
+      custom = "${user.config}/zsh";
+      theme = "headline";
+    };
+
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+
+    histSize = 10000;
+    histFile = "$HOME/.zsh_history";
+    setOptions = [
+      "HIST_IGNORE_ALL_DUPS"
+    ];
+  };
+
+  users.extraUsers.${user.name} = {
+    shell = pkgs.zsh;
+  };
+  # programs.bash.promptInit = ''PS1="\n\[$(tput setaf 39)\]@ \w \n\[$(tput sgr0)\]$ "'';
   programs.direnv = {
     enable = true;
-    enableBashIntegration = true;
+    # enableBashIntegration = true;
+    enableZshIntegration = true;
   };
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
