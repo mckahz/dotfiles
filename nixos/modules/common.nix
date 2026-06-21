@@ -5,7 +5,7 @@
     ./network.nix
     ./keyboard.nix
     ./nvidia.nix
-    ./home.nix
+    ./colors.nix
   ];
 
   users.users.${user.name} = {

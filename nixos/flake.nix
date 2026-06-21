@@ -2,6 +2,16 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     niri-flake = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,11 +58,9 @@
         }) hosts
       );
 
-      home-manager.users.${user.name} = inputs.home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.${user.name} = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
-        modules = [
-          ./home.nix
-        ];
+        modules = [ ./home.nix ];
         extraSpecialArgs = {
           inherit user;
           inherit inputs;

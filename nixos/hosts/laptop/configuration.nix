@@ -6,18 +6,6 @@
     ./hardware-configuration.nix
   ];
 
-  # services.displayManager.dms-greeter = {
-  #   enable = true;
-  #   compositor.name = "niri";
-  #   configHome = user.home;
-  #   configFiles = [
-  #     "${user.config}/DankMaterialShell/settings.json"
-  #   ];
-  #   logs = {
-  #     save = true;
-  #     path = "/tmp/dms-greeter.log";
-  #   };
-  # };
   services.greetd = {
     enable = true;
     settings = {
@@ -27,11 +15,6 @@
       };
     };
   };
-
-  # programs.dms-shell.systemd = {
-  #   enable = true;
-  #   restartIfChanged = true;
-  # };
 
   # To avoid OOM issues
   nix.settings = {

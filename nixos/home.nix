@@ -2,7 +2,6 @@
 {
   imports = [
     inputs.niri-flake.homeModules.niri
-    <home-manager/nixos>
   ];
 
   home.packages = [
