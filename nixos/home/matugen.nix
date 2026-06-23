@@ -1,7 +1,16 @@
-{ inputs, ... }: {
+{
+  config,
+  inputs,
+  user,
+  ...
+}:
+{
   imports = [
-    inputs.matugen.homeManagerModules.default
+    inputs.matugen.nixosModules.default
   ];
+
+  # home.configFile."${user.config}".source =
+  #   "${config.programs.matugen.theme.files}/${user.config}/colors.conf";
 
   programs.matugen = {
     enable = true;
@@ -11,10 +20,9 @@
     # Define the templates that should receive these colors
     # templates = {
     #   kitty = {
-    #     input_path = "./templates/kitty.conf";
-    #     output_path = "${config.xdg.configHome}/kitty/colors.conf";
+    #     input_path = "./../matugen/kitty.conf";
+    #     output_path = "${user.config}/kitty/colors.conf";
     #   };
-    #   # Add other apps like Hyprland, Waybar, etc.
     # };
   };
 }

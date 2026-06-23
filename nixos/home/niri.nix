@@ -6,7 +6,13 @@
   programs.niri = {
     enable = true;
     settings = {
+      spawn-at-startup = [
+      ];
+
       layout = {
+        default-column-width = {
+          proportion = 2.0 / 3.0;
+        };
       };
 
       window-rules =
