@@ -19,6 +19,7 @@
     ];
     packages = [ ];
   };
+
   hardware.uinput.enable = true;
 
   nix.extraOptions = ''

@@ -49,44 +49,14 @@
   ];
 
   programs.niri.enable = true;
-  # programs.dms-shell = {
-  #   enable = true;
-  #   enableSystemMonitoring = true;
-  #   # enableVPN = true;
-  #   enableDynamicTheming = true;
-  #   enableAudioWavelength = true;
-  #   enableCalendarEvents = true;
-  #   enableClipboardPaste = true;
-  # };
   programs.nix-ld.enable = true;
   programs.steam.enable = true;
-  programs.zsh = {
-    enable = true;
 
-    ohMyZsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "z"
-      ];
-      custom = "${user.config}/zsh";
-      theme = "headline";
-    };
-
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-
-    histSize = 10000;
-    histFile = "$HOME/.zsh_history";
-    setOptions = [
-      "HIST_IGNORE_ALL_DUPS"
-    ];
-  };
-
+  programs.zsh.enable = true;
   users.extraUsers.${user.name} = {
     shell = pkgs.zsh;
   };
+
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
