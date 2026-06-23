@@ -17,6 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    matugen = {
+      url = "github:InioX/Matugen";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,6 +64,7 @@
             modules = [
               ./hosts/${host}/configuration.nix
               ./modules/common.nix
+              inputs.home-manager.nixosModules.home-manager
             ];
           };
         }) hosts

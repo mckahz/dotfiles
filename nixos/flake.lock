@@ -210,11 +210,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781989573,
-        "narHash": "sha256-npfH7Zv7t1akX/ArqCNro4zU4ViPlghLaPnbEfHbCxk=",
+        "lastModified": 1782233665,
+        "narHash": "sha256-h/xOtrByoA/Ak1lWHn0O1lVZz4qWYbwOSLQ8YSwQO0I=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "78e7d8b13ecd7f5256a5c11ce216876164099d9f",
+        "rev": "062581938b4a378a82dfbb294b494808157153a1",
         "type": "github"
       },
       "original": {
@@ -416,11 +416,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782042736,
-        "narHash": "sha256-3x2B+hIb3Djw+SE27qWbCmtpPzDCRZ53y4/2I5oanvQ=",
+        "lastModified": 1782126987,
+        "narHash": "sha256-O4DzQz0uWzjKloaQ7uvlEBBivUqGrqmnqefJ4jN9qkY=",
         "owner": "LargeModGames",
         "repo": "spotatui",
-        "rev": "d9018176e0c0d8c7b6916a702f80e61535092833",
+        "rev": "6c126cc796594aa3bdba18bc66f12a0a36d1f457",
         "type": "github"
       },
       "original": {

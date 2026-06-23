@@ -9,8 +9,6 @@
   environment.systemPackages = with pkgs; [
     # Ricing
     # quickshell pavucontrol
-    nwg-look # To apply themes without editing gtk text files
-    papirus-nord # Icon theme
     gruppled-black-cursors
     xwayland-satellite # To make discord use xwayland (work)
     xdg-desktop-portal-gtk # For screensharing
