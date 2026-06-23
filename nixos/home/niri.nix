@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, style, ... }: {
   imports = [
     inputs.niri-flake.homeModules.niri
   ];
@@ -15,23 +15,19 @@
         };
       };
 
-      window-rules =
-        let
-          r = 15.0;
-        in
-        [
-          {
-            geometry-corner-radius = {
-              bottom-left = r;
-              bottom-right = r;
-              top-left = r;
-              top-right = r;
-            };
-            clip-to-geometry = true;
-            focus-ring.width = 2;
-            draw-border-with-background = false;
-          }
-        ];
+      window-rules = [
+        {
+          geometry-corner-radius = {
+            bottom-left = style.cornerRadius;
+            bottom-right = style.cornerRadius;
+            top-left = style.cornerRadius;
+            top-right = style.cornerRadius;
+          };
+          clip-to-geometry = true;
+          focus-ring.width = 2;
+          draw-border-with-background = false;
+        }
+      ];
 
       binds = {
         "Mod+Return".action.spawn = "kitty";

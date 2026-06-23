@@ -54,6 +54,9 @@
         home = "/home/${name}";
         config = "${home}/.dotfiles/apps";
       };
+      style = {
+        cornerRadius = 10.0;
+      };
       hosts = builtins.attrNames (builtins.readDir ./hosts);
       pkgs = nixpkgs.legacyPackages.${system};
     in
@@ -65,6 +68,7 @@
             specialArgs = {
               inherit inputs;
               inherit user;
+              inherit style;
             };
             modules = [
               ./hosts/${host}/configuration.nix
@@ -85,6 +89,7 @@
           inherit system;
           inherit user;
           inherit inputs;
+          inherit style;
         };
       };
     };

@@ -5,7 +5,7 @@
   ];
 
   stylix = {
-    enable = true;
+    enable = false;
     polarity = "dark";
     targets.kitty.colors.enable = true;
     image = pkgs.fetchurl {

@@ -46,6 +46,7 @@
     nixd
   ];
 
+  programs.dconf.enable = true;
   programs.niri.enable = true;
   programs.nix-ld.enable = true;
   programs.steam.enable = true;
