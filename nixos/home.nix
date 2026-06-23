@@ -1,8 +1,6 @@
 {
   pkgs,
-  inputs,
   user,
-  system,
   ...
 }:
 {
@@ -16,6 +14,7 @@
   home.username = user.name;
   home.homeDirectory = user.home;
 
+  xdg.configHome = user.config;
+
   programs.zsh.enable = true;
-  programs.kitty.enable = true;
 }

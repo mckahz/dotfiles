@@ -1,15 +1,12 @@
-{
-  inputs,
-  ...
-}:
+{ inputs, ... }:
 {
   imports = [
-    inputs.caelestia.homeManagerModules.default
+    inputs.caelestia-shell.homeManagerModules.default
   ];
 
   programs.caelestia = {
     enable = true;
-    systemd.enable = false;
+    systemd.enable = true;
     cli.enable = true; # Also adds caelestia-cli to path
   };
 }

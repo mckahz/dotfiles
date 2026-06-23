@@ -42,7 +42,6 @@
     git
     gh
     godot_4
-    kitty
 
     # Language Support
     nil
