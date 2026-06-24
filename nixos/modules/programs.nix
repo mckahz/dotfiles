@@ -48,18 +48,14 @@
 
   programs.dconf.enable = true;
   programs.niri.enable = true;
-  programs.nix-ld.enable = true;
-  programs.steam.enable = true;
-
   programs.fish.enable = true;
   users.extraUsers.${user.name} = {
     shell = pkgs.fish;
   };
 
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  programs.nix-ld.enable = true;
+  programs.steam.enable = true;
+
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
   services.printing.enable = true;

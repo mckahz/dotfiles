@@ -1,9 +1,9 @@
 { ... }: {
   programs.zsh = {
-    enable = true;
+    enable = false;
 
     oh-my-zsh = {
-      enable = true;
+      enable = false;
       plugins = [
         "git"
         "z"
