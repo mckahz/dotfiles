@@ -1,12 +1,23 @@
 {
   config,
   inputs,
+  user,
+  pkgs,
   style,
+  system,
   ...
 }:
 {
   imports = [
     inputs.niri-flake.homeModules.niri
+  ];
+
+  home.packages = [
+    inputs.niri-wallpaper.packages.${system}.default
+    inputs.awww.packages.${system}.default
+    pkgs.imagemagick
+    pkgs.swaybg
+    pkgs.swaylock
   ];
 
   programs.niri = {
@@ -23,7 +34,49 @@
             "gsettings set org.gnome.desktop.interface cursor-size ${toString config.home.pointerCursor.size}"
           ];
         }
+        { argv = [ "awww-daemon" ]; }
+        {
+          argv = [
+            "awww-daemon"
+            "--namespace"
+            "backdrop"
+          ];
+        }
+        {
+          argv = [
+            "niri-wallpaper"
+            "${user.home}/Pictures/Wallpapers"
+            "-i"
+            "3600"
+            "--path-magick"
+            "${pkgs.imagemagick}"
+            "--path-swaybg"
+            "${pkgs.swaybg}"
+            "--path-swaylock"
+            "${pkgs.swaylock}"
+            "--path-awww"
+            "${pkgs.awww}"
+          ];
+        }
       ];
+
+      input.focus-follows-mouse = {
+        enable = true;
+        max-scroll-amount = "75%";
+      };
+
+      layer-rules = [
+        {
+          matches = [ { namespace = "^awww-daemonbackdrop$"; } ];
+          place-within-backdrop = true;
+        }
+      ];
+
+      gestures = {
+        hot-corners = {
+          enable = true;
+        };
+      };
 
       layout = {
         default-column-width = {
@@ -45,7 +98,10 @@
         }
       ];
 
+      hotkey-overlay.skip-at-startup = true;
+
       binds = {
+        # "Mod+Shift+/".action.spawn = ???;
         "Mod+Return".action.spawn = "kitty";
         "Mod+Shift+T".action.spawn = "screenshot";
         "XF86AudioRaiseVolume" = {

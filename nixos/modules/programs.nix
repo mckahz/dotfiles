@@ -51,9 +51,9 @@
   programs.nix-ld.enable = true;
   programs.steam.enable = true;
 
-  programs.zsh.enable = true;
+  programs.fish.enable = true;
   users.extraUsers.${user.name} = {
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
 
   programs.direnv = {
