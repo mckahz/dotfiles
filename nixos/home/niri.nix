@@ -1,4 +1,10 @@
-{ inputs, style, ... }: {
+{
+  config,
+  inputs,
+  style,
+  ...
+}:
+{
   imports = [
     inputs.niri-flake.homeModules.niri
   ];
@@ -7,6 +13,16 @@
     enable = true;
     settings = {
       spawn-at-startup = [
+        {
+          argv = [
+            "gsettings set org.gnome.desktop.interface cursor-theme '${config.home.pointerCursor.name}'"
+          ];
+        }
+        {
+          argv = [
+            "gsettings set org.gnome.desktop.interface cursor-size ${toString config.home.pointerCursor.size}"
+          ];
+        }
       ];
 
       layout = {

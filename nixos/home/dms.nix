@@ -13,7 +13,7 @@
   # #systemd.user.services.niri-flake-polkit.enable = false;
 
   programs.dank-material-shell = {
-    enable = true;
+    enable = false;
     niri = {
       enableSpawn = true; # Auto-start DMS with niri, if enabled
     };
@@ -25,6 +25,10 @@
           name = "Main Bar";
           enabled = true;
 
+          widgetTransparency = 0.0;
+          removeWidgetPadding = true;
+          maximizeWidgetIcons = true;
+
           ## Widgets
           leftWidgets = [
             {
@@ -32,38 +36,28 @@
               enabled = true;
             }
             "workspaceSwitcher"
-            "focusedWindow"
           ];
           centerWidgets = [
             {
-              id = "clock";
-              enabled = true;
-            }
-          ];
-          rightWidgets = [
-            {
-              id = "music";
-              enabled = true;
-            }
-            {
               id = "easyEffects";
+              enabled = true;
+            }
+            {
+              id = "battery";
+              enabled = true;
+            }
+            {
+              id = "clipboard";
               enabled = true;
             }
             {
               id = "memUsage";
               enabled = true;
             }
+          ];
+          rightWidgets = [
             {
-              id = "battery";
-              enabled = true;
-              showPercent = false;
-            }
-            {
-              id = "networkMonitor";
-              enabled = true;
-            }
-            {
-              id = "clipboard";
+              id = "clock";
               enabled = true;
             }
             {
@@ -82,23 +76,21 @@
               id = "powerMenuButton";
               enabled = true;
             }
-            {
-              id = "systemTray";
-              enabled = true;
-            }
           ];
 
           ## Layout
           position = 2; # 0=top, 1=bottom, 2=left, 3=right
-          spacing = 3;
+          spacing = 0;
           bottomGap = 1;
-          innerPadding = 8; # Sets the bar size, strangely
+          innerPadding = 40; # Sets the bar size, strangely
           maximizeDetection = true; # Don't remove gaps if the window is maxximized
 
           ## Behavior
           scrollYBehavior = "none";
         }
       ];
+
+      showBatteryPercent = false;
 
       ## Displays
       screenPreferences = [ "all" ];
@@ -114,16 +106,20 @@
       transparency = 1;
       widgetTransparency = 1;
       squareCorners = false;
-      noBackground = false;
+      noBackground = true;
+
       gothCornersEnabled = false;
       gothCornerRadiusOverride = false;
       gothCornerRadiusValue = 12;
+
       borderEnabled = true;
       borderColor = "surfaceText";
       borderOpacity = 1;
       borderThickness = 10;
 
-      fontScale = 1;
+      fontScale = 1.6;
+      fontFamily = "Inter Variable";
+      monoFontFamily = "Fira Code";
 
       ## Icons
       dockIconsize = 24;
@@ -138,9 +134,9 @@
       osdPowerProfileEnabled = true;
 
       ## Workspaces
-      showWorkspaceIndex = true;
-      showWorkspacePadding = true;
+      showWorkspaceIndex = false;
       showWorkspaceApps = true;
+      groupWorkspaceApps = true;
       showOccupiedWorkspacesOnly = true;
 
       ## Dock
@@ -162,6 +158,7 @@
       fadeToLockGracePeriod = 5;
 
       ### Widgets
+      widgetColorMode = "colorful";
 
       ## Clock
       use24HourClock = true;
@@ -184,10 +181,7 @@
       frameThickness = 4;
       frameRounding = style.cornerRadius * 1.2;
       frameScreenPreferences = [ "all" ];
-
-      ## Theme
-      # currentThemeName = "custom";
-      # customThemeFile = theme-tokyonight;
+      frameBarSize = 60;
     };
 
     session = {

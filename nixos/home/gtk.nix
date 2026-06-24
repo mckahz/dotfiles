@@ -1,12 +1,11 @@
-{pkgs, ...}: {
-gtk = {
-  enable = true;
-  cursorTheme = {
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
+{ pkgs, ... }:
+{
+  gtk = {
+    enable = true;
+
+    iconTheme = {
+      name = "Tela-circle";
+      package = pkgs.tela-circle-icon-theme;
+    };
   };
-  gtk3.extraConfig = {
-    "gtk-cursor-theme-name" = "Bibata-Modern-Classic";
-  };
-};
 }
