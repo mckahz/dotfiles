@@ -7,31 +7,34 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    # Ricing
-    # quickshell pavucontrol
-    gruppled-black-cursors
-    xwayland-satellite # To make discord use xwayland (work)
+    home-manager
+
+    nerd-fonts.meslo-lg
+
     xdg-desktop-portal-gtk # For screensharing
     xdg-desktop-portal-gnome # For screensharing
 
     # CLI Utilities
-    home-manager
     btop # System Monitor
     cmatrix # Matrix hacker thingy
     imagemagick # Edit images
     caligula # Burn ISOs to drives
     ani-cli
-    # inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # GUI Applications
     qview # Image viewer
     nautilus # File manager
     krita # Image editor
     libreoffice # Document editor
-    firefox
-    librespot
+    librespot # ???
+    firefox # Browser
+
     spotify
+    # inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
+
+    xwayland-satellite # To make discord use xwayland (work)
     discord
+
     zoom-us
     steam
 
@@ -44,10 +47,22 @@
     # Language Support
     nil
     nixd
+    fish-lsp
   ];
 
   programs.dconf.enable = true;
   programs.niri.enable = true;
+  programs.uswm = {
+    enable = true;
+    waylandCompositors = {
+      niri = {
+        prettyName = "niri";
+        comment = "niri compositor managed by UWSM";
+        binPath = "${pkgs.niri}";
+      };
+    };
+  };
+
   programs.fish.enable = true;
   users.extraUsers.${user.name} = {
     shell = pkgs.fish;

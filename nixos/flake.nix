@@ -13,7 +13,7 @@
     };
 
     niri-caelestia-shell = {
-      url = "github:AyushKr2003/niri-caelestia-shell";
+      url = "github:mckahz/niri-caelestia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -94,7 +94,6 @@
         ];
         extraSpecialArgs = {
           inherit pkgs;
-          inherit system;
           inherit user;
           inherit inputs;
           inherit style;

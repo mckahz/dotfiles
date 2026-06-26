@@ -1,7 +1,7 @@
 { inputs, user, ... }:
 {
   imports = [
-    inputs.niri-caelestia-shell.homeManagerModules.default
+    inputs.caelestia-shell.homeManagerModules.default
   ];
 
   programs.caelestia = {

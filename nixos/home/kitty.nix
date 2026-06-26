@@ -2,6 +2,7 @@
 {
   programs.kitty = lib.mkForce {
     enable = true;
+    #shellIntegration.enableZshIntegration = true;
     shellIntegration.enableFishIntegration = true;
     settings = {
       shell = "fish";

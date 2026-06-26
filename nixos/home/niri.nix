@@ -73,9 +73,7 @@
       ];
 
       gestures = {
-        hot-corners = {
-          enable = true;
-        };
+        hot-corners.enable = false;
       };
 
       layout = {

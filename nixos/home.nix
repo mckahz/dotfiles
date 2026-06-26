@@ -3,8 +3,19 @@
   user,
   ...
 }:
+let
+  getExtension =
+    file:
+    let
+      last = builtins.length file - 1;
+    in
+    builtins.substring (last - 2) last file;
+in
 {
-  imports = map (file: ./home/${file}) (builtins.attrNames (builtins.readDir ./home));
+  imports =
+    map (file: ./home/${file})
+    <| builtins.filter (path: getExtension path == "nix")
+    <| (builtins.attrNames (builtins.readDir ./home));
 
   home.packages = [
     pkgs.hello
@@ -14,6 +25,9 @@
   home.stateVersion = "26.05";
   home.username = user.name;
   home.homeDirectory = user.home;
+  xdg.configHome = user.config;
+
+  wayland.windowManager.niri.systemd.enable = false; # Conflicts with UWSM
 
   home.pointerCursor =
     let
@@ -35,5 +49,7 @@
       '';
     };
 
-  xdg.configHome = user.config;
+  programs.direnv.enable = true;
+  programs.direnv.enableFishIntegration = true;
+
 }
