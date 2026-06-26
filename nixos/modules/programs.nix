@@ -52,7 +52,7 @@
 
   programs.dconf.enable = true;
   programs.niri.enable = true;
-  programs.uswm = {
+  programs.uwsm = {
     enable = true;
     waylandCompositors = {
       niri = {

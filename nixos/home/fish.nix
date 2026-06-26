@@ -1,10 +1,10 @@
 { pkgs, ... }:
 let
-  enabled = true;
+  enable = true;
 in
 {
   programs.fish = {
-    inherit enabled;
+    inherit enable;
 
     shellAbbrs = {
       nv = "nvim";

@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hypr = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     niri-caelestia-shell = {
       url = "github:mckahz/niri-caelestia-shell";
       inputs.nixpkgs.follows = "nixpkgs";

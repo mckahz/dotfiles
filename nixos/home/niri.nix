@@ -4,7 +4,6 @@
   user,
   pkgs,
   style,
-  system,
   ...
 }:
 {
@@ -13,8 +12,8 @@
   ];
 
   home.packages = [
-    inputs.niri-wallpaper.packages.${system}.default
-    inputs.awww.packages.${system}.default
+    inputs.niri-wallpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.imagemagick
     pkgs.swaybg
     pkgs.swaylock
@@ -155,6 +154,10 @@
             "set"
             "10%-"
           ];
+        };
+        "Mod+0" = {
+          repeat = false;
+          action.spawn = [ "caelestia launcher -d" ];
         };
         "Mod+O" = {
           repeat = false;

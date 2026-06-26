@@ -31,12 +31,3 @@ function fish_mode_prompt
     end
     set_color --reset
 end
-
-function fish_prompt -d "Write out the prompt"
-    printf '%s@%s %s%s%s > ' $USER $hostname \
-        (set_color $fish_color_cwd) (prompt_pwd) (set_color --reset)
-end
-
-function fish_right_prompt -d "Write out the right prompt"
-    date '+%m/%d/%y'
-end
