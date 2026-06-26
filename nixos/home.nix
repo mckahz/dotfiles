@@ -1,6 +1,7 @@
 {
   pkgs,
   user,
+  self,
   ...
 }:
 let
@@ -24,7 +25,9 @@ in
   home.stateVersion = "26.05";
   home.username = user.name;
   home.homeDirectory = user.home;
-  xdg.configHome = user.config;
+  xdg = {
+    configHome = user.config;
+  };
 
   home.pointerCursor =
     let

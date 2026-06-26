@@ -1,8 +1,6 @@
 {
   pkgs,
   user,
-  inputs,
-  lib,
   ...
 }:
 {
@@ -56,13 +54,18 @@
     enable = true;
     withUWSM = true;
   };
-  programs.programs.uwsm = {
+  programs.uwsm = {
     enable = true;
     waylandCompositors = {
+      hyprland = {
+        prettyName = "Hyprland";
+        comment = "Hyprland compositor managed by UWSM";
+        binPath = "${pkgs.hyprland}/bin/Hyprland";
+      };
       niri = {
         prettyName = "niri";
-        comment = "niri compositor managed by UWSM";
-        binPath = "${pkgs.niri}";
+        comment = "niri managed by UWSM";
+        binPath = "${pkgs.niri}/bin/niri-session";
       };
     };
   };
