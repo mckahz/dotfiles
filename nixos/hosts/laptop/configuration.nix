@@ -10,7 +10,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd}/bin/agreety --cmd ${pkgs.niri}/bin/niri-session";
+        command = "${pkgs.greetd}/bin/agreety --cmd ${pkgs.hyprland}/bin/Hyprland";
         user = user.name;
       };
     };

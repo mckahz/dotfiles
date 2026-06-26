@@ -51,8 +51,12 @@
   ];
 
   programs.dconf.enable = true;
-  programs.niri.enable = true;
-  programs.uwsm = {
+  # programs.niri.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
+  programs.programs.uwsm = {
     enable = true;
     waylandCompositors = {
       niri = {
