@@ -48,6 +48,7 @@
     fish-lsp
   ];
 
+  programs.gpu-screen-recorder.enable = true;
   programs.dconf.enable = true;
   # programs.niri.enable = true;
   programs.hyprland = {
@@ -60,7 +61,7 @@
       hyprland = {
         prettyName = "Hyprland";
         comment = "Hyprland compositor managed by UWSM";
-        binPath = "${pkgs.hyprland}/bin/Hyprland";
+        binPath = "${pkgs.hyprland}/bin/start-hyprland";
       };
       niri = {
         prettyName = "niri";

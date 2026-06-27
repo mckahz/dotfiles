@@ -10,16 +10,18 @@
     settings = {
       paths.wallpaperDir = "${user.name}/Pictures/Wallpapers";
 
+      dashboard.showOnHover = false;
+
       bar = {
-        statusIcons = {
-          speakers = true;
-          microphone = true;
-          network = true;
-          wifi = true;
-          bluetooth = true;
-          battery = true;
+        status = {
+          showAudio = true;
+          showMicrophone = true;
+          showNetwork = true;
+          showWifi = true;
+          showBluetooth = true;
+          showBattery = true;
+          showLockStatus = true;
         };
-        icon.useDistroIcon = true;
         clock.background = true;
         workspaces = {
           shown = 5;
@@ -30,9 +32,9 @@
           maxWindowIcons = 5;
           activeTrail = false;
           perMonitorWorkspaces = true;
-          label = "a";
-          occupiedLabel = "b";
-          activeLabel = "c";
+          label = "  ";
+          occupiedLabel = "󰮯";
+          activeLabel = "󰮯";
           capitalisation = "preserve";
           specialWorkspaceIcons = [ ];
           windowIcons = [ ];

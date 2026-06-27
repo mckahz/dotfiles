@@ -10,7 +10,7 @@ in
       nv = "nvim";
     };
 
-    interactiveShellInit = builtins.readFile ./fish.sh;
+    interactiveShellInit = builtins.readFile ./fish.fish;
 
     plugins =
       let
