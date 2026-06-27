@@ -66,7 +66,7 @@
         name = "mckahz";
         home = "/home/${name}";
         config = "${home}/.config";
-        customConfig = "${./.config}";
+        customConfig = "${home}/.dotfiles/.config}";
       };
       style = {
         cornerRadius = 10.0;
