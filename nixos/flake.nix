@@ -65,7 +65,7 @@
       user = rec {
         name = "mckahz";
         home = "/home/${name}";
-        config = "${home}/.dotfiles/apps";
+        config = "${home}/.config";
       };
       style = {
         cornerRadius = 10.0;
