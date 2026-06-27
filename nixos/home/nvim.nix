@@ -3,8 +3,6 @@
     enable = true;
     defaultEditor = true;
     waylandSupport = true;
-    extraConfig = ''
-      set number relativenumber
-    '';
+    initLua = builtins.readFile ./.config/nvim/init.lua;
   };
 }
