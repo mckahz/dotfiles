@@ -7,7 +7,7 @@
       nv = "nvim";
     };
 
-    interactiveShellInit = "${user.customConfig}/fish/init.fish";
+    interactiveShellInit = builtins.readFile ./.config/fish/init.fish;
 
     plugins =
       let
