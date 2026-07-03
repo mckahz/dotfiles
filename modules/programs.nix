@@ -67,7 +67,7 @@
   #   };
   # };
 
-  # programs.fish.enable = true;
+  programs.fish.enable = true;
   users.extraUsers.${user.name} = {
     shell = pkgs.fish;
   };

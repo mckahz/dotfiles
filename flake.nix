@@ -27,7 +27,7 @@
       user = rec {
         name = "mckahz";
         home = "/home/${name}";
-        root = "/home/${name}/.dotfiles/nixos";
+        root = "/home/${name}/.dotfiles";
         config = "${home}/.config";
       };
       style = {
