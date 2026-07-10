@@ -1,10 +1,6 @@
 { lib, config, ... }:
 {
-  options = {
-    nvidia.enable = lib.mkEnableOption "enables nvidia drivers";
-  };
-
-  config = lib.mkIf config.nvidia.enable {
+  den.aspects.nvidia.nixos = { ... }: {
     hardware.graphics.enable = true;
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {

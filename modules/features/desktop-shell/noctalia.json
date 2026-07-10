@@ -222,13 +222,28 @@
       "lockScreenBlur": 0,
       "lockScreenTint": 0,
       "keybinds": {
-        "keyUp": ["Up"],
-        "keyDown": ["Down"],
-        "keyLeft": ["Left"],
-        "keyRight": ["Right"],
-        "keyEnter": ["Return", "Enter"],
-        "keyEscape": ["Esc"],
-        "keyRemove": ["Del"]
+        "keyUp": [
+          "Up"
+        ],
+        "keyDown": [
+          "Down"
+        ],
+        "keyLeft": [
+          "Left"
+        ],
+        "keyRight": [
+          "Right"
+        ],
+        "keyEnter": [
+          "Return",
+          "Enter"
+        ],
+        "keyEscape": [
+          "Esc"
+        ],
+        "keyRemove": [
+          "Del"
+        ]
       },
       "reverseScroll": false,
       "smoothScrollEnabled": true
@@ -293,7 +308,7 @@
       "fillColor": "#000000",
       "useSolidColor": false,
       "solidColor": "#1a1a2e",
-      "automationEnabled": false,
+      "automationEnabled": true,
       "wallpaperChangeMode": "random",
       "randomIntervalSec": 300,
       "transitionDuration": 1500,
@@ -585,7 +600,11 @@
       "autoHideMs": 2000,
       "overlayLayer": true,
       "backgroundOpacity": 1,
-      "enabledTypes": [0, 1, 2],
+      "enabledTypes": [
+        0,
+        1,
+        2
+      ],
       "monitors": []
     },
     "audio": {
@@ -699,7 +718,7 @@
     "openedPanel": "",
     "lockScreenActive": false,
     "wallpapers": {
-      "eDP-1": "/nix/store/is44d1i80p6pj0alksjqigqvbs65l98c-noctalia-shell-2026-07-02_a48885b/share/noctalia-shell/Assets/Wallpaper/noctalia.png"
+      "eDP-1": "/home/mckahz/Pictures/Wallpapers/b-178.jpg"
     },
     "desktopWidgetsEditMode": false,
     "display": {
