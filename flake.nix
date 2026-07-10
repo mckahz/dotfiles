@@ -1,74 +1,32 @@
+# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# Use `nix run .#write-flake` to regenerate it.
 {
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
+  inputs = {
+    den.url = "github:denful/den";
+    flake-file.url = "github:vic/flake-file";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprland.url = "github:hyprwm/Hyprland";
-    caelestia-shell = {
-      url = "github:caelestia-dots/shell";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    caelestia-cli = {
-      url = "github:caelestia-dots/cli";
+    import-tree.url = "github:vic/import-tree";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia/legacy-v4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # spotatui.url = "github:LargeModGames/spotatui";
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-
-  outputs =
-    { nixpkgs, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      user = rec {
-        name = "mckahz";
-        home = "/home/${name}";
-        root = "/home/${name}/.dotfiles";
-        config = "${home}/.config";
-      };
-      style = {
-        cornerRadius = 10.0;
-      };
-      hosts = builtins.attrNames (builtins.readDir ./hosts);
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      nixosConfigurations = nixpkgs.lib.attrsets.mergeAttrsList (
-        map (host: {
-          ${host} = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = {
-              inherit inputs;
-              inherit user;
-              inherit style;
-            };
-            modules = [
-              ./hosts/${host}/configuration.nix
-              ./modules/common.nix
-              inputs.home-manager.nixosModules.home-manager
-            ];
-          };
-        }) hosts
-      );
-
-      nvim.${system} = inputs.nvim.${system}.default;
-
-      homeConfigurations.${user.name} = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./home.nix
-
-        ];
-        extraSpecialArgs = {
-          inherit pkgs;
-          inherit user;
-          inherit inputs;
-          inherit style;
-        };
-      };
-    };
 }
