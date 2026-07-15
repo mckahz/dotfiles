@@ -29,16 +29,6 @@
       "widgets": {
         "left": [
           {
-            "colorizeSystemIcon": "none",
-            "colorizeSystemText": "none",
-            "customIconPath": "",
-            "enableColorization": false,
-            "icon": "rocket",
-            "iconColor": "none",
-            "id": "Launcher",
-            "useDistroLogo": false
-          },
-          {
             "characterCount": 2,
             "colorizeIcons": false,
             "emptyColor": "secondary",
@@ -58,6 +48,17 @@
             "showBadge": true,
             "showLabelsOnlyWhenOccupied": true,
             "unfocusedIconsOpacity": 1
+          },
+          {
+            "colorizeIcons": false,
+            "hideMode": "hidden",
+            "id": "ActiveWindow",
+            "maxWidth": 145,
+            "scrollingMode": "hover",
+            "showIcon": true,
+            "showText": true,
+            "textColor": "none",
+            "useFixedWidth": false
           }
         ],
         "center": [
@@ -87,28 +88,6 @@
             "useCustomFont": false
           },
           {
-            "colorizeIcons": false,
-            "hideMode": "hidden",
-            "id": "ActiveWindow",
-            "maxWidth": 145,
-            "scrollingMode": "hover",
-            "showIcon": true,
-            "showText": true,
-            "textColor": "none",
-            "useFixedWidth": false
-          }
-        ],
-        "right": [
-          {
-            "blacklist": [],
-            "chevronColor": "none",
-            "colorizeIcons": false,
-            "drawerEnabled": true,
-            "hidePassive": false,
-            "id": "Tray",
-            "pinned": []
-          },
-          {
             "compactMode": true,
             "diskPath": "/",
             "iconColor": "none",
@@ -129,6 +108,24 @@
             "textColor": "none",
             "useMonospaceFont": true,
             "usePadding": false
+          }
+        ],
+        "right": [
+          {
+            "blacklist": [],
+            "chevronColor": "none",
+            "colorizeIcons": false,
+            "drawerEnabled": true,
+            "hidePassive": false,
+            "id": "Tray",
+            "pinned": []
+          },
+          {
+            "applyToAllMonitors": false,
+            "displayMode": "onhover",
+            "iconColor": "none",
+            "id": "Brightness",
+            "textColor": "none"
           },
           {
             "hideWhenZero": false,
@@ -155,11 +152,14 @@
             "textColor": "none"
           },
           {
-            "applyToAllMonitors": false,
-            "displayMode": "onhover",
+            "colorizeSystemIcon": "none",
+            "colorizeSystemText": "none",
+            "customIconPath": "",
+            "enableColorization": false,
+            "icon": "rocket",
             "iconColor": "none",
-            "id": "Brightness",
-            "textColor": "none"
+            "id": "Launcher",
+            "useDistroLogo": false
           },
           {
             "colorizeDistroLogo": false,
@@ -718,7 +718,7 @@
     "openedPanel": "",
     "lockScreenActive": false,
     "wallpapers": {
-      "eDP-1": "/home/mckahz/Pictures/Wallpapers/b-178.jpg"
+      "eDP-1": "/home/mckahz/Pictures/Wallpapers/madeline.jpg"
     },
     "desktopWidgetsEditMode": false,
     "display": {

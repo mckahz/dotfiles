@@ -1,17 +1,27 @@
 { inputs, den, ... }:
 {
   flake-file.inputs = {
-    noctalia.url = "github:noctalia-dev/noctalia/legacy-v4";
-    noctalia.inputs.nixpkgs.follows = "nixpkgs";
+    # noctalia.url = "github:noctalia-dev/noctalia";
+    # noctalia.inputs.nixpkgs.follows = "nixpkgs";
+
+    noctalia-shell.url = "github:noctalia-dev/noctalia/legacy-v4";
+    noctalia-shell.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   den.aspects.hyprland = {
-    includes = [ ];
-    nixos = { host, ... }: {
-      environment.systemPackages = [ inputs.hyprland.packages.${host.system}.default ];
+    includes = [
+      den.aspects.keybinds
+      den.aspects.theme
+    ];
+
+    nixos = { pkgs, host, ... }: {
+      environment.systemPackages = [
+        inputs.hyprland.packages.${host.system}.default
+        pkgs.libcamera
+      ];
 
       programs = {
         uwsm = {
@@ -32,6 +42,7 @@
         };
       };
     };
+
     homeManager =
       {
         pkgs,
@@ -45,54 +56,16 @@
       in
       {
         imports = [
-          inputs.noctalia.homeModules.default
+          inputs.noctalia-shell.homeModules.default
+          # inputs.noctalia.homeModules.default
+        ];
+
+        home.packages = [
+          pkgs.hyprshot
         ];
 
         xdg.configFile."hypr/hyprland.lua".force = true;
         xdg.configFile."noctalia/settings.json".force = true;
-
-        home = {
-          packages = with pkgs; [
-            hyprcursor
-            bibata-cursors
-          ];
-
-          sessionVariables = {
-            ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-
-            XCURSOR_THEME = "Bibata-Modern-Classic";
-            XCURSOR_SIZE = lib.mkForce "24";
-            HYPRCURSOR_THEME = "Bibata-Modern-Classic";
-            HYPRCURSOR_SIZE = lib.mkForce "24";
-          };
-
-          pointerCursor = {
-            enable = true;
-            gtk.enable = true;
-            x11.enable = true;
-            package = pkgs.bibata-cursors;
-            name = "Bibata-Modern-Classic";
-            size = 24;
-            hyprcursor = {
-              enable = true;
-              size = 24;
-            };
-          };
-        };
-
-        gtk = {
-          enable = true;
-          cursorTheme = {
-            name = "Bibata-Modern-Classic";
-            size = 24;
-          };
-        };
-
-        dconf.settings = {
-          "org/gnome/desktop/interface" = {
-            cursor-theme = "Bibata-Modern-Classic";
-          };
-        };
 
         programs = {
           noctalia-shell = {
@@ -100,6 +73,11 @@
             settings = (builtins.fromJSON (builtins.readFile ./noctalia.json)).settings;
 
           };
+
+          # noctalia = {
+          #   enable = true;
+          #   settings = (fromTOML (builtins.readFile ./noctalia.toml)).settings;
+          # };
 
           kitty.extraConfig = ''
             include themes/noctalia.conf
@@ -111,7 +89,7 @@
           portalPackage = inputs.hyprland.packages.${host.system}.xdg-desktop-portal-hyprland;
 
           enable = true;
-          systemd.enable = false;
+          systemd.enable = false; # conflicts with uwsm
           configType = "lua";
 
           # plugins = with pkgs.hyprlandPlugins; [ ];
@@ -200,6 +178,7 @@
               (lua ''
                 function()
                   hl.exec_cmd('noctalia-shell -d')
+                  -- hl.exec_cmd('noctalia -d')
 
                   -- hl.exec_cmd('systemctl --user enable --now wallpaper.service')
                 end
@@ -213,114 +192,6 @@
                 action = "workspace";
               }
             ];
-
-            bind = map call (
-              [
-                [
-                  "SUPER + RETURN"
-                  (lua "hl.dsp.exec_cmd('kitty')")
-                ]
-                [
-                  "SUPER + SPACE"
-                  (lua "hl.dsp.exec_cmd('echo 1')")
-                ]
-                [
-                  "SUPER + O"
-                  (lua "hl.dsp.exec_cmd('echo 1')")
-                ]
-                [
-                  "SUPER + Q"
-                  (lua "hl.dsp.window.close()")
-                  { locked = true; }
-                ]
-                [
-                  "SUPER + V"
-                  (lua "hl.dsp.window.float({action='toggle'})")
-                ]
-                [
-                  "SUPER + F"
-                  (lua "hl.dsp.window.float({action='toggle'})")
-                ]
-                [
-                  "SUPER + SHIFT + F"
-                  (lua "hl.dsp.window.fullscreen_state({internal = 0, client = 3, action='toggle'})")
-                ]
-                [
-                  "SUPER + CONTROL + H"
-                  (lua "hl.dsp.window.move({direction = 'left'})")
-                ]
-                [
-                  "SUPER + CONTROL + J"
-                  (lua "hl.dsp.window.move({direction = 'down'})")
-                ]
-                [
-                  "SUPER + CONTROL + K"
-                  (lua "hl.dsp.window.move({direction = 'up'})")
-                ]
-                [
-                  "SUPER + CONTROL + L"
-                  (lua "hl.dsp.window.move({direction = 'right'})")
-                ]
-                [
-                  "SUPER + H"
-                  (lua "hl.dsp.focus({direction = 'left'})")
-                ]
-                [
-                  "SUPER + J"
-                  (lua "hl.dsp.focus({direction = 'down'})")
-                ]
-                [
-                  "SUPER + K"
-                  (lua "hl.dsp.focus({direction = 'up'})")
-                ]
-                [
-                  "SUPER + L"
-                  (lua "hl.dsp.focus({direction = 'right'})")
-                ]
-                [
-                  "SUPER + CONTROL + U"
-                  (lua "hl.dsp.workspace.rename({workspace='e', name='e-1'})")
-                ]
-                [
-                  "SUPER + CONTROL + I"
-                  (lua "hl.dsp.workspace.rename({workspace='e', name='e+1'})")
-                ]
-                [
-                  "SUPER + U"
-                  (lua "hl.dsp.focus({workspace = 'e-1'})")
-                ]
-                [
-                  "SUPER + I"
-                  (lua "hl.dsp.focus({workspace = 'e+1'})")
-                ]
-                [
-                  "SUPER + SPACE"
-                  (lua "hl.dsp.exec_cmd('noctalia-shell ipc call launcher toggle')")
-                ]
-                [
-                  "SUPER + S"
-                  (lua "hl.dsp.exec_cmd('noctalia-shell ipc call controlCenter toggle')")
-                ]
-              ]
-              ++ builtins.concatLists (
-                builtins.genList (
-                  num:
-                  let
-                    key = toString (num + 1);
-                  in
-                  [
-                    [
-                      "SUPER + ${key}"
-                      (lua "hl.dsp.focus({workspace = ${key}})")
-                    ]
-                    [
-                      "SUPER + CONTROL + ${key}"
-                      (lua "hl.dsp.window.move({workspace = ${key}})")
-                    ]
-                  ]
-                ) 9
-              )
-            );
           };
         };
 

@@ -15,15 +15,6 @@
       }:
 
       {
-        environment.systemPackages = [
-          pkgs.git
-          pkgs.neovim
-        ];
-
-        boot.loader.systemd-boot.enable = true;
-        boot.loader.efi.canTouchEfiVariables = true;
-
-        # HARDWARE
 
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")

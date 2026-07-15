@@ -2,17 +2,30 @@
   flake-file.inputs.nixcord.url = "github:4evy/nixcord";
 
   den.aspects.discord = {
-    nixos = { pkgs, ... }: {
-      environment.systemPackages = with pkgs; [
-        xwayland-satellite # To make discord use xwayland (work)
-        discord
-      ];
-    };
     homeManager = { pkgs, ... }: {
+      nixpkgs.config.allowUnfree = true;
+
       imports = [ inputs.nixcord.homeModules.nixcord ];
-      programs.nixcord.legcord = {
+
+      programs.nixcord = {
         enable = true;
-        # config = { };
+
+        discord.silenceNoModClientWarning = true;
+
+        legcord = {
+          enable = true;
+
+          # Optionally bundle Vencord or Equicord (also installs userPlugins)
+          # equicord.enable = true;
+
+          settings = {
+            channel = "stable";
+            tray = "dynamic";
+            minimizeToTray = true;
+            mods = [ "vencord" ];
+            doneSetup = true;
+          };
+        };
       };
     };
   };

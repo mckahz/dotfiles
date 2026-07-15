@@ -1,11 +1,30 @@
 { lib, den, ... }:
 {
+  perSystem = { pkgs, ... }: {
+    packages = den.lib.nh.denPackages { fromFlake = true; } pkgs;
+  };
+
   den.default = {
-    homeManager.home.stateVersion = "26.05";
+    homeManager = { pkgs, ... }: {
+      home.stateVersion = "26.05";
+
+      nix.settings.experimental-features = [
+        "nix-command"
+        "flakes"
+        "pipe-operators"
+      ];
+    };
+
     nixos = { pkgs, ... }: {
       system.stateVersion = "25.11";
 
+      boot.loader.systemd-boot.enable = true;
+      boot.loader.efi.canTouchEfiVariables = true;
+
       environment.systemPackages = with pkgs; [
+        git
+        gh
+
         # CLI Utilities
         btop # System Monitor
         cmatrix # Matrix hacker thingy
@@ -24,19 +43,20 @@
 
         steam
 
-        git
-        gh
         godot_4
       ];
 
+      programs.steam.enable = true;
+
       nixpkgs.config.allowUnfree = true;
 
-      programs.steam.enable = true;
+      nix.settings.warn-dirty = false;
 
       networking.networkmanager.enable = true;
       nix.settings.experimental-features = [
         "nix-command"
         "flakes"
+        "pipe-operators"
       ];
     };
   };
