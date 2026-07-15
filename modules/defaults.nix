@@ -24,6 +24,7 @@
       environment.systemPackages = with pkgs; [
         git
         gh
+        localsend
 
         # CLI Utilities
         btop # System Monitor
