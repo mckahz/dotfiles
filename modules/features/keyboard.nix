@@ -11,37 +11,56 @@
         ...
       }:
       {
-        services.keyd.enable = false;
-        environment.systemPackages = [ pkgs.kanata ];
+        options.keyboard.device = lib.mkOption {
+          example = "/dev/input/by-id/xxxxxxxxxxx-kbd";
+          description = "Path to your keyboard device";
+          type = lib.types.path;
+        };
 
-        services.kanata = {
-          enable = true;
-          keyboards = {
-            myKeyboard = {
-              devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
-              config = ''
-                (defsrc
-                  esc f1   f2   f3   f4   f5   f6   f7   f8   f9  f10  f11  f12 ins del
-                  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-                  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-                  caps a    s    d    f    g    h    j    k    l    ;    '         ret
-                  lsft z    x    c    v    b    n    m    ,    .    / rsft
-                  lctl lmet lalt           spc            ralt rmet rctl
-                )
+        config = {
+          services.keyd.enable = false;
 
-                (defalias vim (tap-hold 200 200 esc lctl))
+          users.groups.uinput = { };
 
-                (deflayer my-keyboard
-                  caps f1   f2   f3   f4   f5   f6   f7   f8   f9  f10  f11  f12 ins del
-                  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-                  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-                  @vim a    s    d    f    g    h    j    k    l    ;    '         ret
-                  lsft z    x    c    v    b    n    m    ,    .    / rsft
-                  lctl lmet lalt           spc            ralt rmet rctl
-                )
-              '';
+          environment.systemPackages = [ pkgs.kanata ];
+
+          systemd.services.kanata-myKeyboard.serviceConfig = {
+            SupplementaryGroups = [
+              "input"
+              "uinput"
+            ];
+          };
+
+          services.kanata = {
+            enable = true;
+            keyboards = {
+              myKeyboard = {
+                devices = [ config.keyboard.device ];
+                config = ''
+                  (defsrc
+                    esc f1   f2   f3   f4   f5   f6   f7   f8   f9  f10  f11  f12 ins del
+                    grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+                    tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+                    caps a    s    d    f    g    h    j    k    l    ;    '         ret
+                    lsft z    x    c    v    b    n    m    ,    .    / rsft
+                    lctl lmet lalt           spc            ralt rmet rctl
+                  )
+
+                  (defalias vim (tap-hold 200 200 esc lctl))
+
+                  (deflayer my-keyboard
+                    caps f1   f2   f3   f4   f5   f6   f7   f8   f9  f10  f11  f12 ins del
+                    grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+                    tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+                    @vim a    s    d    f    g    h    j    k    l    ;    '         ret
+                    lsft z    x    c    v    b    n    m    ,    .    / rsft
+                    lctl lmet lalt           spc            ralt rmet rctl
+                  )
+                '';
+              };
             };
           };
+
         };
       };
   };

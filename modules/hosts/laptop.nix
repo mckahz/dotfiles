@@ -12,6 +12,7 @@
       }:
 
       {
+        keyboard.device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
 
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")
@@ -22,7 +23,10 @@
           "xhci_pci"
         ];
         boot.initrd.kernelModules = [ ];
-        boot.kernelModules = [ "kvm-amd" ];
+        boot.kernelModules = [
+          "kvm-amd"
+          "uinput"
+        ];
         boot.extraModulePackages = [ ];
 
         fileSystems."/" = {

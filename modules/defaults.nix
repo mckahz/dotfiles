@@ -7,6 +7,7 @@
   den.default = {
     homeManager = { pkgs, ... }: {
       home.stateVersion = "26.05";
+      xdg.configHome = "/home/mckahz/.config";
 
       nix.settings.experimental-features = [
         "nix-command"
@@ -17,6 +18,7 @@
 
     nixos = { pkgs, ... }: {
       system.stateVersion = "25.11";
+      hardware.uinput.enable = true;
 
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
