@@ -266,7 +266,7 @@
     "wallpaper": {
       "enabled": true,
       "overviewEnabled": false,
-      "directory": "/home/mckahz/Pictures/Wallpapers",
+      "directory": "/home/mckahz/Pictures/wallpapers",
       "monitorDirectories": [],
       "enableMultiMonitorDirectories": false,
       "showHiddenFiles": false,
