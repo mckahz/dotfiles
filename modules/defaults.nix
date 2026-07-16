@@ -7,7 +7,6 @@
   den.default = {
     homeManager = { pkgs, ... }: {
       home.stateVersion = "26.05";
-      xdg.configHome = "/home/mckahz/.config";
 
       nix.settings.experimental-features = [
         "nix-command"

@@ -16,7 +16,7 @@
           enable = true;
 
           # Optionally bundle Vencord or Equicord (also installs userPlugins)
-          # equicord.enable = true;
+          equicord.enable = true;
 
           settings = {
             channel = "stable";

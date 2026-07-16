@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 let
   lua = lib.mkLuaInline;
   call = _args: { inherit _args; };
@@ -24,7 +24,7 @@ let
   );
 in
 {
-  den.aspects.keybinds.homeManager = { pkgs, ... }: {
+  den.aspects.keybinds.homeManager = { pkgs, host, ... }: {
     home.packages = with pkgs; [
       wireplumber
       playerctl
@@ -51,7 +51,9 @@ in
         "SUPER + CONTROL + I" = "hl.dsp.workspace.rename({workspace='e', name='e+1'})";
         "SUPER + U" = "hl.dsp.focus({workspace = 'e-1'})";
         "SUPER + I" = "hl.dsp.focus({workspace = 'e+1'})";
-        "SUPER + SPACE" = "hl.dsp.exec_cmd('noctalia-shell ipc call launcher toggle')";
+        "SUPER + SPACE" = "hl.dsp.exec_cmd('${
+          inputs.noctalia-shell.packages.${host.system}.default
+        } ipc call launcher toggle')";
         "SUPER + S" = "hl.dsp.exec_cmd('noctalia-shell ipc call controlCenter toggle')";
         "XF86AudioRaiseVolume" =
           lr "hl.dsp.exec_cmd('${pkgs.wireplumber} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+')";

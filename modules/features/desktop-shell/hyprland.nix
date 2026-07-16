@@ -13,7 +13,6 @@
 
   den.aspects.hyprland = {
     includes = [
-      den.aspects.keybinds
     ];
 
     nixos = { pkgs, host, ... }: {
@@ -74,10 +73,6 @@
         home.packages = [
           pkgs.hyprshot
         ];
-
-        xdg.configFile."hypr/hyprland.lua".force = true;
-        xdg.configFile."noctalia/settings.json".force = true;
-        xdg.configFile."noctalia/colors.json".force = true;
 
         programs = {
           noctalia-shell = {
@@ -190,9 +185,8 @@
               (lua ''
                 function()
                   hl.exec_cmd('noctalia-shell -d')
+                  hl.exec_cmd('systemctl --user enable --now hyprpaper.service')
                   -- hl.exec_cmd('noctalia -d')
-
-                  -- hl.exec_cmd('systemctl --user enable --now wallpaper.service')
                 end
               '')
             ];

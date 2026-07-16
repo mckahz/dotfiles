@@ -13,5 +13,9 @@
       den.aspects.music
       den.aspects.discord
     ];
+
+    homeManager = {
+      xdg.configHome = "/home/mckahz/.config";
+    };
   };
 }

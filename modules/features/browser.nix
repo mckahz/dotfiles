@@ -2,11 +2,11 @@
   flake-file.inputs = {
     nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
 
-    # zen-browser = {
-    #   url = "github:0xc000022070/zen-browser-flake";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.home-manager.follows = "home-manager";
-    # };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   den.aspects.browser = {
@@ -18,23 +18,17 @@
       nixpkgs.overlays = [ inputs.nix-firefox-addons.overlays.default ];
 
       imports = [
-        # inputs.zen-browser.homeModules.beta
+        inputs.zen-browser.homeModules.beta
         # or inputs.zen-browser.homeModules.twilight
         # or inputs.zen-browser.homeModules.twilight-official
       ];
 
-      # stylix.targets.zen-browser
-      stylix.targets.firefox = {
-        profileNames = [ "default" ];
-        colors.enable = true;
+      programs.zen-browser = {
+        enable = true;
+        setAsDefaultBrowser = true;
+        profiles.default = {
+        };
       };
-
-      # programs.zen-browser = {
-      #   enable = true;
-      #   setAsDefaultBrowser = true;
-      #   profiles.default = {
-      #   };
-      # };
 
       programs.firefox = {
         enable = true;
