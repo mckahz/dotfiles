@@ -1,29 +1,43 @@
 { inputs, ... }: {
   flake-file.inputs = {
     nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
+
+    # zen-browser = {
+    #   url = "github:0xc000022070/zen-browser-flake";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.home-manager.follows = "home-manager";
+    # };
   };
 
   den.aspects.browser = {
     nixos = { pkgs, ... }: {
       environment.systemPackages = [ pkgs.firefox ];
-
     };
 
     homeManager = { pkgs, ... }: {
       nixpkgs.overlays = [ inputs.nix-firefox-addons.overlays.default ];
 
-      home.packages = [
-        pkgs.pywalfox-native
+      imports = [
+        # inputs.zen-browser.homeModules.beta
+        # or inputs.zen-browser.homeModules.twilight
+        # or inputs.zen-browser.homeModules.twilight-official
       ];
 
-      programs.pywal.enable = true;
-      programs.pywal.package = pkgs.pywalfox-native;
+      # stylix.targets.zen-browser
+      stylix.targets.firefox = {
+        profileNames = [ "default" ];
+        colors.enable = true;
+      };
+
+      # programs.zen-browser = {
+      #   enable = true;
+      #   setAsDefaultBrowser = true;
+      #   profiles.default = {
+      #   };
+      # };
+
       programs.firefox = {
         enable = true;
-
-        nativeMessagingHosts = [
-          pkgs.pywalfox-native # Exposes the pywalfox manifest to Firefox
-        ];
 
         profiles.default = {
           id = 0;
@@ -90,7 +104,6 @@
             darkreader
             youtube-shorts-block
             proton-vpn
-            pywalfox
           ];
         };
       };

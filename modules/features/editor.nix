@@ -1,181 +1,169 @@
 { inputs, den, ... }:
 {
   den.aspects.editor = {
-    nixos =
-      { pkgs, ... }:
-      {
-        environment.systemPackages = [
-          pkgs.zed-editor
-          pkgs.helix
-          pkgs.nixd
-          pkgs.nil
-          pkgs.nixfmt
-          pkgs.lua-language-server
-        ];
+    nixos = { pkgs, ... }: {
+      # Allows zed to load dynamic libraries
+      programs.nix-ld.enable = true;
+    };
 
-        programs.nix-ld.enable = true;
-      };
+    homeManager = { pkgs, lib, ... }: {
+      home.packages = with pkgs; [
+        zed-editor
 
-    homeManager =
-      { pkgs, lib, ... }:
-      {
-        programs = {
-          direnv.enable = true;
+        nixd
+        nil
+        nixfmt
+        lua-language-server
+      ];
 
-          zed-editor = {
-            enable = true;
+      programs = {
+        direnv.enable = true;
 
-            # This populates the userSettings "auto_install_extensions"
-            extensions = [
-              "nix"
-              "toml"
-              "rust"
+        zed-editor = {
+          enable = true;
+
+          # This populates the userSettings "auto_install_extensions"
+          extensions = [
+            "nix"
+            "toml"
+            "rust"
+          ];
+
+          # Everything inside of these brackets are Zed options
+          userSettings = {
+            assistant = {
+              enabled = true;
+              version = "2";
+              default_open_ai_model = null;
+
+              # Provider options:
+              # - zed.dev models (claude-3-5-sonnet-latest) requires GitHub connected
+              # - anthropic models (claude-3-5-sonnet-latest, claude-3-haiku-latest, claude-3-opus-latest) requires API_KEY
+              # - copilot_chat models (gpt-4o, gpt-4, gpt-3.5-turbo, o1-preview) requires GitHub connected
+              default_model = {
+                provider = "zed.dev";
+                model = "claude-3-5-sonnet-latest";
+              };
+
+              # inline_alternatives = [
+              #   {
+              #     provider = "copilot_chat";
+              #     model = "gpt-3.5-turbo";
+              #   }
+              # ];
+            };
+
+            userKeymaps = [
+              {
+                context = "Editor && vim_mode==normal";
+                bindings = {
+                  shift-u = "editor::Redo";
+                };
+              }
             ];
 
-            # Everything inside of these brackets are Zed options
-            userSettings = {
-              assistant = {
-                enabled = true;
-                version = "2";
-                default_open_ai_model = null;
+            # node = {
+            #   path = lib.getExe pkgs.nodejs;
+            #   npm_path = lib.getExe' pkgs.nodejs "npm";
+            # };
 
-                # Provider options:
-                # - zed.dev models (claude-3-5-sonnet-latest) requires GitHub connected
-                # - anthropic models (claude-3-5-sonnet-latest, claude-3-haiku-latest, claude-3-opus-latest) requires API_KEY
-                # - copilot_chat models (gpt-4o, gpt-4, gpt-3.5-turbo, o1-preview) requires GitHub connected
-                default_model = {
-                  provider = "zed.dev";
-                  model = "claude-3-5-sonnet-latest";
+            hour_format = "hour24";
+            auto_update = false;
+
+            terminal = {
+              alternate_scroll = "off";
+              blinking = "off";
+              copy_on_select = false;
+              dock = "bottom";
+              detect_venv = {
+                on = {
+                  directories = [
+                    ".env"
+                    "env"
+                    ".venv"
+                    "venv"
+                  ];
+                  activate_script = "default";
                 };
-
-                # inline_alternatives = [
-                #   {
-                #     provider = "copilot_chat";
-                #     model = "gpt-3.5-turbo";
-                #   }
-                # ];
               };
-
-              userKeymaps = [
-                {
-                  context = "Editor && vim_mode==normal";
-                  bindings = {
-                    shift-u = "editor::Redo";
-                  };
-                }
-              ];
-
-              # node = {
-              #   path = lib.getExe pkgs.nodejs;
-              #   npm_path = lib.getExe' pkgs.nodejs "npm";
-              # };
-
-              hour_format = "hour24";
-              auto_update = false;
-
-              terminal = {
-                alternate_scroll = "off";
-                blinking = "off";
-                copy_on_select = false;
-                dock = "bottom";
-                detect_venv = {
-                  on = {
-                    directories = [
-                      ".env"
-                      "env"
-                      ".venv"
-                      "venv"
-                    ];
-                    activate_script = "default";
-                  };
-                };
-                env = {
-                  TERM = "kitty";
-                };
-                font_family = "FiraCode Nerd Font";
-                font_features = null;
-                font_size = null;
-                line_height = "comfortable";
-                option_as_meta = false;
-                button = false;
-                shell = "system";
-                toolbar = {
-                  title = true;
-                };
-                working_directory = "current_project_directory";
+              env = {
+                TERM = "kitty";
               };
+              font_family = "FiraCode Nerd Font";
+              font_features = null;
+              font_size = null;
+              line_height = "comfortable";
+              option_as_meta = false;
+              button = false;
+              shell = "system";
+              toolbar = {
+                title = true;
+              };
+              working_directory = "current_project_directory";
+            };
 
-              lsp = {
-                rust-analyzer = {
-                  binary = {
-                    # path = lib.getExe pkgs.rust-analyzer;
-                    path_lookup = true;
-                  };
-                };
-
-                nix = {
-                  binary = {
-                    path_lookup = true;
-                  };
+            lsp = {
+              rust-analyzer = {
+                binary = {
+                  path_lookup = true;
                 };
               };
 
-              languages = { };
-
-              vim_mode = true;
-
-              # Tell Zed to use direnv and direnv can use a flake.nix environment
-              load_direnv = "shell_hook";
-              base_keymap = "VSCode";
-
-              theme = {
-                mode = "dark";
-                light = "One Light";
-                dark = "One Dark";
+              nix = {
+                binary = {
+                  path_lookup = true;
+                };
               };
+            };
 
-              show_whitespaces = "selection";
-              ui_font_size = 16;
-              buffer_font_size = 14;
+            languages = { };
 
-              background.appearance = "transparent";
-              experimental.theme_overrides = {
-                background.appearance = "blurred";
+            vim_mode = true;
 
-                # background = "#09090bcc";
-                panel.background = "#00000040";
-                editor.background = "#00000030";
-                terminal.background = "#00000030";
-                toolbar.background = "#00000040";
+            # Tell Zed to use direnv and direnv can use a flake.nix environment
+            load_direnv = "shell_hook";
+            base_keymap = "VSCode";
 
-                tab_bar.background = "#00000040";
-                tab.inactive_background = "#00000020";
-                tab.active_background = "#3f3f4660";
+            show_whitespaces = "selection";
 
-                status_bar.background = "#09090bcc";
-                title_bar.background = "#09090bcc";
+            background.appearance = "transparent";
+            experimental.theme_overrides = {
+              background.appearance = "blurred";
 
-                border = "#00000000";
-                # border.variant = "#00000000";
+              # background = "#09090bcc";
+              panel.background = "#00000040";
+              editor.background = "#00000030";
+              terminal.background = "#00000030";
+              toolbar.background = "#00000040";
 
-                scrollbar.track.background = "#52525b20";
-                scrollbar.thumb.background = "#52525b40";
+              tab_bar.background = "#00000040";
+              tab.inactive_background = "#00000020";
+              tab.active_background = "#3f3f4660";
 
-                editor.gutter.background = "#00000000";
-                editor.active_line.background = "#3f3f4640";
+              status_bar.background = "#09090bcc";
+              title_bar.background = "#09090bcc";
 
-                editor.line_number = "#ffffff70";
-                editor.active_line_number = "#ffffffcc";
+              border = "#00000000";
+              # border.variant = "#00000000";
 
-                editor.indent_guide = "#ffffff25";
-                editor.indent_guide_active = "#ffffff70";
+              scrollbar.track.background = "#52525b20";
+              scrollbar.thumb.background = "#52525b40";
 
-                surface.background = "#ffffff08";
-                elevated_surface.background = "#ffffff12";
-              };
+              editor.gutter.background = "#00000000";
+              editor.active_line.background = "#3f3f4640";
+
+              editor.line_number = "#ffffff70";
+              editor.active_line_number = "#ffffffcc";
+
+              editor.indent_guide = "#ffffff25";
+              editor.indent_guide_active = "#ffffff70";
+
+              surface.background = "#ffffff08";
+              elevated_surface.background = "#ffffff12";
             };
           };
         };
       };
+    };
   };
 }

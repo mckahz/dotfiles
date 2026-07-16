@@ -1,9 +1,25 @@
 { ... }: {
   den.aspects.terminal = {
-    nixos = { pkgs, ... }: {
-      environment.systemPackages = with pkgs; [ starship ];
-    };
-    homeManager = { pkgs, ... }: {
+    # nixos = { pkgs, ... }: {
+    #   environment.systemPackages = with pkgs; [
+    #     procps
+    #     fish
+    #   ];
+
+    #   programs.bash = {
+    #     interactiveShellInit = ''
+    #       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+    #       then
+    #         shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+    #         exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+    #       fi
+    #     '';
+    #   };
+    # };
+
+    homeManager = { pkgs, lib, ... }: {
+      home.packages = with pkgs; [ starship ];
+
       programs = {
         starship = {
           enable = true;
@@ -12,13 +28,6 @@
           settings = {
             add_newline = true;
             scan_timeout = 50;
-
-            # character = {
-            #   success_symbol = "[➜](bold green)";
-            #   error_symbol = "[➜](bold red)";
-            # };
-
-            # package.disabled = true;
           };
         };
 
@@ -34,10 +43,6 @@
               set fish_greeting # Disable greeting
               fish_vi_key_bindings
               starship init fish | source
-
-              # set -g tide_left_prompt_items vi_mode pwd newline character
-              # set -g tide_right_prompt_items status cmd_duration jobs node python rustc java php pulumi ruby go gcloud kubectl distrobox toolbox terraform aws nix_shell crystal elixir zig
-              # tide configure --auto --style=Rainbow --prompt_colors='True color' --show_time='24-hour format' --rainbow_prompt_separators=Round --powerline_prompt_heads=Round --powerline_prompt_tails=Round --powerline_prompt_style='Two lines, character' --prompt_connection=Solid --powerline_right_prompt_frame=No --prompt_connection_andor_frame_color=Dark --prompt_spacing=Sparse --icons='Few icons' --transient=No
             '';
 
           plugins =
@@ -47,10 +52,7 @@
                 src = pkgs.fishPlugins.${name}.src;
               };
             in
-            map plugin [
-              "z"
-              # "tide"
-            ];
+            map plugin [ "z" ];
         };
 
         kitty = {
@@ -61,7 +63,7 @@
             shell = "fish";
             hide_window_decorations = "yes";
             window_padding_width = 8;
-            background_opacity = 0.8;
+            background_opacity = lib.mkForce 0.8;
           };
         };
       };

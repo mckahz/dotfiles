@@ -1,22 +1,15 @@
 # Getting Started Guide
 
-Steps you can follow after cloning this template:
-
-- Be sure to read the [den documentation](https://den.denful.dev)
-
-- Update den input.
-
-```console
+```fish
 nix flake update den
+git add . # whenever you add files
+nix run .#write-flake # when flake-parts.inputs changes
+nix run .#<laptop/desktop> -- test # build and test the system
+nix run .#<laptop/desktop> -- boot # build and set as boot configuration
+nix run .#vm # build and test the system in a VM
 ```
 
-- Edit [modules/hosts.nix](modules/hosts.nix)
 
-- Build
-
-```console
-# default action is build
-nix run .#igloo
 
 # pass any other nh action
 nix run .#igloo -- switch

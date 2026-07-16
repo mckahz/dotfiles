@@ -1,6 +1,13 @@
-{ ... }: {
+{ inputs, ... }: {
+  flake-file.inputs.stylix = {
+    url = "github:nix-community/stylix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   den.aspects.theme = { ... }: {
     homeManager = { pkgs, lib, ... }: {
+      imports = [ inputs.stylix.homeModules.stylix ];
+
       home = {
         packages = with pkgs; [
           hyprcursor
@@ -42,6 +49,12 @@
         "org/gnome/desktop/interface" = {
           cursor-theme = "Bibata-Modern-Ice";
         };
+      };
+
+      stylix = {
+        enable = true;
+        targets.kitty.enable = true;
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
       };
     };
   };

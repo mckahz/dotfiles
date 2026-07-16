@@ -14,7 +14,6 @@
   den.aspects.hyprland = {
     includes = [
       den.aspects.keybinds
-      den.aspects.theme
     ];
 
     nixos = { pkgs, host, ... }: {
@@ -66,6 +65,7 @@
 
         xdg.configFile."hypr/hyprland.lua".force = true;
         xdg.configFile."noctalia/settings.json".force = true;
+        xdg.configFile."noctalia/colors.json".force = true;
 
         programs = {
           noctalia-shell = {

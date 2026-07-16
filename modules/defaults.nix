@@ -38,7 +38,6 @@
         nautilus # File manager
         krita # Image editor
         libreoffice # Document editor
-        librespot # ???
 
         zoom-us
 

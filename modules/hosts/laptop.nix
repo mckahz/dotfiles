@@ -1,10 +1,7 @@
 { inputs, den, ... }:
 {
   den.aspects.laptop = {
-    includes = [
-      den.aspects.mckahz
-      den.aspects.keyboard
-    ];
+    includes = [ den.aspects.keyboard ];
     nixos =
       {
         config,
