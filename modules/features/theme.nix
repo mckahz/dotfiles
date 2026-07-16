@@ -22,19 +22,6 @@
           HYPRCURSOR_THEME = "Bibata-Modern-Ice";
           HYPRCURSOR_SIZE = lib.mkForce "24";
         };
-
-        pointerCursor = {
-          enable = true;
-          gtk.enable = true;
-          x11.enable = true;
-          package = pkgs.bibata-cursors;
-          name = "Bibata-Modern-Ice";
-          size = 24;
-          hyprcursor = {
-            enable = true;
-            size = 24;
-          };
-        };
       };
 
       gtk = {
@@ -54,6 +41,7 @@
       stylix = {
         enable = true;
         targets.kitty.enable = true;
+        targets.firefox.enable = true;
         base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
       };
     };
