@@ -31,6 +31,9 @@ in
       brightnessctl
     ];
     wayland.windowManager.hyprland.settings.bind =
+      let
+        noctalia = inputs.noctalia.packages.${host.system}.default;
+      in
       {
         "SUPER + Q" = l "hl.dsp.window.close()";
         "SUPER + SHIFT + S" = "hl.dsp.exec_cmd('hyprshot -m region')";
@@ -51,10 +54,9 @@ in
         "SUPER + CONTROL + I" = "hl.dsp.workspace.rename({workspace='e', name='e+1'})";
         "SUPER + U" = "hl.dsp.focus({workspace = 'e-1'})";
         "SUPER + I" = "hl.dsp.focus({workspace = 'e+1'})";
-        "SUPER + SPACE" = "hl.dsp.exec_cmd('${
-          inputs.noctalia-shell.packages.${host.system}.default
-        } ipc call launcher toggle')";
-        "SUPER + S" = "hl.dsp.exec_cmd('noctalia-shell ipc call controlCenter toggle')";
+        # "SUPER + MouseUp" = "hl.dsp.focus({workspace = 'e-1'})";
+        # "SUPER + MouseDown" = "hl.dsp.focus({workspace = 'e+1'})";
+        "SUPER + SPACE" = "hl.dsp.exec_cmd('${noctalia} msg panel-toggle launcher')";
         "XF86AudioRaiseVolume" =
           lr "hl.dsp.exec_cmd('${pkgs.wireplumber} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+')";
         "XF86AudioLowerVolume" =

@@ -47,6 +47,7 @@
         godot_4
       ];
 
+      programs.dconf.enable = true;
       programs.steam.enable = true;
 
       nixpkgs.config.allowUnfree = true;
