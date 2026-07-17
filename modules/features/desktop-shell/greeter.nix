@@ -17,7 +17,8 @@
         enable = true;
 
         # Optional configuration
-        greeter-args = "";
+        greeter-args = "--session Hyprland";
+
         settings = {
           cursor = {
             theme = "Bibata-Modern-Ice";

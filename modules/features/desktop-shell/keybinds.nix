@@ -32,7 +32,10 @@ in
     ];
     wayland.windowManager.hyprland.settings.bind =
       let
-        noctalia = inputs.noctalia.packages.${host.system}.default;
+        noctalia = lib.getExe inputs.noctalia.packages.${host.system}.default;
+        wireplumber = pkgs.wireplumber;
+        brightnessctl = lib.getExe pkgs.brightnessctl;
+        playerctl = lib.getExe pkgs.playerctl;
       in
       {
         "SUPER + Q" = l "hl.dsp.window.close()";
@@ -58,18 +61,16 @@ in
         # "SUPER + MouseDown" = "hl.dsp.focus({workspace = 'e+1'})";
         "SUPER + SPACE" = "hl.dsp.exec_cmd('${noctalia} msg panel-toggle launcher')";
         "XF86AudioRaiseVolume" =
-          lr "hl.dsp.exec_cmd('${pkgs.wireplumber} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+')";
-        "XF86AudioLowerVolume" =
-          lr "hl.dsp.exec_cmd('${pkgs.wireplumber} set-volume @DEFAULT_AUDIO_SINK@ 5%-')";
-        "XF86AudioMute" = lr "hl.dsp.exec_cmd('${pkgs.wireplumber} set-mute @DEFAULT_AUDIO_SINK@ toggle')";
-        "XF86AudioMicMute" =
-          lr "hl.dsp.exec_cmd('${pkgs.wireplumber} set-mute @DEFAULT_AUDIO_SOURCE@ toggle')";
-        "XF86MonBrightnessUp" = lr "hl.dsp.exec_cmd('${pkgs.brightnessctl} -e4 -n2 set 5%+')";
-        "XF86MonBrightnessDown" = lr "hl.dsp.exec_cmd('${pkgs.brightnessctl} -e4 -n2 set 5%-')";
-        "XF86AudioNext" = l "hl.dsp.exec_cmd('${pkgs.playerctl} next')";
-        "XF86AudioPause" = l "hl.dsp.exec_cmd('${pkgs.playerctl} play-pause')";
-        "XF86AudioPlay" = l "hl.dsp.exec_cmd('${pkgs.playerctl} play-pause')";
-        "XF86AudioPrev" = l "hl.dsp.exec_cmd('${pkgs.playerctl} previous')";
+          lr "hl.dsp.exec_cmd('${wireplumber} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+')";
+        "XF86AudioLowerVolume" = lr "hl.dsp.exec_cmd('${wireplumber} set-volume @DEFAULT_AUDIO_SINK@ 5%-')";
+        "XF86AudioMute" = lr "hl.dsp.exec_cmd('${wireplumber} set-mute @DEFAULT_AUDIO_SINK@ toggle')";
+        "XF86AudioMicMute" = lr "hl.dsp.exec_cmd('${wireplumber} set-mute @DEFAULT_AUDIO_SOURCE@ toggle')";
+        "XF86MonBrightnessUp" = lr "hl.dsp.exec_cmd('${brightnessctl} -e4 -n2 set 5%+')";
+        "XF86MonBrightnessDown" = lr "hl.dsp.exec_cmd('${brightnessctl} -e4 -n2 set 5%-')";
+        "XF86AudioNext" = l "hl.dsp.exec_cmd('${playerctl} next')";
+        "XF86AudioPause" = l "hl.dsp.exec_cmd('${playerctl} play-pause')";
+        "XF86AudioPlay" = l "hl.dsp.exec_cmd('${playerctl} play-pause')";
+        "XF86AudioPrev" = l "hl.dsp.exec_cmd('${playerctl} previous')";
       }
       // moveWindowsAndWorkspaces
       |> builtins.mapAttrs (
