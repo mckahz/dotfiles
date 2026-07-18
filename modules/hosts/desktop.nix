@@ -7,7 +7,6 @@
 
   den.aspects.desktop = {
     includes = [
-      den.aspects.keyboard
       den.aspects.nvidia
     ];
 
@@ -20,7 +19,11 @@
         ...
       }:
       {
+        keyboard.enable = true;
         keyboard.device = "/dev/input/by-id/usb-Razer_Razer_Cynosa_Chroma-event-kbd";
+
+        autologin.enable = true;
+        autologin.user = "mckahz";
 
         nixpkgs.config.permittedInsecurePackages = [
           "broadcom-sta-6.30.223.271-59-6.18.38"

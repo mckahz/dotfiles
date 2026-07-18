@@ -8,7 +8,6 @@
       den.aspects.keybinds
 
       den.aspects.noctalia
-      den.aspects.greeter
     ];
   };
 }

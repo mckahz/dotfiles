@@ -6,11 +6,9 @@
   ];
 
   den.aspects.laptop = {
-    includes = [ den.aspects.keyboard ];
+    includes = [ ];
 
-    homeManager = _: {
-      lock.enable = true;
-    };
+    provides.to-users.homeManager.lock.enable = true;
 
     nixos =
       {
@@ -22,7 +20,11 @@
       }:
 
       {
+        keyboard.enable = true;
         keyboard.device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+
+        autologin.enable = true;
+        autologin.user = "mckahz";
 
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")

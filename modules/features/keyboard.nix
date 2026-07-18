@@ -11,13 +11,21 @@
         ...
       }:
       {
-        options.keyboard.device = lib.mkOption {
-          example = "/dev/input/by-id/xxxxxxxxxxx-kbd";
-          description = "Path to your keyboard device";
-          type = lib.types.path;
+        options.keyboard = {
+          enable = lib.mkOption {
+            default = false;
+            example = true;
+            description = "Whether to map CAPS LOCK to ESC when tapped and CTRL when held";
+            type = lib.types.bool;
+          };
+          device = lib.mkOption {
+            example = "/dev/input/by-id/xxxxxxxxxxx-kbd";
+            description = "Path to your keyboard device";
+            type = lib.types.path;
+          };
         };
 
-        config = {
+        config = lib.mkIf config.keyboard.enable {
           services.keyd.enable = false;
 
           users.groups.uinput = { };

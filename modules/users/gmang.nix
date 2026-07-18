@@ -5,6 +5,7 @@
       den.batteries.define-user
       den.batteries.primary-user
 
+      den.aspects.keyboard
       den.aspects.terminal
       den.aspects.desktop-shell
       den.aspects.theme
@@ -13,10 +14,5 @@
       den.aspects.spotify
       den.aspects.discord
     ];
-
-    nixos = _: {
-      autologin.enable = true;
-      autologin.user = "gmang";
-    };
   };
 }

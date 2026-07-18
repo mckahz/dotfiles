@@ -6,9 +6,20 @@
   ];
 
   den.aspects.minipc = {
-    includes = [ den.aspects.keyboard ];
+    includes = [ ];
+
+    # TODO: Uncomment when you've copied over hardware-configuration.nix,
+    # logged on, and run `sudo passwd gmang` to reset your password.
+    # Only activate if you want a lock screen
+    # provides.to-users.homeManager.lock.enable = true;
 
     nixos =
+      # TODO: replace everything until the comment at the end of the file
+      # with the contents of /etc/nixos/hardware-configuration.nix
+      # then add the following just above `imports = [...]` just like below.
+      #
+      # autologin.enable = true;
+      # autologin.user = "gmang";
       {
         config,
         lib,
@@ -18,7 +29,8 @@
       }:
 
       {
-        keyboard.device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+        autologin.enable = true;
+        autologin.user = "gmang";
 
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")
@@ -53,6 +65,8 @@
 
         nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
         hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-      };
+      }
+    # here
+    ;
   };
 }

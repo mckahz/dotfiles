@@ -78,13 +78,7 @@ mode = "dark"
 source = "custom"
 
 [wallpaper]
-directory = "/home/mckahz/Pictures/wallpapers"
-
-    [wallpaper.default]
-    path = "/home/mckahz/Pictures/wallpapers/b-374.jpg"
-
-    [wallpaper.last]
-    path = "/home/mckahz/Pictures/wallpapers/b-374.jpg"
+directory = "~/Pictures/wallpapers"
 
 [widget.active_window]
 icon_size = 22
