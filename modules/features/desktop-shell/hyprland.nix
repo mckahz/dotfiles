@@ -53,6 +53,7 @@
           package = inputs.hyprland.packages.${host.system}.default;
           portalPackage = inputs.hyprland.packages.${host.system}.xdg-desktop-portal-hyprland;
 
+          xwayland.enable = true;
           enable = true;
           systemd.enable = true;
           configType = "lua";

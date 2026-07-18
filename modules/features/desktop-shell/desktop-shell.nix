@@ -6,7 +6,6 @@
 
       den.aspects.hyprland
       den.aspects.keybinds
-      den.aspects.cursor
 
       den.aspects.noctalia
       den.aspects.greeter

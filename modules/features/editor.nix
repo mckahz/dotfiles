@@ -54,18 +54,13 @@
             };
 
             userKeymaps = [
-              {
-                context = "Editor && vim_mode==normal";
-                bindings = {
-                  shift-u = "editor::Redo";
-                };
-              }
+              # {
+              #   context = "Editor && vim_mode==normal";
+              #   bindings = {
+              #     shift-u = "editor::Redo";
+              #   };
+              # }
             ];
-
-            # node = {
-            #   path = lib.getExe pkgs.nodejs;
-            #   npm_path = lib.getExe' pkgs.nodejs "npm";
-            # };
 
             hour_format = "hour24";
             auto_update = false;
@@ -125,42 +120,6 @@
             base_keymap = "VSCode";
 
             show_whitespaces = "selection";
-
-            background.appearance = "transparent";
-            experimental.theme_overrides = {
-              background.appearance = "blurred";
-
-              # background = "#09090bcc";
-              panel.background = "#00000040";
-              editor.background = "#00000030";
-              terminal.background = "#00000030";
-              toolbar.background = "#00000040";
-
-              tab_bar.background = "#00000040";
-              tab.inactive_background = "#00000020";
-              tab.active_background = "#3f3f4660";
-
-              status_bar.background = "#09090bcc";
-              title_bar.background = "#09090bcc";
-
-              border = "#00000000";
-              # border.variant = "#00000000";
-
-              scrollbar.track.background = "#52525b20";
-              scrollbar.thumb.background = "#52525b40";
-
-              editor.gutter.background = "#00000000";
-              editor.active_line.background = "#3f3f4640";
-
-              editor.line_number = "#ffffff70";
-              editor.active_line_number = "#ffffffcc";
-
-              editor.indent_guide = "#ffffff25";
-              editor.indent_guide_active = "#ffffff70";
-
-              surface.background = "#ffffff08";
-              elevated_surface.background = "#ffffff12";
-            };
           };
         };
       };

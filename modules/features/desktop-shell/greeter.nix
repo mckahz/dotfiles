@@ -8,29 +8,32 @@
   };
 
   den.aspects.greeter = {
-    nixos = { pkgs, ... }: {
-      imports = [
-        inputs.noctalia-greeter.nixosModules.default
-      ];
+    nixos =
+      {
+        config,
+        pkgs,
+        lib,
+        ...
+      }:
+      {
+        imports = [
+          inputs.noctalia-greeter.nixosModules.default
+        ];
 
-      programs.noctalia-greeter = {
-        enable = true;
-
-        # Optional configuration
-        greeter-args = "--session Hyprland";
-
-        settings = {
-          cursor = {
-            theme = "Bibata-Modern-Ice";
-            size = 24;
-            path = "${pkgs.bibata-cursors}/share/icons";
+        options.greeter = {
+          enable = lib.mkOption {
+            default = true;
           };
-          keyboard = {
-            layout = "us";
+        };
+
+        config = lib.mkIf config.greeter.enable {
+          programs.noctalia-greeter = {
+            enable = true;
+            greeter-args = "--session Hyprland";
+            settings.keyboard.layout = "us";
           };
         };
       };
-    };
 
   };
 }

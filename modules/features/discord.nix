@@ -1,9 +1,14 @@
 { inputs, ... }: {
   flake-file.inputs.nixcord.url = "github:4evy/nixcord";
+  #flake-file.inputs.endcord.url = "github:mckahz/endcord-flake";
 
   den.aspects.discord = {
-    homeManager = { pkgs, ... }: {
+    homeManager = { pkgs, host, ... }: {
       nixpkgs.config.allowUnfree = true;
+      home.packages = [
+        pkgs.webcord-vencord
+        # TODO: inputs.endcord.${host.system}.packages.default
+      ];
 
       imports = [ inputs.nixcord.homeModules.nixcord ];
 

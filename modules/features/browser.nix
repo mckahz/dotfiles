@@ -10,10 +10,6 @@
   };
 
   den.aspects.browser = {
-    nixos = { pkgs, ... }: {
-      environment.systemPackages = [ pkgs.firefox ];
-    };
-
     homeManager = { pkgs, ... }: {
       nixpkgs.overlays = [ inputs.nix-firefox-addons.overlays.default ];
 
@@ -27,26 +23,19 @@
         enable = true;
         setAsDefaultBrowser = true;
         profiles.default = {
-        };
-      };
-
-      programs.firefox = {
-        enable = true;
-
-        profiles.default = {
           id = 0;
           name = "default";
           isDefault = true;
           settings = {
-            "browser.startup.homepage" = "https://searx.aicampground.com";
-            "browser.search.defaultenginename" = "Searx";
-            "browser.search.order.1" = "Searx";
+            "browser.startup.homepage" = "https://duckduckgo.com";
+            "browser.search.defaultenginename" = "ddg";
+            "browser.search.order.1" = "ddg";
           };
           search = {
             force = true;
-            default = "Searx";
+            default = "ddg";
             order = [
-              "Searx"
+              "ddg"
               "google"
             ];
             engines = {
@@ -75,21 +64,15 @@
                 updateInterval = 24 * 60 * 60 * 1000; # every day
                 definedAliases = [ "@nw" ];
               };
-              "Searx" = {
-                urls = [ { template = "https://searx.aicampground.com/?q={searchTerms}"; } ];
-                icon = "https://nixos.wiki/favicon.png";
-                updateInterval = 24 * 60 * 60 * 1000; # every day
-                definedAliases = [ "@searx" ];
+              "ddg" = {
+                urls = [
+                  { template = "https://duckduckgo.com/?ia=web&origin=funnel_home_website&t=h_&q={searchTerms}"; }
+                ];
+                icon = "https://duckduckgo.com/favicon.png";
               };
               "bing".metaData.hidden = true;
               "google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
             };
-          };
-
-          settings = {
-            ui.systemUsesDarkTheme = 1;
-            layout.css.prefers-color-scheme.content-override = 0;
-            browser.in-content.dark-mode = true;
           };
 
           extensions.packages = with pkgs.firefoxAddons; [

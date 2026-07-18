@@ -2,7 +2,6 @@
 order = [ "sidebar" ]
 
     [bar.sidebar]
-    background_opacity = 0.73999998345971107
     capsule_thickness = 0.61999998986721039
     center = [ "audio_visualizer", "clock", "temp", "cpu", "ram" ]
     end = [ "media", "tray", "network", "bluetooth", "volume", "battery", "session" ]
@@ -20,7 +19,6 @@ sidebar = "full"
 sidebar_section = "full"
 
 [dock]
-background_opacity = 1.0
 
 [location]
 address = "Melbourne, Australia"
@@ -46,7 +44,6 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
         background_color = "surface_variant"
-        background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
         input_opacity = 1.0
@@ -57,10 +54,8 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
         show_password_hint = true
 
 [notification]
-background_opacity = 1.0
 
 [osd]
-background_opacity = 1.0
 
 [settings]
 

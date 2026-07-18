@@ -10,7 +10,7 @@
       den.aspects.theme
       den.aspects.browser
       den.aspects.editor
-      den.aspects.music
+      den.aspects.spotify
       den.aspects.discord
     ];
 
