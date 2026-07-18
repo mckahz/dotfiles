@@ -5,8 +5,8 @@
     nixos = { host, pkgs, ... }: {
       environment.systemPackages = with pkgs; [
         spotify
-        librespot
-        inputs.spotatui.packages.${host.system}.default
+        # librespot
+        # inputs.spotatui.packages.${host.system}.default
       ];
     };
   };
