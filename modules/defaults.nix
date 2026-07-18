@@ -5,7 +5,7 @@
   };
 
   den.default = {
-    homeManager = { pkgs, ... }: {
+    homeManager = { config, pkgs, ... }: {
       home.stateVersion = "26.05";
 
       nix.settings.experimental-features = [
@@ -13,6 +13,10 @@
         "flakes"
         "pipe-operators"
       ];
+
+      xdg.configHome = "${config.home.homeDirectory}/.config";
+
+      lock.enable = lib.mkDefault false;
     };
 
     nixos = { pkgs, ... }: {

@@ -54,12 +54,17 @@
             };
 
             userKeymaps = [
-              # {
-              #   context = "Editor && vim_mode==normal";
-              #   bindings = {
-              #     shift-u = "editor::Redo";
-              #   };
-              # }
+              {
+                bindings = {
+                  ctrl-e = "project_panel::Toggle";
+                };
+              }
+              {
+                context = "Editor && vim_mode==normal";
+                bindings = {
+                  shift-u = "editor::Redo";
+                };
+              }
             ];
 
             hour_format = "hour24";

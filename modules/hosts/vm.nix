@@ -5,7 +5,7 @@
 {
 
   # USER TODO: remove this tty-autologin used for the VM
-  den.aspects.laptop.includes = [ (den.batteries.tty-autologin "mckahz") ];
+  den.aspects.laptop.includes = [ (den.batteries.vm-autologin "mckahz") ];
 
   perSystem =
     { pkgs, ... }:

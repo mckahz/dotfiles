@@ -1,5 +1,10 @@
 { inputs, den, ... }:
 {
+  den.hosts.x86_64-linux.desktop.users.mckahz.classes = [
+    "homeManager"
+    "nixos"
+  ];
+
   den.aspects.desktop = {
     includes = [
       den.aspects.keyboard
@@ -16,7 +21,6 @@
       }:
       {
         keyboard.device = "/dev/input/by-id/usb-Razer_Razer_Cynosa_Chroma-event-kbd";
-        greeter.enable = false;
 
         nixpkgs.config.permittedInsecurePackages = [
           "broadcom-sta-6.30.223.271-59-6.18.38"

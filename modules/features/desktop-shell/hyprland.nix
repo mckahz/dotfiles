@@ -144,8 +144,10 @@
             "hyprland.start"
             (lua ''
               function()
-                hl.exec_cmd('${lib.getExe inputs.noctalia.packages.${host.system}.default}')
-                hl.exec_cmd('${lib.getExe pkgs.hyprpaper}}')
+                hl.exec_cmd('${lib.getExe inputs.noctalia.packages.${host.system}.default} -d')
+                ${
+                  if (config.lock or { }).enable or false then "hl.exec_cmd('${lib.getExe pkgs.hyprlock}')" else ""
+                }
               end
             '')
           ];

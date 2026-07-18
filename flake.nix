@@ -18,6 +18,10 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     import-tree.url = "github:vic/import-tree";
     nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
     nixcord.url = "github:4evy/nixcord";

@@ -14,8 +14,9 @@
       den.aspects.discord
     ];
 
-    homeManager = {
-      xdg.configHome = "/home/mckahz/.config";
+    nixos = _: {
+      autologin.enable = true;
+      autologin.user = "mckahz";
     };
   };
 }

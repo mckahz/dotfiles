@@ -1,12 +1,13 @@
 { inputs, den, ... }:
 {
-  den.hosts.x86_64-linux.laptop.users.mckahz.classes = [
+  den.hosts.x86_64-linux.minipc.users.gmang.classes = [
     "homeManager"
     "nixos"
   ];
 
-  den.aspects.laptop = {
+  den.aspects.minipc = {
     includes = [ den.aspects.keyboard ];
+
     nixos =
       {
         config,
