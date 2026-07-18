@@ -15,8 +15,6 @@
       ];
 
       xdg.configHome = "${config.home.homeDirectory}/.config";
-
-      lock.enable = lib.mkDefault false;
     };
 
     nixos = { pkgs, ... }: {

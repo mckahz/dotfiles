@@ -48,7 +48,7 @@
       }:
       {
         options.lock = {
-          enable = lib.mkOption { default = true; };
+          enable = lib.mkOption { default = false; };
         };
 
         config = lib.mkIf config.lock.enable {

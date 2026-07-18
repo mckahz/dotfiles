@@ -7,6 +7,11 @@
 
   den.aspects.laptop = {
     includes = [ den.aspects.keyboard ];
+
+    homeManager = _: {
+      lock.enable = true;
+    };
+
     nixos =
       {
         config,
