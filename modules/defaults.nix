@@ -22,6 +22,7 @@
 
         environment.systemPackages = with pkgs; [
           git
+          bfg-repo-cleaner
           gh
           localsend
 
