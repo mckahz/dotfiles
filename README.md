@@ -43,7 +43,7 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 ```
 
-If you get `home-manager_admin.service` failed to launch check out your journal to see what's wrong. Usually it's a file conflict which can simply be resolved by `rm` it.
+If you get `home-manager_<user>.service` failed to launch check out your journal to see what's wrong. Usually it's a file conflict which can simply be resolved by `rm` it.
 
 ```bash
 journalctl -n 50

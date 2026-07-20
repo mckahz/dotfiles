@@ -1,0 +1,22 @@
+{ ... }: {
+  den.aspects.school = {
+    nixos = { pkgs, lib, ... }: {
+      options.school.enable = lib.mkOption {
+        default = false;
+        type = lib.types.bool;
+      };
+
+      config = {
+        environment.systemPackages = [
+          pkgs.ciscoPacketTracer9
+        ];
+
+        nixpkgs.config.allowUnfree = lib.mkForce true;
+
+        services.xserver.videoDrivers = [ "vmware" ];
+        #virtualisation.vmware.guest.enable = true;
+        virtualisation.vmware.host.enable = true;
+      };
+    };
+  };
+}

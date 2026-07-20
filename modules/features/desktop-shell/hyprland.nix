@@ -28,7 +28,11 @@
         call = _args: { inherit _args; };
       in
       {
-        options.lock.enable = lib.mkOption { default = false; };
+        options = {
+          wallpaperDirectory = lib.mkOption { default = ""; };
+          wallpaperMonitor = lib.mkOption { default = "eDP-1"; };
+          lock.enable = lib.mkOption { default = false; };
+        };
 
         config = {
           home = {
@@ -44,13 +48,69 @@
             };
           };
 
+          programs.hyprlock = {
+            enable = true;
+            settings = {
+              general = {
+                hide_cursor = false;
+                ignore_empty_input = true;
+              };
+
+              animations = {
+                enabled = true;
+                fade_in = {
+                  duration = 300;
+                  bezier = "easeOutQuint";
+                };
+                fade_out = {
+                  duration = 300;
+                  bezier = "easeOutQuint";
+                };
+              };
+
+              label =
+                let
+                  h1 = 120;
+                  h2 = 80;
+                  button = 100;
+                in
+                [
+                  {
+                    monitor = "";
+                    text = "$TIME";
+                    font_size = h1;
+                    position = "0, 200";
+                    valign = "center";
+                    halign = "center";
+                  }
+                  {
+                    monitor = "";
+                    text = "Login as $USER";
+                    font_size = h2;
+                    position = "0, -200";
+                    valign = "center";
+                    halign = "center";
+                  }
+                  {
+                    monitor = "";
+                    text = "Reboot";
+                    font_size = button;
+                    position = "0, -200";
+                    valign = "center";
+                    halign = "center";
+                  }
+                ];
+            };
+          };
+
           services.hyprpaper = {
             enable = true;
             settings = {
+              splash = false;
               wallpaper = [
                 {
-                  monitor = "";
-                  path = "${config.home.homeDirectory}/Pictures/wallpapers/";
+                  monitor = config.wallpaperMonitor;
+                  path = config.wallpaperDirectory;
                 }
               ];
             };
@@ -101,6 +161,7 @@
 
               misc = {
                 force_default_wallpaper = 0;
+                disable_splash_rendering = true;
                 disable_hyprland_logo = true;
               };
 
