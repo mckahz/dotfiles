@@ -27,12 +27,30 @@
         autologin.user = "gmang";
         hyprland.monitors = [
           {
-            output = "eDP-1";
-            mode = "1920x1080@60";
+            output = "DP-2";
+            mode = "1920x1080@59.96";
             position = "0x0";
             scale = 1;
           }
+          {
+            output = "DP-3";
+            mode = "1920x1080@59.96";
+            position = "1920x0";
+            scale = 1;
+          }
+          {
+            output = "HDMI-A-1";
+            mode = "680x384@59.29";
+            position = "3840x0";
+            scale = 1;
+          }
         ];
+
+        # gdawg — 1:46 PM
+        # DP-2 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 530mm x 300mm
+        # DP-3 connected 1920x1080+1920+0 (normal left inverted right x axis y axis) 530mm x 300mm
+        # HDMI-A-1 connected 680x384+3840+0 (normal left inverted right x axis y axis) 0mm x 0mm
+
         vim = false;
 
         # theme = {
