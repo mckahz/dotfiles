@@ -14,7 +14,14 @@
     provides.to-users.homeManager = {
       hyprland = {
         lock.enable = true;
+        # ordered left to right
         monitors = [
+          {
+            output = "HDMI-A-1";
+            mode = "1360x768@60.01500";
+            position = "-1360x0";
+            scale = 1;
+          }
           {
             output = "DP-2";
             mode = "1920x1080@59.96";
@@ -25,14 +32,10 @@
             output = "DP-3";
             mode = "1920x1080@59.96";
             position = "1920x0";
+            transform = 1;
             scale = 1;
           }
-          {
-            output = "HDMI-A-1";
-            mode = "680x384@59.29";
-            position = "3840x0";
-            scale = 1;
-          }
+
         ];
       };
     };

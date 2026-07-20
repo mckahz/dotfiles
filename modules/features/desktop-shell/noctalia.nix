@@ -24,6 +24,14 @@
             sidebar = {
               background_opacity = 0.74;
               capsule_thickness = 0.62;
+              start = [
+                "launcher"
+                "workspaces"
+                "active_window"
+                "tray"
+                "media"
+                "audio_visualizer"
+              ];
               center = [
                 "screenshot"
                 "clock"
@@ -32,7 +40,6 @@
                 "ram"
               ];
               end = [
-                "tray"
                 "network"
                 "bluetooth"
                 "volume"
@@ -46,13 +53,6 @@
               radius_bottom_left = 0;
               radius_top_left = 0;
               scale = 1.25;
-              start = [
-                "launcher"
-                "workspaces"
-                "active_window"
-                "media"
-                "audio_visualizer"
-              ];
               thickness = 46;
               widget_spacing = 12;
             };
