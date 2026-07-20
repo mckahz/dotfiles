@@ -11,21 +11,10 @@
     # TODO: Uncomment when you've copied over hardware-configuration.nix,
     # logged on, and run `sudo passwd gmang` to reset your password.
     # Only activate if you want a lock screen
-    # provides.to-users.homeManager.lock.enable = true;
-
-    nixos =
-      {
-        config,
-        lib,
-        pkgs,
-        modulesPath,
-        ...
-      }:
-
-      {
-        autologin.enable = true;
-        autologin.user = "gmang";
-        hyprland.monitors = [
+    provides.to-users.homeManager = {
+      hyprland = {
+        lock.enable = true;
+        monitors = [
           {
             output = "DP-2";
             mode = "1920x1080@59.96";
@@ -45,6 +34,21 @@
             scale = 1;
           }
         ];
+      };
+    };
+
+    nixos =
+      {
+        config,
+        lib,
+        pkgs,
+        modulesPath,
+        ...
+      }:
+
+      {
+        autologin.enable = true;
+        autologin.user = "gmang";
 
         # gdawg — 1:46 PM
         # DP-2 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 530mm x 300mm
