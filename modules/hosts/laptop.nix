@@ -12,6 +12,11 @@
       lock.enable = true;
       wallpaperDirectory = "~/Pictures/wallpapers";
       wallpaperMonitor = "eDP-1";
+
+      # theme = {
+      #   base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
+      #   wallpaper = ./wallpaper.jpg;
+      # };
     };
 
     nixos =

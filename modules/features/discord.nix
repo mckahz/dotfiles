@@ -23,10 +23,7 @@
           user = config.home.username;
 
           vesktop.enable = true;
-          discord = {
-            vencord.enable = true; # Standard Vencord
-          };
-
+          #discord.vencord.enable = true; # Standard Vencord
         };
       };
   };
