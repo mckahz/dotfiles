@@ -23,7 +23,8 @@
           user = config.home.username;
 
           vesktop.enable = true;
-          #removeWarningPopup = true;
+          discord.vencord.enable = true; # Standard Vencord
+          #discord.silenceNoModClientWarning = true;
           #discord.vencord.enable = true; # Standard Vencord
         };
       };
