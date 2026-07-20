@@ -32,7 +32,7 @@
             output = "DP-3";
             mode = "1920x1080@59.96";
             position = "1920x0";
-            transform = 1;
+            transform = 3;
             scale = 1;
           }
 
