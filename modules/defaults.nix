@@ -41,13 +41,10 @@
 
           zoom-us
 
-          steam
-
           godot_4
         ];
 
         programs.dconf.enable = true;
-        programs.steam.enable = true;
 
         nixpkgs.config.allowUnfree = true;
 
@@ -72,6 +69,8 @@
 
       config = {
         home.stateVersion = "26.05";
+
+        home.packages = with pkgs; [ steam ];
 
         nix.settings.experimental-features = [
           "nix-command"

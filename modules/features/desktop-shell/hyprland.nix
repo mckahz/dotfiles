@@ -28,9 +28,21 @@
         call = _args: { inherit _args; };
       in
       {
-        options = {
-          wallpaperDirectory = lib.mkOption { default = ""; };
-          wallpaperMonitor = lib.mkOption { default = "eDP-1"; };
+        options.hyprland = {
+          wallpapers = lib.mkOption {
+            default = "";
+            example = "~/Pictures/wallpapers/";
+          };
+          monitors = lib.mkOption {
+            default = [
+              {
+                output = "eDP-1";
+                mode = "1920x1080@60";
+                position = "0x0";
+                scale = 1;
+              }
+            ];
+          };
           lock.enable = lib.mkOption { default = false; };
         };
 
@@ -107,12 +119,7 @@
             enable = true;
             settings = {
               splash = false;
-              wallpaper = [
-                {
-                  monitor = config.wallpaperMonitor;
-                  path = config.wallpaperDirectory;
-                }
-              ];
+              wallpapers = config.hyprland.wallpapers;
             };
           };
 
@@ -167,12 +174,7 @@
 
             };
 
-            monitor = {
-              output = "eDP-1";
-              mode = "1920x1080@60";
-              position = "0x0";
-              scale = 1;
-            };
+            monitor = call config.hyprland.monitors;
 
             animation = call [
               {

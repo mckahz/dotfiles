@@ -9,9 +9,18 @@
     includes = [ ];
 
     provides.to-users.homeManager = {
-      lock.enable = true;
-      wallpaperDirectory = "~/Pictures/wallpapers";
-      wallpaperMonitor = "eDP-1";
+      hyprland = {
+        lock.enable = true;
+        wallpapers = "~/Pictures/wallpapers";
+        monitors = [
+          {
+            output = "eDP-1";
+            mode = "1920x1080@60";
+            position = "0x0";
+            scale = 1;
+          }
+        ];
+      };
 
       # theme = {
       #   base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
