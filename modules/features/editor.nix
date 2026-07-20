@@ -6,128 +6,137 @@
       programs.nix-ld.enable = true;
     };
 
-    homeManager = { pkgs, lib, ... }: {
-      home.packages = with pkgs; [
-        zed-editor
+    homeManager =
+      {
+        config,
+        pkgs,
+        lib,
+        ...
+      }:
+      {
+        config = {
+          home.packages = with pkgs; [
+            zed-editor
 
-        nixd
-        nil
-        nixfmt
-        lua-language-server
-      ];
-
-      programs = {
-        direnv.enable = true;
-
-        zed-editor = {
-          enable = true;
-
-          # This populates the userSettings "auto_install_extensions"
-          extensions = [
-            "nix"
-            "toml"
-            "rust"
+            nixd
+            nil
+            nixfmt
+            lua-language-server
           ];
 
-          # Everything inside of these brackets are Zed options
-          userSettings = {
-            assistant = {
-              enabled = true;
-              version = "2";
-              default_open_ai_model = null;
+          programs = {
+            direnv.enable = true;
 
-              # Provider options:
-              # - zed.dev models (claude-3-5-sonnet-latest) requires GitHub connected
-              # - anthropic models (claude-3-5-sonnet-latest, claude-3-haiku-latest, claude-3-opus-latest) requires API_KEY
-              # - copilot_chat models (gpt-4o, gpt-4, gpt-3.5-turbo, o1-preview) requires GitHub connected
-              default_model = {
-                provider = "zed.dev";
-                model = "claude-3-5-sonnet-latest";
+            zed-editor = {
+              enable = true;
+
+              # This populates the userSettings "auto_install_extensions"
+              extensions = [
+                "nix"
+                "toml"
+                "rust"
+              ];
+
+              # Everything inside of these brackets are Zed options
+              userSettings = {
+                assistant = {
+                  enabled = true;
+                  version = "2";
+                  default_open_ai_model = null;
+
+                  # Provider options:
+                  # - zed.dev models (claude-3-5-sonnet-latest) requires GitHub connected
+                  # - anthropic models (claude-3-5-sonnet-latest, claude-3-haiku-latest, claude-3-opus-latest) requires API_KEY
+                  # - copilot_chat models (gpt-4o, gpt-4, gpt-3.5-turbo, o1-preview) requires GitHub connected
+                  default_model = {
+                    provider = "zed.dev";
+                    model = "claude-3-5-sonnet-latest";
+                  };
+
+                  # inline_alternatives = [
+                  #   {
+                  #     provider = "copilot_chat";
+                  #     model = "gpt-3.5-turbo";
+                  #   }
+                  # ];
+                };
+
+                userKeymaps = [
+                  {
+                    bindings = {
+                      ctrl-e = "project_panel::Toggle";
+                    };
+                  }
+                  {
+                    context = "Editor && vim_mode==normal";
+                    bindings = {
+                      shift-u = "editor::Redo";
+                    };
+                  }
+                ];
+
+                hour_format = "hour24";
+                auto_update = false;
+
+                terminal = {
+                  alternate_scroll = "off";
+                  blinking = "off";
+                  copy_on_select = false;
+                  dock = "bottom";
+                  detect_venv = {
+                    on = {
+                      directories = [
+                        ".env"
+                        "env"
+                        ".venv"
+                        "venv"
+                      ];
+                      activate_script = "default";
+                    };
+                  };
+                  env = {
+                    TERM = "kitty";
+                  };
+                  font_family = "FiraCode Nerd Font";
+                  font_features = null;
+                  font_size = null;
+                  line_height = "comfortable";
+                  option_as_meta = false;
+                  button = false;
+                  shell = "system";
+                  toolbar = {
+                    title = true;
+                  };
+                  working_directory = "current_project_directory";
+                };
+
+                lsp = {
+                  rust-analyzer = {
+                    binary = {
+                      path_lookup = true;
+                    };
+                  };
+
+                  nix = {
+                    binary = {
+                      path_lookup = true;
+                    };
+                  };
+                };
+
+                languages = { };
+
+                vim_mode = config.vim;
+
+                # Tell Zed to use direnv and direnv can use a flake.nix environment
+                load_direnv = "shell_hook";
+                base_keymap = "VSCode";
+
+                show_whitespaces = "selection";
               };
-
-              # inline_alternatives = [
-              #   {
-              #     provider = "copilot_chat";
-              #     model = "gpt-3.5-turbo";
-              #   }
-              # ];
             };
-
-            userKeymaps = [
-              {
-                bindings = {
-                  ctrl-e = "project_panel::Toggle";
-                };
-              }
-              {
-                context = "Editor && vim_mode==normal";
-                bindings = {
-                  shift-u = "editor::Redo";
-                };
-              }
-            ];
-
-            hour_format = "hour24";
-            auto_update = false;
-
-            terminal = {
-              alternate_scroll = "off";
-              blinking = "off";
-              copy_on_select = false;
-              dock = "bottom";
-              detect_venv = {
-                on = {
-                  directories = [
-                    ".env"
-                    "env"
-                    ".venv"
-                    "venv"
-                  ];
-                  activate_script = "default";
-                };
-              };
-              env = {
-                TERM = "kitty";
-              };
-              font_family = "FiraCode Nerd Font";
-              font_features = null;
-              font_size = null;
-              line_height = "comfortable";
-              option_as_meta = false;
-              button = false;
-              shell = "system";
-              toolbar = {
-                title = true;
-              };
-              working_directory = "current_project_directory";
-            };
-
-            lsp = {
-              rust-analyzer = {
-                binary = {
-                  path_lookup = true;
-                };
-              };
-
-              nix = {
-                binary = {
-                  path_lookup = true;
-                };
-              };
-            };
-
-            languages = { };
-
-            vim_mode = true;
-
-            # Tell Zed to use direnv and direnv can use a flake.nix environment
-            load_direnv = "shell_hook";
-            base_keymap = "VSCode";
-
-            show_whitespaces = "selection";
           };
         };
       };
-    };
   };
 }

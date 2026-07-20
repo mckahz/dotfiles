@@ -14,12 +14,6 @@
     # provides.to-users.homeManager.lock.enable = true;
 
     nixos =
-      # TODO: replace everything until the comment at the end of the file
-      # with the contents of /etc/nixos/hardware-configuration.nix
-      # then add the following just above `imports = [...]` just like below.
-      #
-      # autologin.enable = true;
-      # autologin.user = "gmang";
       {
         config,
         lib,
@@ -31,29 +25,34 @@
       {
         autologin.enable = true;
         autologin.user = "gmang";
+        vim = false;
+
+        # theme = {
+        #   base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
+        #   wallpaper = ./wallpaper.jpg;
+        # };
 
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")
         ];
 
         boot.initrd.availableKernelModules = [
-          "nvme"
           "xhci_pci"
+          "ahci"
+          "usbhid"
+          "sd_mod"
         ];
         boot.initrd.kernelModules = [ ];
-        boot.kernelModules = [
-          "kvm-amd"
-          "uinput"
-        ];
+        boot.kernelModules = [ "kvm-amd" ];
         boot.extraModulePackages = [ ];
 
         fileSystems."/" = {
-          device = "/dev/disk/by-uuid/05b9f2cd-f792-4514-88fa-619c495dcc66";
+          device = "/dev/disk/by-uuid/2fe23d4b-a0b5-4758-a8ab-f7ef31806bfb";
           fsType = "ext4";
         };
 
         fileSystems."/boot" = {
-          device = "/dev/disk/by-uuid/8A92-629F";
+          device = "/dev/disk/by-uuid/8399-66A6";
           fsType = "vfat";
           options = [
             "fmask=0077"
@@ -65,8 +64,6 @@
 
         nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
         hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-      }
-    # here
-    ;
+      };
   };
 }

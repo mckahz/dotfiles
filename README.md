@@ -3,10 +3,10 @@
 If this is your first time booting this configuration, please preface any `nix` command with `NIX_CONFIG="extra-experimental-features = nix-command flakes pipe-operators" [nix command]`
 e.g.
 ```bash
-NIX_CONFIG="extra-experimental-features = nix-command flakes pipe-operators" nix run .#desktop -- test
+NIX_CONFIG="extra-experimental-features = nix-command flakes pipe-operators" nix run .#minipc -- test
 ```
 
-You may replace `desktop` with your host name and `admin` with your username.
+You may replace `minipc` with your host name and `gmang` with your username.
 
 # Rebuilding
 
@@ -17,10 +17,10 @@ git add . # whenever you add or move files
 nix run .#write-flake # when flake-parts.inputs changes
 ```
 ```fish
-nix run .#desktop -- test # build and test the system
+nix run .#minipc -- test # build and test the system
 ```
 ```fish
-nix run .#desktop -- boot # build and set as boot configuration
+nix run .#minipc -- boot # build and set as boot configuration
 ```
 ```fish
 nix run .#vm # build and test the system in a VM

@@ -26,6 +26,7 @@
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spotatui.url = "github:LargeModGames/spotatui";
     stylix = {
       url = "github:nix-community/stylix";

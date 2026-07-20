@@ -7,14 +7,13 @@
       {
         config,
         pkgs,
-        host,
         ...
       }:
       {
         nixpkgs.config.allowUnfree = true;
         home.packages = [
           pkgs.webcord-vencord
-          # TODO: inputs.endcord.${host.system}.packages.default
+          # TODO, discord tui: inputs.endcord.${host.system}.packages.default
         ];
 
         imports = [ inputs.nixcord.homeModules.nixcord ];
@@ -23,23 +22,11 @@
           enable = true;
           user = config.home.username;
 
-          discord.silenceNoModClientWarning = true;
-
-          legcord = {
-            enable = true;
-
-            # Optionally bundle Vencord or Equicord (also installs userPlugins)
-            # equicord.enable = true;
-            vencord.enable = true;
-
-            settings = {
-              channel = "stable";
-              tray = "dynamic";
-              minimizeToTray = true;
-              mods = [ "vencord" ];
-              doneSetup = true;
-            };
+          vesktop.enable = true;
+          discord = {
+            vencord.enable = true; # Standard Vencord
           };
+
         };
       };
   };
