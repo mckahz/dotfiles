@@ -10,25 +10,25 @@ You may replace `minipc` with your host name and `gmang` with your username.
 
 # Rebuilding
 
-```fish
+```bash
 git add . # whenever you add or move files
 ```
-```fish
+```bash
 nix run .#write-flake # when flake-parts.inputs changes
 ```
-```fish
+```bash
 nix run .#minipc -- test # build and test the system
 ```
-```fish
+```bash
 nix run .#minipc -- boot # build and set as boot configuration
 ```
-```fish
+```bash
 nix run .#vm # build and test the system in a VM
 ```
 
 # Updating
 
-```fish
+```bash
 nix flake update den # update your system
 ```
 
@@ -50,4 +50,19 @@ journalctl -n 50
 ```
 ```bash
 rm -rf ~/.config/path/to/your/problem/file
+```
+
+# Making a PR to share code
+
+```bash
+git add . # To make git aware of all your changes
+```
+```bash
+git commit -m "A brief description of your changes" # To save all those changes
+```
+```bash
+git push # To push your changes to your version
+```
+```bash
+gh pr create # To push your changes to my version
 ```

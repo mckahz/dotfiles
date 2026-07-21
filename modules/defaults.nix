@@ -24,7 +24,6 @@
           git
           bfg-repo-cleaner
           gh
-          localsend
 
           # CLI Utilities
           btop # System Monitor
