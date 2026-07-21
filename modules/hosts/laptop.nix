@@ -6,7 +6,9 @@
   ];
 
   den.aspects.laptop = {
-    includes = [ ];
+    includes = [
+      den.aspects.school
+    ];
 
     provides.to-users.homeManager = {
       hyprland = {

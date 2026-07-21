@@ -5,7 +5,6 @@
       den.batteries.define-user
       den.batteries.primary-user
 
-      den.aspects.school
       den.aspects.torrent
       den.aspects.keyboard
       den.aspects.terminal
