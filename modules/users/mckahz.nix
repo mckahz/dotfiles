@@ -15,6 +15,7 @@
       den.aspects.editor
       den.aspects.spotify
       den.aspects.discord
+      den.aspects.gaming
     ];
   };
 }

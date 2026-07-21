@@ -17,6 +17,7 @@
         config = {
           home.packages = with pkgs; [
             zed-editor
+            # godot_4
 
             nixd
             nil

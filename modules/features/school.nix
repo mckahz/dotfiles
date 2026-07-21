@@ -7,8 +7,9 @@
       };
 
       config = {
-        environment.systemPackages = [
-          pkgs.ciscoPacketTracer9
+        environment.systemPackages = with pkgs; [
+          ciscoPacketTracer9
+          zoom-us
         ];
 
         nixpkgs.config.allowUnfree = lib.mkForce true;

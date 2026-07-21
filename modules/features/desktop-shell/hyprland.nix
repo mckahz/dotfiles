@@ -140,7 +140,7 @@
               master = {
                 new_status = "master";
                 new_on_active = "after";
-                orientation = "left";
+                orientation = "left"; # top
                 smart_resizing = true;
                 drop_at_cursor = true;
                 mfact = 0.67;

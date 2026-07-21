@@ -39,9 +39,7 @@
           krita # Image editor
           libreoffice # Document editor
 
-          zoom-us
-
-          godot_4
+          obsidian
         ];
 
         programs.dconf.enable = true;
@@ -69,8 +67,6 @@
 
       config = {
         home.stateVersion = "26.05";
-
-        home.packages = with pkgs; [ steam ];
 
         nix.settings.experimental-features = [
           "nix-command"
