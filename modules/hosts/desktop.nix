@@ -10,6 +10,33 @@
       den.aspects.nvidia
     ];
 
+    provides.to-users.homeManager = {
+      vim = false;
+
+      theme = { };
+
+      hyprland = {
+        lock.enable = false;
+        # ordered left to right
+        monitors = [
+          {
+            output = "HDMI-A-1";
+            mode = "1920@1080@60";
+            position = "0x0";
+            transform = 0;
+            scale = 1;
+          }
+          {
+            output = "DP-1";
+            mode = "1280x720@50";
+            position = "1920x0";
+            transform = 0;
+            scale = 1;
+          }
+        ];
+      };
+    };
+
     nixos =
       {
         config,
