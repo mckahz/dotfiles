@@ -12,27 +12,30 @@
     # logged on, and run `sudo passwd gmang` to reset your password.
     # Only activate if you want a lock screen
     provides.to-users.homeManager = {
+      vim = false;
+
       hyprland = {
         lock.enable = true;
+        masterOrientation = "top";
         # ordered left to right
         monitors = [
           {
             output = "HDMI-A-1";
-            mode = "1360x768@60.01500";
+            mode = "1360x768@60";
             position = "-1360x0";
             transform = 0;
             scale = 1;
           }
           {
             output = "DP-2";
-            mode = "1920x1080@60";
+            mode = "1920x1080@59.94000";
             position = "0x0";
             transform = 0;
             scale = 1;
           }
           {
             output = "DP-3";
-            mode = "1920x1080@60";
+            mode = "1920x1080@60.00000";
             position = "1920x0";
             transform = 3;
             scale = 1;
@@ -54,13 +57,6 @@
       {
         autologin.enable = true;
         autologin.user = "gmang";
-
-        # gdawg — 1:46 PM
-        # DP-2 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 530mm x 300mm
-        # DP-3 connected 1920x1080+1920+0 (normal left inverted right x axis y axis) 530mm x 300mm
-        # HDMI-A-1 connected 680x384+3840+0 (normal left inverted right x axis y axis) 0mm x 0mm
-
-        vim = false;
 
         # theme = {
         #   base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
