@@ -17,7 +17,7 @@
       options = {
         theme = {
           base16Scheme = lib.mkOption {
-            default = "${pkgs.base16-schemes}/share/themes/ayu-light.yaml"; # mirage
+            default = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml"; # mirage
           };
           wallpaper = lib.mkOption {
             default = ./wallpaper.jpg;

@@ -33,6 +33,7 @@
             default = "";
             example = "~/Pictures/wallpapers/";
           };
+
           monitors = lib.mkOption {
             default = [
               {
@@ -43,7 +44,10 @@
               }
             ];
           };
+
           lock.enable = lib.mkOption { default = false; };
+
+          masterOrientation = lib.mkOption { default = "left"; };
         };
 
         config = {
@@ -140,7 +144,7 @@
               master = {
                 new_status = "master";
                 new_on_active = "after";
-                orientation = "left"; # top
+                orientation = config.hyprland.masterOrientation; # top
                 smart_resizing = true;
                 drop_at_cursor = true;
                 mfact = 0.67;
@@ -174,7 +178,7 @@
 
             };
 
-            monitor = call config.hyprland.monitors;
+            monitor = map (monitor: call [ monitor ]) config.hyprland.monitors;
 
             animation = call [
               {
