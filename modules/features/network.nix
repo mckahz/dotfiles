@@ -1,8 +1,10 @@
 {
-  den.aspects.network.nixos.networking.firewall = {
-    enable = true;
+  den.aspects.network.nixos = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ localsend ];
 
-    allowedTCPPorts = [ 53317 ]; # replace
-    allowedUDPPorts = [ 53317 ]; # replace
+    programs.localsend.enable = true;
+    programs.localsend.openFirewall = true;
+
+    networking.firewall.enable = true;
   };
 }
