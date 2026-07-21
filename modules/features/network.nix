@@ -1,5 +1,5 @@
 {
-  den.aspect.network.nixos.networking.firewall = {
+  den.aspects.network.nixos.networking.firewall = {
     enable = true;
 
     allowedTCPPorts = [ 53317 ]; # replace
