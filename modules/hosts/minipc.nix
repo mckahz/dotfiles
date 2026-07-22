@@ -58,10 +58,10 @@
         autologin.enable = true;
         autologin.user = "gmang";
 
-        # theme = {
-        #   base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
-        #   wallpaper = ./wallpaper.jpg;
-        # };
+        theme = {
+          base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
+          # wallpaper = ./wallpaper.jpg;
+        };
 
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")
