@@ -129,13 +129,38 @@
             source = "custom";
           };
           wallpaper = {
-            default = {
-              path = config.stylix.image;
+            automation = {
+              enabled = false;
+              interval_seconds = 1800;
+              order = "random";
+              recursive = true;
             };
-            directory = "/home/mckahz/Pictures/wallpapers";
-            last = {
-              path = config.stylix.image;
-            };
+            directory = config.theme.wallpapers;
+            # directory_dark = "/home/user/Wallpapers/Dark";
+            # directory_light = "/home/user/Wallpapers/Light";
+            edge_smoothness = 0.3;
+            enabled = true;
+            fill_mode = "crop";
+            # monitor = {
+            #   DP-2 = {
+            #     directory = "/home/user/Wallpapers/Vertical";
+            #     directory_dark = "/home/user/Wallpapers/Vertical/Dark";
+            #     directory_light = "/home/user/Wallpapers/Vertical/Light";
+            #     enabled = false;
+            #     fill_color = "#202020";
+            #   };
+            # };
+            # per_monitor_directories = false;
+            transition = [
+              "fade"
+              "wipe"
+              "disc"
+              "stripes"
+              "zoom"
+              "honeycomb"
+            ];
+            transition_duration = 1500;
+            transition_on_startup = false;
           };
           widget = {
             active_window = {

@@ -22,6 +22,10 @@
           wallpaper = lib.mkOption {
             default = ./wallpaper.jpg;
           };
+          wallpapers = lib.mkOption {
+            example = "/home/user/Pictures/Wallpapers";
+            type = lib.types.str;
+          };
         };
       };
       config = {
@@ -30,7 +34,6 @@
         stylix = {
           enable = true;
           base16Scheme = config.theme.base16Scheme;
-          image = config.theme.wallpaper;
           polarity = "dark";
 
           icons = {
@@ -55,7 +58,6 @@
 
           autoEnable = true;
 
-          targets.hyprpaper.image.enable = true;
           targets.zen-browser.profileNames = [ "default" ];
         };
       };

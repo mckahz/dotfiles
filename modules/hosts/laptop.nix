@@ -10,10 +10,11 @@
       den.aspects.school
     ];
 
-    provides.to-users.homeManager = {
+    provides.to-users.homeManager = { config, ... }: {
+      theme.wallpapers = "${config.home.homeDirectory}/Pictures/wallpapers";
+
       hyprland = {
         lock.enable = true;
-        wallpapers = "~/Pictures/wallpapers";
         monitors = [
           {
             output = "eDP-1";
@@ -24,11 +25,6 @@
           }
         ];
       };
-
-      # theme = {
-      #   base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
-      #   wallpaper = ./wallpaper.jpg;
-      # };
     };
 
     nixos =

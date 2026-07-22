@@ -29,11 +29,6 @@
       in
       {
         options.hyprland = {
-          wallpapers = lib.mkOption {
-            default = "";
-            example = "~/Pictures/wallpapers/";
-          };
-
           monitors = lib.mkOption {
             default = [
               {
@@ -55,7 +50,6 @@
             packages = [
               pkgs.libcamera
               pkgs.hyprshot
-              pkgs.hyprpaper
               pkgs.hyprlock
             ];
 
@@ -116,14 +110,6 @@
                     halign = "center";
                   }
                 ];
-            };
-          };
-
-          services.hyprpaper = {
-            enable = true;
-            settings = {
-              splash = false;
-              wallpapers = config.hyprland.wallpapers;
             };
           };
 

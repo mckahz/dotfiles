@@ -10,10 +10,8 @@
       den.aspects.nvidia
     ];
 
-    provides.to-users.homeManager = {
-      vim = false;
-
-      theme = { };
+    provides.to-users.homeManager = { config, lib, ... }: {
+      theme.wallpapers = "${config.home.homeDirectory}/STORAGE/Pictures/wallpapers";
 
       hyprland = {
         lock.enable = false;
@@ -21,18 +19,25 @@
         monitors = [
           {
             output = "HDMI-A-1";
-            mode = "1920@1080@60";
+            mode = "1920x1080@60";
             position = "0x0";
             transform = 0;
             scale = 1;
           }
           {
-            output = "DP-1";
-            mode = "1280x720@50";
-            position = "1920x0";
-            transform = 0;
+            output = "HDMI-A-2";
+            mode = "1920x1080@60";
+            position = "1920x-420";
+            transform = 3;
             scale = 1;
           }
+          # {
+          #   output = "DP-1";
+          #   mode = "1280x720@60";
+          #   position = "1920x0";
+          #   transform = 0;
+          #   scale = 1;
+          # }
         ];
       };
     };
@@ -57,29 +62,6 @@
         ];
 
         environment.systemPackages = with pkgs; [ wl-mirror ];
-
-        # rename linktosharedfolder???
-        system.activationScripts.linkToStorage.text =
-          let
-            createSymlink = path: ''
-              if [[ ! -h "~/${path}" ]]; then
-                ln -s "~/STORAGE/${path}" "~/${path}"
-              fi
-            '';
-          in
-
-          lib.join "\n" (
-            map createSymlink [
-              "Pictures"
-              "Desktop"
-              "Downloads"
-              "Documents"
-              "Music"
-              "Public"
-              "Templates"
-              "Videos"
-            ]
-          );
 
         # HARDWARE
         imports = [
