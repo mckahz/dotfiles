@@ -1,6 +1,6 @@
 # Getting Started
 
-If this is your first time booting this configuration, please preface any `nix` command with `NIX_CONFIG="extra-experimental-features = nix-command flakes pipe-operators" [nix command]`
+If this is your first time booting this configuration run `NIX_CONFIG="extra-experimental-features = nix-command flakes pipe-operators" nix run .#minipc -- boot` and optionally set a password with `passwd gmang`
 e.g.
 ```bash
 NIX_CONFIG="extra-experimental-features = nix-command flakes pipe-operators" nix run .#minipc -- test
@@ -28,9 +28,11 @@ nix run .#vm # build and test the system in a VM
 
 # Updating
 
+To update upstream dependencies use-
 ```bash
 nix flake update den # update your system
 ```
+In order to add more system configuration, copy/rename `template.nix`. Further instructions are in the template.
 
 # Debugging
 
@@ -44,17 +46,15 @@ sudo swapon /swapfile
 ```
 
 If you get `home-manager_<user>.service` failed to launch check out your journal to see what's wrong. Usually it's a file conflict which can simply be resolved by `rm` it.
-
 ```bash
 journalctl -n 50
 ```
 ```bash
 rm -rf ~/.config/path/to/your/problem/file
 ```
-
 If all else fails, you can return to your previous commit with
 ```bash
-git reset --HARD
+git reset --hard
 ```
 
 # Making a PR to share code
