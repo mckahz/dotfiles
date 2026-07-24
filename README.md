@@ -52,6 +52,11 @@ journalctl -n 50
 rm -rf ~/.config/path/to/your/problem/file
 ```
 
+If all else fails, you can return to your previous commit with
+```bash
+git reset --HARD
+```
+
 # Making a PR to share code
 
 ```bash
