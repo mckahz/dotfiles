@@ -11,8 +11,9 @@
     # TODO: Uncomment when you've copied over hardware-configuration.nix,
     # logged on, and run `sudo passwd gmang` to reset your password.
     # Only activate if you want a lock screen
-    provides.to-users.homeManager = {
+    provides.to-users.homeManager = { config, ... }: {
       vim = false;
+      theme.wallpapers = "${config.home.homeDirectory}/Pictures/wallpapers";
 
       hyprland = {
         lock.enable = true;
@@ -57,11 +58,6 @@
       {
         autologin.enable = true;
         autologin.user = "gmang";
-
-        theme = {
-          base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
-          # wallpaper = ./wallpaper.jpg;
-        };
 
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")
