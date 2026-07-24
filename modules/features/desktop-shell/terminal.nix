@@ -29,7 +29,7 @@
 
           interactiveShellInit = # builtins.readFile ./fish/init.fish;
             ''
-              # set fish_greeting # Disable greeting
+              set fish_greeting # Disable greeting
               ${if config.vim then "fish_vi_key_bindings" else ""}
               starship init fish | source
             '';

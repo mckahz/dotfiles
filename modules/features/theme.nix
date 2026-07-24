@@ -58,7 +58,6 @@
             size = 32;
           };
 
-          targets.hyprpaper.image.enable = true;
           targets.zen-browser.profileNames = [ "default" ];
         };
       };

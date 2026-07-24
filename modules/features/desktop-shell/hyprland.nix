@@ -57,66 +57,10 @@
             packages = [
               pkgs.libcamera
               pkgs.hyprshot
-              pkgs.hyprpaper
             ];
 
             sessionVariables = {
               ELECTRON_OZONE_PLATFORM_HINT = "wayland"; # does ozone need anything for this?
-            };
-          };
-
-          programs.hyprlock = {
-            enable = false;
-            settings = {
-              general = {
-                hide_cursor = false;
-                ignore_empty_input = true;
-              };
-
-              animations = {
-                enabled = true;
-                fade_in = {
-                  duration = 300;
-                  bezier = "easeOutQuint";
-                };
-                fade_out = {
-                  duration = 300;
-                  bezier = "easeOutQuint";
-                };
-              };
-
-              label =
-                let
-                  h1 = 120;
-                  h2 = 80;
-                  button = 100;
-                in
-                [
-                  {
-                    monitor = "";
-                    text = "$TIME";
-                    font_size = h1;
-                    position = "0, 200";
-                    valign = "center";
-                    halign = "center";
-                  }
-                  {
-                    monitor = "";
-                    text = "Login as $USER";
-                    font_size = h2;
-                    position = "0, -200";
-                    valign = "center";
-                    halign = "center";
-                  }
-                  {
-                    monitor = "";
-                    text = "Reboot";
-                    font_size = button;
-                    position = "0, -200";
-                    valign = "center";
-                    halign = "center";
-                  }
-                ];
             };
           };
 

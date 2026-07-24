@@ -48,7 +48,7 @@ in
       wayland.windowManager.hyprland.settings.bind =
         let
           noctalia = lib.getExe inputs.noctalia.packages.${host.system}.default;
-          wireplumber = pkgs.wireplumber;
+          wireplumber = "${pkgs.wireplumber}/bin/wpctl";
           brightnessctl = lib.getExe pkgs.brightnessctl;
           playerctl = lib.getExe pkgs.playerctl;
         in
