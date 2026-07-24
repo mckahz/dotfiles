@@ -24,22 +24,17 @@
             sidebar = {
               background_opacity = 0.74;
               capsule_thickness = 0.62;
-              start = [
-                "launcher"
-                "workspaces"
-                "active_window"
-                "tray"
-                "media"
-                "audio_visualizer"
-              ];
               center = [
                 "screenshot"
+                "cat"
                 "clock"
                 "temp"
                 "cpu"
                 "ram"
               ];
               end = [
+                "nix-monitor"
+                "tray"
                 "network"
                 "bluetooth"
                 "volume"
@@ -53,6 +48,13 @@
               radius_bottom_left = 0;
               radius_top_left = 0;
               scale = 1.25;
+              start = [
+                "launcher"
+                "workspaces"
+                "active_window"
+                "media"
+                "audio_visualizer"
+              ];
               thickness = 46;
               widget_spacing = 12;
             };
@@ -68,7 +70,7 @@
             address = "Melbourne, Australia";
           };
           lockscreen_widgets = {
-            enabled = false;
+            enabled = true;
             grid = {
               cell_size = 16;
               major_interval = 4;
@@ -80,7 +82,7 @@
                 box_height = 70;
                 box_width = 400;
                 cx = 960;
-                cy = 961;
+                cy = 956;
                 output = "eDP-1";
                 rotation = 0;
                 settings = {
@@ -97,14 +99,109 @@
                 };
                 type = "login_box";
               };
+              lockscreen-widget-0000000000000001 = {
+                box_height = 80;
+                box_width = 192;
+                cx = 111;
+                cy = 751;
+                output = "eDP-1";
+                rotation = 0;
+                settings = {
+                  background = true;
+                  background_color = "surface";
+                  background_opacity = 0.8;
+                  background_padding = 10;
+                  background_radius = 12;
+                  center_text = false;
+                  circle = true;
+                  clock_style = "digital";
+                  color = "on_surface";
+                  font_family = "";
+                  format = "{:%H:%M}";
+                  shadow = true;
+                  timezone = "Australia/Melbourne";
+                };
+                type = "clock";
+              };
+              lockscreen-widget-0000000000000002 = {
+                box_height = 416;
+                box_width = 1920;
+                cx = 960;
+                cy = 0;
+                output = "eDP-1";
+                rotation = 0;
+                settings = {
+                  background = false;
+                  bands = 32;
+                  show_when_idle = true;
+                };
+                type = "audio_visualizer";
+              };
+              lockscreen-widget-0000000000000003 = {
+                box_height = 0;
+                box_width = 0;
+                cx = 1741;
+                cy = 994;
+                output = "eDP-1";
+                rotation = 0;
+                type = "media_player";
+              };
+              lockscreen-widget-0000000000000004 = {
+                box_height = 144;
+                box_width = 192;
+                cx = 109;
+                cy = 993;
+                output = "eDP-1";
+                rotation = 0;
+                settings = {
+                  background = true;
+                  stat = "cpu_usage";
+                  stat2 = "cpu_temp";
+                };
+                type = "sysmon";
+              };
+              lockscreen-widget-0000000000000005 = {
+                box_height = 96;
+                box_width = 192;
+                cx = 111;
+                cy = 856;
+                output = "eDP-1";
+                rotation = 0;
+                settings = {
+                  background = true;
+                  background_color = "surface";
+                  background_opacity = 0.8;
+                  background_padding = 10;
+                  background_radius = 12;
+                  color = "on_surface";
+                  font_family = "";
+                  forecast_days = 3;
+                  shadow = true;
+                  show_forecast = false;
+                };
+                type = "weather";
+              };
             };
-            widget_order = [ "lockscreen-login-box@eDP-1" ];
+            widget_order = [
+              "lockscreen-widget-0000000000000002"
+              "lockscreen-login-box@eDP-1"
+              "lockscreen-widget-0000000000000001"
+              "lockscreen-widget-0000000000000003"
+              "lockscreen-widget-0000000000000004"
+              "lockscreen-widget-0000000000000005"
+            ];
           };
           notification = {
             background_opacity = 0.8;
           };
           osd = {
             background_opacity = 0.8;
+          };
+          plugins = {
+            enabled = [
+              "noctalia/bongocat"
+              "avivbintangaringga/nix-monitor"
+            ];
           };
           settings = { };
           shell = {
@@ -124,9 +221,10 @@
             };
           };
           theme = {
+            builtin = "Noctalia";
             custom_palette = "stylix";
-            mode = "dark";
             source = "custom";
+            wallpaper_scheme = "m3-content";
           };
           wallpaper = {
             automation = {
@@ -172,6 +270,9 @@
             brightness = {
               show_label = false;
             };
+            cat = {
+              type = "noctalia/bongocat:cat";
+            };
             clock = {
               anchor = true;
               capsule = true;
@@ -188,6 +289,10 @@
             };
             network = {
               show_label = false;
+            };
+            nix-monitor = {
+              show_text = false;
+              type = "avivbintangaringga/nix-monitor:nix-monitor";
             };
             ram = {
               color = "secondary";
@@ -215,5 +320,4 @@
       };
     };
   };
-
 }

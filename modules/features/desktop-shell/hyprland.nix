@@ -26,6 +26,7 @@
       let
         lua = lib.generators.mkLuaInline;
         call = _args: { inherit _args; };
+        noctalia = lib.getExe inputs.noctalia.packages.${host.system}.default;
       in
       {
         options.hyprland = {
@@ -43,6 +44,12 @@
           lock.enable = lib.mkOption { default = false; };
 
           masterOrientation = lib.mkOption { default = "left"; };
+
+          screenshots = lib.mkOption {
+            default = "${config.home.homeDirectory}/Pictures/Screenshots";
+            example = "/home/user/Pictures/Screenshots";
+            type = lib.types.str;
+          };
         };
 
         config = {
@@ -50,7 +57,7 @@
             packages = [
               pkgs.libcamera
               pkgs.hyprshot
-              pkgs.hyprlock
+              pkgs.hyprpaper
             ];
 
             sessionVariables = {
@@ -59,7 +66,7 @@
           };
 
           programs.hyprlock = {
-            enable = true;
+            enable = false;
             settings = {
               general = {
                 hide_cursor = false;
@@ -181,6 +188,14 @@
                   match.class = "kitty";
                   border_size = 2;
                 }
+                {
+                  match.class = "pkmncc.exe";
+                  fullscreen = true;
+                  size = {
+                    width = 1440;
+                    height = 1080;
+                  };
+                }
               ]
               [
                 {
@@ -204,8 +219,8 @@
               "hyprland.start"
               (lua ''
                 function()
-                  hl.exec_cmd('${lib.getExe inputs.noctalia.packages.${host.system}.default} -d')
-                  ${if config.lock.enable or false then "hl.exec_cmd('${lib.getExe pkgs.hyprlock}')" else ""}
+                  hl.exec_cmd('${noctalia} -d')
+                  ${if config.hyprland.lock.enable then "hl.exec_cmd('${noctalia} msg session lock')" else ""}
                 end
               '')
             ];

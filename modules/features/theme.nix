@@ -28,11 +28,13 @@
           };
         };
       };
+
       config = {
         home.pointerCursor.enable = true;
 
         stylix = {
           enable = true;
+          autoEnable = true;
           base16Scheme = config.theme.base16Scheme;
           polarity = "dark";
 
@@ -56,8 +58,7 @@
             size = 32;
           };
 
-          autoEnable = true;
-
+          targets.hyprpaper.image.enable = true;
           targets.zen-browser.profileNames = [ "default" ];
         };
       };
