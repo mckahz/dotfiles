@@ -1,24 +1,40 @@
 { ... }: {
   den.aspects.school = {
+    homeManager = { host, ... }: {
+      dconf.settings = {
+        "org/virt-manager/virt-manager/connections" = {
+          autoconnect = [ "qemu:///system" ];
+          uris = [ "qemu:///system" ];
+        };
+      };
+      users.users.${host.name}.extraGroups = [ "libvirtd" ];
+    };
+
     nixos = { pkgs, lib, ... }: {
-      options.school.enable = lib.mkOption {
-        default = false;
-        type = lib.types.bool;
-      };
+      programs.virt-manager.enable = true;
 
-      config = {
-        environment.systemPackages = with pkgs; [
-          ciscoPacketTracer9
-          zoom-us
-          qemu
-        ];
+      environment.systemPackages = with pkgs; [
+        ciscoPacketTracer9
+        zoom-us
+        virtiofsd
+        spice
+        hunspell
+      ];
 
-        nixpkgs.config.allowUnfree = lib.mkForce true;
+      users.groups.libvirtd.members = [
+        "mckahz"
+        "gmang"
+      ];
 
-        services.xserver.videoDrivers = [ "vmware" ];
-        #virtualisation.vmware.guest.enable = true;
-        virtualisation.vmware.host.enable = true;
-      };
+      virtualisation.libvirtd.enable = true;
+
+      virtualisation.spiceUSBRedirection.enable = true;
+
+      nixpkgs.config.allowUnfree = lib.mkForce true;
+
+      # services.xserver.videoDrivers = [ "vmware" ];
+      # virtualisation.vmware.guest.enable = true;
+      # virtualisation.vmware.host.enable = true;
     };
   };
 }

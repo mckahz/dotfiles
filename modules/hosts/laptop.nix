@@ -40,8 +40,6 @@
         keyboard.enable = true;
         keyboard.device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
 
-        school.enable = true;
-
         autologin.enable = true;
         autologin.user = "mckahz";
 

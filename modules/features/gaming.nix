@@ -7,12 +7,10 @@
       environment.systemPackages = with pkgs; [
         steam
 
-        wineWow64Packages.stableFull
-        wineWow64Packages.staging
-        wineWow64Packages.waylandFull
-        wine
-        winetricks
+        shtris
+
         antimicrox
+        wine # exclusively for pkmcc
       ];
 
       programs.steam.enable = true;
