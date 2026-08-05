@@ -24,6 +24,7 @@
           git
           bfg-repo-cleaner
           gh
+          devenv
 
           # CLI Utilities
           btop # System Monitor

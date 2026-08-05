@@ -164,7 +164,7 @@
               (lua ''
                 function()
                   hl.exec_cmd('${noctalia} -d')
-                  ${if config.hyprland.lock.enable then "hl.exec_cmd('${noctalia} msg session lock')" else ""}
+                  -- ${if config.hyprland.lock.enable then "hl.exec_cmd('${noctalia} msg session lock')" else ""}
                 end
               '')
             ];

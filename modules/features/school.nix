@@ -10,6 +10,7 @@
         environment.systemPackages = with pkgs; [
           ciscoPacketTracer9
           zoom-us
+          qemu
         ];
 
         nixpkgs.config.allowUnfree = lib.mkForce true;
