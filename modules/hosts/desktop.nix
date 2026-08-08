@@ -18,17 +18,17 @@
         # ordered left to right
         monitors = [
           {
-            output = "HDMI-A-1";
+            output = "HDMI-A-2";
             mode = "1920x1080@60";
-            position = "0x0";
+            position = "1920x-420";
             transform = 0;
             scale = 1;
           }
           {
-            output = "HDMI-A-2";
+            output = "HDMI-A-1";
             mode = "1920x1080@60";
-            position = "1920x-420";
-            transform = 3;
+            position = "0x0";
+            transform = 0;
             scale = 1;
           }
           # {
