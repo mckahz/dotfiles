@@ -5,7 +5,6 @@
       den.aspects.terminal
 
       den.aspects.hyprland
-      den.aspects.keybinds
 
       den.aspects.noctalia
     ];

@@ -19,30 +19,29 @@
         lock.enable = true;
         masterOrientation = "top";
         # ordered left to right
-        monitors = [
-          {
-            output = "HDMI-A-1";
-            mode = "1360x768@60";
-            position = "-1360x0";
-            transform = 0;
-            scale = 1;
-          }
-          {
-            output = "DP-2";
-            mode = "1920x1080@59.94000";
-            position = "0x0";
-            transform = 0;
-            scale = 1;
-          }
-          {
-            output = "DP-3";
-            mode = "1920x1080@60.00000";
-            position = "1920x0";
-            transform = 3;
-            scale = 1;
-          }
-
-        ];
+        monitors = ''
+          hl.monitor({
+            output = "HDMI-A-1",
+            mode = "1360x768@60",
+            position = "-1360x0",
+            transform = 0,
+            scale = 1,
+          })
+          hl.monitor({
+            output = "DP-2",
+            mode = "1920x1080@59.94000",
+            position = "0x0",
+            transform = 0,
+            scale = 1,
+          })
+          hl.monitor({
+            output = "DP-3",
+            mode = "1920x1080@60.00000",
+            position = "1920x0",
+            transform = 3,
+            scale = 1,
+          })
+        '';
       };
     };
 
