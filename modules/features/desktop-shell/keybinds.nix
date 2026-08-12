@@ -73,6 +73,10 @@ in
           "SUPER + CONTROL + J" = "hl.dsp.window.move({direction = 'down'})";
           "SUPER + CONTROL + K" = "hl.dsp.window.move({direction = 'up'})";
           "SUPER + CONTROL + L" = "hl.dsp.window.move({direction = 'right'})";
+          "SUPER + SHIFT + H" = "hl.dsp.layout('orientationleft')";
+          "SUPER + SHIFT + J" = "hl.dsp.layout('orientationbottom')";
+          "SUPER + SHIFT + K" = "hl.dsp.layout('orientationtop')";
+          "SUPER + SHIFT + L" = "hl.dsp.layout('orientationright')";
           "SUPER + H" = "hl.dsp.focus({direction = 'left'})";
           "SUPER + J" = "hl.dsp.focus({direction = 'down'})";
           "SUPER + K" = "hl.dsp.focus({direction = 'up'})";
