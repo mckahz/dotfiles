@@ -20,24 +20,21 @@
           {
             output = "HDMI-A-2";
             mode = "1920x1080@60";
-            position = "1920x-420";
+            position = "0x0";
             transform = 0;
-            scale = 1;
+          }
+          {
+            output = "DP-1";
+            mode = "1920x1080@60";
+            position = "1920x-420";
+            transform = 3;
           }
           {
             output = "HDMI-A-1";
             mode = "1920x1080@60";
-            position = "0x0";
+            position = "3000x0";
             transform = 0;
-            scale = 1;
           }
-          # {
-          #   output = "DP-1";
-          #   mode = "1280x720@60";
-          #   position = "1920x0";
-          #   transform = 0;
-          #   scale = 1;
-          # }
         ];
       };
     };
@@ -59,6 +56,7 @@
 
         nixpkgs.config.permittedInsecurePackages = [
           "broadcom-sta-6.30.223.271-59-6.18.38"
+          "broadcom-sta-6.30.223.271-63-6.18.41"
         ];
 
         environment.systemPackages = with pkgs; [ wl-mirror ];
