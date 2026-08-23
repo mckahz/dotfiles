@@ -67,26 +67,6 @@ hl.gesture({
     fingers = 3
 })
 
--- settings.monitor
-hl.monitor({
-    mode = "1920x1080@60",
-    output = "HDMI-A-2",
-    position = "0x0",
-    transform = 0
-})
-hl.monitor({
-    mode = "1920x1080@60",
-    output = "DP-1",
-    position = "1920x-420",
-    transform = 3
-})
-hl.monitor({
-    mode = "1920x1080@60",
-    output = "HDMI-A-1",
-    position = "3000x0",
-    transform = 0
-})
-
 -- settings.on
 hl.on("hyprland.start", (function()
     hl.exec_cmd(nix.noctalia .. ' -d')

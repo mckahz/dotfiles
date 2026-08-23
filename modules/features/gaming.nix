@@ -1,5 +1,6 @@
 {
-  den.aspects.gaming.nixos =
+  den.aspects.gaming = {
+    nixos =
     { pkgs, ... }:
 
     {
@@ -16,4 +17,5 @@
 
       programs.steam.enable = true;
     };
+  };
 }

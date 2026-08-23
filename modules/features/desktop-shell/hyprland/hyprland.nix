@@ -60,9 +60,10 @@
 
         config = {
           home = {
-            packages = [
-              pkgs.libcamera
-              pkgs.hyprshot
+            packages = with pkgs; [
+              libcamera
+              hyprshot
+              nwg-displays
             ];
 
             sessionVariables = {
