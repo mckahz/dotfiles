@@ -17,5 +17,10 @@
       den.aspects.gaming
       den.aspects.network
     ];
+
+    provides.to-hosts.nixos = { ... }: {
+      keyboard.enable = true;
+      keyboard.device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+    };
   };
 }

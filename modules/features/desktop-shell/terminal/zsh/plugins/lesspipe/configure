@@ -1,0 +1,265 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# find lesscomplete etc. in current dir, if scripts not installed yet
+export PATH="$PATH:."
+
+usage() {
+	cat << 'EOF'
+Usage: configure [options]
+Options:
+ --help                   print this message
+ --shell=<filename>       specify an alternative shell path (zsh/bash) to use
+ --nomake                 do not generate a Makefile
+Directory and file names:
+ --prefix=PREFIX          install files below PREFIX (/usr/local)
+ --bindir=BINDIR          install binaries in BINDIR (PREFIX/bin)
+ --libexecdir=LIBEXECDIR  install lesscomplete in LIBEXECDIR
+                          (PREFIX/libexec/lesspipe)
+ --mandir=MANDIR          install man pages in in MANDIR (PREFIX/share/man/man1)
+ --bash-completion-dir=DIR install bash auto-completion file in in DIR
+                          (pkg-config --variable=completionsdir bash-completion)
+ --zsh-completion-dir=DIR install zsh auto-completion file in in DIR
+                          (PREFIX/share/zsh/site-functions)
+
+configure generates by default a Makefile
+EOF
+}
+
+opt_help=0
+opt_prefix=""
+opt_bindir=""
+opt_libexecdir=""
+opt_mandir=""
+opt_bash_completion_dir=""
+opt_zsh_completion_dir=""
+opt_nomake=0
+opt_shell=""
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+		--help)
+			opt_help=1
+			shift
+			;;
+		--prefix=*)
+			opt_prefix="${1#--prefix=}"
+			shift
+			;;
+		--bindir=*)
+			opt_bindir="${1#--bindir=}"
+			shift
+			;;
+		--libexecdir=*)
+			opt_libexecdir="${1#--libexecdir=}"
+			shift
+			;;
+		--mandir=*)
+			opt_mandir="${1#--mandir=}"
+			shift
+			;;
+		--bash-completion-dir=*)
+			opt_bash_completion_dir="${1#--bash-completion-dir=}"
+			shift
+			;;
+		--zsh-completion-dir=*)
+			opt_zsh_completion_dir="${1#--zsh-completion-dir=}"
+			shift
+			;;
+		--shell=*)
+			opt_shell="${1#--shell=}"
+			shift
+			;;
+		--nomake)
+			opt_nomake=$((opt_nomake + 1))
+			shift
+			;;
+		*)
+			usage
+			exit 1
+			;;
+	esac
+done
+
+if [[ $opt_help -ne 0 ]]; then
+	usage
+	exit 0
+fi
+
+# Defaults
+prefix="${opt_prefix:-${PREFIX:-/usr/local}}"
+bindir="${opt_bindir:-${BINDIR:-$prefix/bin}}"
+libexecdir="${opt_libexecdir:-${LIBEXECDIR:-$prefix/libexec/lesspipe}}"
+mandir="${opt_mandir:-${MANDIR:-$prefix/share/man/man1}}"
+bash_complete_dir="${opt_bash_completion_dir:-$prefix/etc/bash_completion.d}"
+
+# override prefix and use the system defined directory if known
+if [[ -z "$opt_bash_completion_dir" ]] && pkg-config --version >/dev/null 2>&1; then
+	if compatdir=$(pkg-config --variable=compatdir bash-completion 2>/dev/null); then
+		bash_complete_dir="$compatdir"
+	fi
+fi
+
+zsh_complete_dir="${opt_zsh_completion_dir:-$prefix/share/zsh/site-functions}"
+
+if [[ "$prefix" =~ /bin/?$ ]]; then
+	echo "removed trailing /bin dir from prefix"
+	prefix="${prefix%/bin}"
+	prefix="${prefix%/}"
+fi
+
+if [[ -n "$opt_shell" && ! $(command -v "$opt_shell") ]]; then
+	echo "unusable shell $opt_shell: not executable or no absolute path"
+	exit 1
+fi
+
+bad_shells=()
+
+check_shell_vers() {
+	local shells=("bash" "zsh")
+	if [[ -n "$opt_shell" ]]; then
+		shells=("$opt_shell")
+	fi
+
+	local selected_shell=""
+	local shellcmd=""
+	local shell path name opt versstr v file
+
+	for shell in "${shells[@]}"; do
+		path=$(command -v "$shell")
+		if [[ -z "$path" ]]; then
+			bad_shells+=("$shell")
+			continue
+		fi
+		rest=${shell#"$path"/}
+		name=${rest% *}
+		[[ $name == \ * ]] && opt=${rest#* } || opt=
+
+		versstr=$("$path" --version)
+		if [[ -z "$versstr" ]]; then
+			bad_shells+=("$shell")
+			continue
+		fi
+		# check for bash version at least 5.0 (needed e.g. in archive_color)
+		if [[ "$versstr" == *bash* ]]; then
+			v="$("$path" -c "echo \$BASH_VERSION" 2>/dev/null || true)"
+			v="${v%%.*}"
+			if [[ -z "$v" || "$v" -lt 5 ]]; then
+				echo "not using $path in scripts, version '$v' to small, you need at least 5"
+				bad_shells+=("$shell")
+				continue
+			fi
+		fi
+
+		[[ -z "$shellcmd" ]] && shellcmd="$path$opt"
+		[[ -z "$selected_shell" ]] && selected_shell="$name"
+		[[ -n "$selected_shell" ]] && break
+	done
+
+	if [[ -z "$selected_shell" ]]; then
+		echo "Sorry, no usable shell found, the following were tried:"
+		printf '%s\n' "${bad_shells[@]}"
+		echo "You could run configure --shell=<abs_filename> to retry"
+		exit 1
+	fi
+
+	if [[ -n "$opt_shell" && "$opt_shell" == /* ]]; then
+		shell_line="#!$opt_shell"
+	else
+		shell_line="#!/usr/bin/env $selected_shell"
+	fi
+}
+
+check_shell_vers
+
+no_bash=0
+no_zsh=0
+for s in "${bad_shells[@]}"; do
+	[[ "$s" == *bash* ]] && no_bash=1
+	[[ "$s" == *zsh* ]] && no_zsh=1
+done
+
+# Makefile erzeugen, falls nicht --nomake
+if [[ "$opt_nomake" -eq 0 ]]; then
+	cat > Makefile << 'EOF'
+# This is a generated file, do not edit it. Use configure to modify it
+PREFIX = opt_prefix
+BINDIR = opt_bindir
+LIBEXECDIR = opt_libexecdir
+MANDIR = opt_mandir
+BASH_COMPLETION = bash_complete_dir
+ZSH_COMPLETION = zsh_complete_dir
+
+.PHONY: install
+
+all:
+	$(info "make install" will install lesspipe.sh in $(BINDIR))
+test:
+	./test.sh
+install:
+	mkdir -p $(DESTDIR)$(BINDIR)
+	mkdir -p $(DESTDIR)$(LIBEXECDIR)
+	mkdir -p $(DESTDIR)$(MANDIR)
+	mkdir -p $(DESTDIR)$(ZSH_COMPLETION)
+	mkdir -p $(DESTDIR)$(BASH_COMPLETION)
+	cp ./archive_color ./lesspipe.sh $(DESTDIR)$(BINDIR)
+	cp ./lesscomplete $(DESTDIR)$(LIBEXECDIR)
+	cp ./lesspipe.1 $(DESTDIR)$(MANDIR)
+	sed -e "s@__LIBEXECDIR__@$(LIBEXECDIR)@" ./bash_completion > $(DESTDIR)$(BASH_COMPLETION)/less
+	sed -e "s@__LIBEXECDIR__@$(LIBEXECDIR)@" ./zsh_completion > $(DESTDIR)$(ZSH_COMPLETION)/_less
+	chmod 0755 $(DESTDIR)$(BINDIR)/lesspipe.sh
+	chmod 0755 $(DESTDIR)$(BINDIR)/archive_color
+	chmod 0755 $(DESTDIR)$(LIBEXECDIR)/lesscomplete
+clean:
+	mv Makefile Makefile.old
+EOF
+
+	sed -i -e " \
+		s@opt_prefix@$prefix@g; \
+		s@opt_bindir@$bindir@g; \
+		s@opt_libexecdir@$libexecdir@g; \
+		s@opt_mandir@$mandir@g; \
+		s@bash_complete_dir@$bash_complete_dir@g; \
+		s@zsh_complete_dir@$zsh_complete_dir@g"  Makefile
+
+	# remove BASH/ZSH_COMPLETION if shell not useable
+	[[ "$no_bash" -ne 0 ]] && sed -i -e '/BASH_COMPLETION/d' Makefile
+	[[ "$no_zsh" -ne 0 ]] && sed -i -e '/ZSH_COMPLETION/d' Makefile
+
+	echo "A Makefile has been generated"
+	echo "    prefix $prefix"
+	echo "    bindir $bindir"
+	echo "    libexecdir $libexecdir"
+	echo "    mandir $mandir"
+	echo "    bash_complete_dir $bash_complete_dir"
+	echo "    zsh_complete_dir  $zsh_complete_dir"
+fi
+# remove generated backup if not GNU sed
+rm -f Makefile-e
+
+# modify shebang of lesspipe.sh and other scripts if required
+for file in "lesspipe.sh" "lesscomplete" "archive_color" "test.sh" "vimcolor"; do
+	if [[ -f "$file" ]]; then
+		{
+			IFS= read -r first_line || true
+			rest=$(cat)
+		} < "$file"
+
+		if [[ "$first_line" == "$shell_line" ]]; then
+			[[ "$file" == lesspipe.sh ]] && echo "first line in scripts is $first_line"
+			continue
+		fi
+
+		echo "generating new $file using '$shell_line' as first line"
+		cp "$file" "$file.old"
+		{
+			echo "$shell_line"
+			printf '%s\n' "$rest"
+		} > "$file"
+		chmod 0755 "$file"
+	fi
+done
+
+exit 0
+

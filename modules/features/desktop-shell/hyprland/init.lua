@@ -83,34 +83,9 @@ end
 -- end
 -- ))
 
--- settings.window_rule
-hl.window_rule({
-    border_size = 2,
-    match = {
-        class = "kitty"
-    }
-}, {
-    fullscreen = true,
-    match = {
-        class = "pkmncc.exe"
-    },
-    size = {
-        height = 1080,
-        width = 1440
-    }
-})
-hl.window_rule({
-    match = {
-        class = "^$",
-        float = true,
-        fullscreen = false,
-        pin = false,
-        title = "^$",
-        xwayland = true
-    },
-    name = "fix-xwayland-drags",
-    no_focus = true
-})
+
+hl.workspace_rule({ workspace = "f[1]s[false]", gaps_out = 0, gaps_in = 0 })
+hl.window_rule({ match = { float = false, workspace = "f[1]s[false]" }, border_size = 0, rounding = 0 })
 
 -- startup
 hl.on("hyprland.start", function()

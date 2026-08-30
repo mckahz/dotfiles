@@ -21,19 +21,6 @@
         boot.loader.efi.canTouchEfiVariables = true;
 
         environment.systemPackages = with pkgs; [
-          git
-          bfg-repo-cleaner
-          gh
-
-          devenv
-
-          # CLI Utilities
-          btop # System Monitor
-          cmatrix # Matrix hacker thingy
-          imagemagick # Edit images
-          caligula # Burn ISOs to drives
-          ani-cli
-
           # GUI Applications
           qview # Image viewer
           nautilus # File manager

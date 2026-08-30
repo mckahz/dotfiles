@@ -26,9 +26,10 @@
             };
           };
 
+          #  fish
           environment.etc."greetd/environments".text = ''
-            fish
             bash
+            zsh
             start-hyprland
           '';
         };

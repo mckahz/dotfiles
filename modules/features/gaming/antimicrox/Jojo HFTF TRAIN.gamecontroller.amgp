@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gamecontroller configversion="19" appversion="3.5.1">
+    <!--The SDL name for a joystick is included for informational purposes only.-->
+    <sdlname>Xbox 360 Controller</sdlname>
+    <!--The Unique ID for a joystick is included for informational purposes only.-->
+    <uniqueID>03007e535e0400008e020000000072001118654</uniqueID>
+    <stickAxisAssociation index="1" xAxis="1" yAxis="2"/>
+    <stickAxisAssociation index="2" xAxis="3" yAxis="4"/>
+    <vdpadButtonAssociations index="1">
+        <vdpadButtonAssociation axis="0" button="12" direction="1"/>
+        <vdpadButtonAssociation axis="0" button="13" direction="4"/>
+        <vdpadButtonAssociation axis="0" button="14" direction="8"/>
+        <vdpadButtonAssociation axis="0" button="15" direction="2"/>
+    </vdpadButtonAssociations>
+    <names>
+        <controlstickname index="1">Stick 1</controlstickname>
+        <controlstickname index="2">Stick 2</controlstickname>
+    </names>
+    <sets>
+        <set index="1">
+            <dpad index="1">
+                <dpadbutton index="2">
+                    <slots>
+                        <slot>
+                            <code>0x34</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </dpadbutton>
+                <dpadbutton index="8">
+                    <slots>
+                        <slot>
+                            <code>0x33</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </dpadbutton>
+                <dpadbutton index="4">
+                    <slots>
+                        <slot>
+                            <code>0x32</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </dpadbutton>
+                <dpadbutton index="1">
+                    <slots>
+                        <slot>
+                            <code>0x31</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </dpadbutton>
+            </dpad>
+            <trigger index="6">
+                <deadZone>2000</deadZone>
+                <throttle>positivehalf</throttle>
+                <triggerbutton index="2">
+                    <slots>
+                        <slot>
+                            <code>0x35</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                        <slot>
+                            <code>0x36</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                        <slot>
+                            <code>0x37</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </triggerbutton>
+            </trigger>
+            <trigger index="5">
+                <deadZone>2000</deadZone>
+                <throttle>positivehalf</throttle>
+                <triggerbutton index="2">
+                    <slots>
+                        <slot>
+                            <code>0x35</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                        <slot>
+                            <code>0x36</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                        <slot>
+                            <code>0x37</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </triggerbutton>
+            </trigger>
+            <button index="10">
+                <slots>
+                    <slot>
+                        <code>0x35</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>0x36</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>0x37</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="9">
+                <slots>
+                    <slot>
+                        <code>0x49</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="11">
+                <slots>
+                    <slot>
+                        <code>0x37</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="6">
+                <slots>
+                    <slot>
+                        <code>0x5d</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="5">
+                <slots>
+                    <slot>
+                        <code>0x2d</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="8">
+                <slots>
+                    <slot>
+                        <code>0x5b</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="7">
+                <slots>
+                    <slot>
+                        <code>0x3d</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="2">
+                <slots>
+                    <slot>
+                        <code>0x35</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>0x36</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>0x37</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="1">
+                <slots>
+                    <slot>
+                        <code>0x38</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="4">
+                <slots>
+                    <slot>
+                        <code>0x36</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="3">
+                <slots>
+                    <slot>
+                        <code>0x35</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+        </set>
+        <set index="2">
+            <trigger index="6">
+                <throttle>positivehalf</throttle>
+            </trigger>
+            <trigger index="5">
+                <deadZone>2000</deadZone>
+                <throttle>positivehalf</throttle>
+                <triggerbutton index="2">
+                    <toggle>true</toggle>
+                    <slots>
+                        <slot>
+                            <code>0x54</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                        <slot>
+                            <code>100</code>
+                            <mode>delay</mode>
+                        </slot>
+                        <slot>
+                            <text>ggs wp :)</text>
+                            <mode>textentry</mode>
+                        </slot>
+                        <slot>
+                            <code>100</code>
+                            <mode>delay</mode>
+                        </slot>
+                        <slot>
+                            <code>0x1000004</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </triggerbutton>
+            </trigger>
+            <button index="10">
+                <toggle>true</toggle>
+                <slots>
+                    <slot>
+                        <code>0x54</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>20</code>
+                        <mode>delay</mode>
+                    </slot>
+                    <slot>
+                        <text>Last one</text>
+                        <mode>textentry</mode>
+                    </slot>
+                    <slot>
+                        <code>20</code>
+                        <mode>delay</mode>
+                    </slot>
+                    <slot>
+                        <code>0x1000004</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="11">
+                <slots>
+                    <slot>
+                        <code>0x54</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>20</code>
+                        <mode>delay</mode>
+                    </slot>
+                    <slot>
+                        <text>LMAO</text>
+                        <mode>textentry</mode>
+                    </slot>
+                    <slot>
+                        <code>20</code>
+                        <mode>delay</mode>
+                    </slot>
+                    <slot>
+                        <code>0x1000004</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="2">
+                <slots>
+                    <slot>
+                        <code>0x54</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>20</code>
+                        <mode>delay</mode>
+                    </slot>
+                    <slot>
+                        <text>fuck!</text>
+                        <mode>textentry</mode>
+                    </slot>
+                    <slot>
+                        <code>20</code>
+                        <mode>delay</mode>
+                    </slot>
+                    <slot>
+                        <code>0x1000004</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="1">
+                <slots>
+                    <slot>
+                        <code>0x54</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>20</code>
+                        <mode>delay</mode>
+                    </slot>
+                    <slot>
+                        <text>Damn lol</text>
+                        <mode>textentry</mode>
+                    </slot>
+                    <slot>
+                        <code>20</code>
+                        <mode>delay</mode>
+                    </slot>
+                    <slot>
+                        <code>0x1000004</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="4">
+                <slots>
+                    <slot>
+                        <code>0x54</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>20</code>
+                        <mode>delay</mode>
+                    </slot>
+                    <slot>
+                        <text>Nice!</text>
+                        <mode>textentry</mode>
+                    </slot>
+                    <slot>
+                        <code>20</code>
+                        <mode>delay</mode>
+                    </slot>
+                    <slot>
+                        <code>0x1000004</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="3">
+                <slots>
+                    <slot>
+                        <code>0x54</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>20</code>
+                        <mode>delay</mode>
+                    </slot>
+                    <slot>
+                        <text>:)</text>
+                        <mode>textentry</mode>
+                    </slot>
+                    <slot>
+                        <code>20</code>
+                        <mode>delay</mode>
+                    </slot>
+                    <slot>
+                        <code>0x1000004</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+        </set>
+    </sets>
+</gamecontroller>

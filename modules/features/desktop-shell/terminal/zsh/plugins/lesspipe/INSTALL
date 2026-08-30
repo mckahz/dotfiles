@@ -1,0 +1,140 @@
+QUICK INSTALL (requires root access)
+====================================
+Execute the following commands (for a more detailed description see below):
+
+  ./configure # (check for usable shell and configure directory locations)
+              # (or if only zsh is installed: zsh ./configure)
+  make        # does show the chosen prefix and bindir
+  make test   # (optional)
+  make install
+
+The optional make test command does call ./test.sh
+
+A minimal installation could also be done by the following steps:
+=================================================================
+  ./configure # checks and adjusts the shebang line for shell scripts
+  cp lesspipe.sh /usr/local/bin
+
+  # optional for colorizing
+  cp archive_color vimcolor /usr/local/bin
+
+  # optional for zsh and bash completion (archive contents)
+  cp lesscomplete /usr/local/bin           # (zsh and bash)
+  sed -e "s@__BINDIR__/@@" ./zsh_completion > /usr/share/zsh/site-functions/_less
+  sed -e "s@__BINDIR__/@@" ./bash_completion > /etc/bashcompletion.d/less
+
+  # optional installation of a man page
+  cp lesspipe.1 /usr/local/share/man/man1
+
+or INSTALL locally for the logged in user
+=========================================
+# if it contains a directory writable by you (e.g. ~/bin)
+  mkdir -p ~/bin
+  cp lesspipe.sh lesscomplete ~/bin
+  # optional for colorizing
+  cp archive_color vimcolor ~/bin
+
+# check your PATH variable, if it does not contain ~/bin then add it to PATH
+  echo $PATH
+  PATH=$PATH:~/bin # (put this line into an init script ~/.bashrc and ~/.zshrc)
+
+# the file zsh_completion needs to be edited and put into ~/.fpath
+  [[ -d ~/.fpath ]] || mkdir ~/.fpath
+  sed -e "s@__BINDIR__/@@" ./zsh_completion > ~/.fpath/_less
+  echo $fpath
+  fpath=$fpath:~/.fpath # (put this statement into a script .zshrc)
+
+# the file bash_completion needs to be edited and put into ~/.bash_completion
+  [[ -d ~/.bash_completion ]] || mkdir ~/.bash_completion
+  sed -e "s@__BINDIR__@@" ./bash_completion > ~/.bash_completion/less #(bash)
+
+Then do set the environment variable LESSOPEN:
+
+  LESSOPEN="|/usr/local/bin/lesspipe.sh %s"; export LESSOPEN  #(sh like shells)
+
+  DO NOT OMIT THE VERTICAL BAR AS FIRST CHARACTER, IT IS ESSENTIAL !!!
+
+Adapt the location of lesspipe.sh if you used another location.
+
+Detailed description
+====================
+
+Prerequisites:
+--------------
+For a detailed discussion consult the file README starting with the section
+'Required programs'. For best results up to date versions of 'file'
+tar, gzip, bzip2 and some helper programs are highly recommended.
+
+Step 1: create Makefile (and modify shell scripts, if bash not usable)
+----------------------------------------------------------------------
+
+ ./configure [--help] [--nomake] [--shell=<location|shell_name>]
+             [--prefix=<path>] [--bindir=<path>] [--mandir=<path>]
+             [--libececdir=<path>] [--bash-completion-dir=<path>]
+             [--zsh-completion-dir=<path>]
+
+Options:
+  --help                  print this message
+  --shell=<location>      specify full path to an alternative shell to use or
+  --shell=<shell name>    shell name to use for scripts (zsh or bash)
+  --nomake                do not generate a Makefile
+Directory and file names:
+  --prefix=PREFIX         install files below PREFIX (/usr/local)
+  --bindir=BINDIR         install binaries in BINDIR (PREFIX/bin)
+  --libexecdir=LIBEXECDIR install lesscomplete in LIBEXECDIR
+                          (PREFIX/libexec/lesspipe)
+  --mandir=MANDIR         install man pages in in MANDIR (PREFIX/share/man/man1)
+  --bash-completion-dir=DIR	install bash auto-completion file in in DIR
+                          (pkg-config --variable=completionsdir bash-completion)
+  --zsh-completion-dir=DIR install zsh auto-completion file in in DIR
+                          (default is PREFIX/share/zsh/site-functions)
+
+configure generates by default a Makefile and if an alternate shell is
+given, then the shell scripts lesspipe.sh, archive_color, lesscomplete and
+test.sh are modified. If no --shell option is used or only the shell name
+(zsh or bash is) given, the shebang line uses /usr/bin/env, otherwise the
+full path given by the --shell option.
+
+Step 2: verify that lesspipe.sh is working correctly (optional)
+---------------------------------------------------------------
+A test suite has been added that does cover most use cases of less.
+If the test suite reports "NOT ok" lines then lesspipe.sh
+is probably not fully functional in your environment. If the message is
+"ignored" it is usually an indication that some helper programs are
+not installed. To execute the test suite the command
+
+  make test
+or
+  ./test.sh [-n] [-v] [testnumber[s]] [file_name]
+
+can be used.
+The option -v is for debugging.
+
+Step 3: install lesspipe.sh and helper programs
+-----------------------------------------------------------------------
+
+  make install  # installing to directories specified in the ./configure call
+
+This copies the files lesspipe.sh lesscomplete vimcolor and
+archive_color into the directory PREFIX/bin or BINDIR, depending on the options
+given to the configure call. By default /usr/local/bin is chosen.
+
+For zsh and bash a tab completion for archive contents is provided.
+The make install step installs the additional files _less (zsh) and less (bash)
+respectively to the directories determined in the configure step as follows:
+
+The zsh_completion and bash_completion files get edited
+(by replacing __BINDIR__ with a suitable directory contained in $PATH) and
+then copied under the name _less into a directory listed in $fpath (zsh)
+and for bash install it under the name less into a directory used by the
+bash completion mechanism, usually /etc/bash_completion.d/.
+For bash it may be necessary to install a separate package bash-completion.
+
+Step 4: activate lesspipe.sh
+----------------------------
+To make use of the installed lesspipe.sh the environment variable LESSOPEN has
+to mention the location, where lesspipe.sh can be found. The use of the fully
+qualified path is recommended to avoid problems with other scripts of the same
+name or with a changed search PATH:
+
+  LESSOPEN="|/usr/local/bin/lesspipe.sh %s"; export LESSOPEN  #(sh like shells)

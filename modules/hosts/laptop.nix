@@ -15,15 +15,15 @@
 
       hyprland = {
         lock.enable = true;
-        monitors = [
-          {
+        monitors = ''
+          hl.monitor({
             output = "eDP-1";
             mode = "1920x1080@60";
             position = "0x0";
             transform = 0;
             scale = 1;
-          }
-        ];
+          })
+        '';
       };
     };
 
@@ -35,11 +35,7 @@
         modulesPath,
         ...
       }:
-
       {
-        keyboard.enable = true;
-        keyboard.device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
-
         autologin.enable = true;
         autologin.user = "mckahz";
 
