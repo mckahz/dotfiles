@@ -26,49 +26,36 @@
         };
 
         config = lib.mkIf config.keyboard.enable {
-          services.keyd.enable = false;
-
-          users.groups.uinput = { };
-
-          environment.systemPackages = [ pkgs.kanata ];
-
-          systemd.services.kanata-myKeyboard.serviceConfig = {
-            SupplementaryGroups = [
-              "input"
-              "uinput"
-            ];
-          };
-
-          services.kanata = {
+          services.keyd = {
             enable = true;
             keyboards = {
-              myKeyboard = {
-                devices = [ config.keyboard.device ];
-                config = ''
-                  (defsrc
-                    esc f1   f2   f3   f4   f5   f6   f7   f8   f9  f10  f11  f12 ins del
-                    grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-                    tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-                    caps a    s    d    f    g    h    j    k    l    ;    '         ret
-                    lsft z    x    c    v    b    n    m    ,    .    / rsft
-                    lctl lmet lalt           spc            ralt rmet rctl
-                  )
-
-                  (defalias vim (tap-hold 200 200 esc lctl))
-
-                  (deflayer my-keyboard
-                    caps f1   f2   f3   f4   f5   f6   f7   f8   f9  f10  f11  f12 ins del
-                    grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-                    tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-                    @vim a    s    d    f    g    h    j    k    l    ;    '         ret
-                    lsft z    x    c    v    b    n    m    ,    .    / rsft
-                    lctl lmet lalt           spc            ralt rmet rctl
-                  )
+              # The name is just the name of the configuration file, it does not really matter
+              default = {
+                ids = [ "*" ]; # what goes into the [id] section, here we select all keyboards
+                # Everything but the ID section:
+                settings = {
+                  # The main layer, if you choose to declare it in Nix
+                  main = {
+                    # capslock = "layer(control)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
+                    capslock = "overload(control, esc)";
+                  };
+                  otherlayer = {};
+                };
+                extraConfig = ''
+                  # put here any extra-config, e.g. you can copy/paste here directly a configuration, just remove the ids part
                 '';
               };
             };
           };
 
+          # Optional, but makes sure that when you type the make palm rejection work with keyd
+          # https://github.com/rvaiya/keyd/issues/723
+          environment.etc."libinput/local-overrides.quirks".text = ''
+            [Serial Keyboards]
+            MatchUdevType=keyboard
+            MatchName=keyd virtual keyboard
+            AttrKeyboardIntegration=internal
+          '';
         };
       };
   };
