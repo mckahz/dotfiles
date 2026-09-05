@@ -36,71 +36,65 @@
 
       ];
 
+      programs =
+        let
+          read =
+            file:
+            if lib.trivial.inPureEvalMode then
+              file
+            else
+              config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/modules/features/desktop-shell/terminal/zsh/.zshenv"
+              |> builtins.readFile;
+        in
+        {
+          vim = {
+            extraConfig = read ./.vimrc;
+          };
 
-       programs =
-      let read = file:
-                if lib.trivial.inPureEvalMode then
-                  file
-                else
-                    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/modules/features/desktop-shell/terminal/zsh/.zshenv"
-                    |> builtins.readFile;
-                    in
-       {
-         vim = {
-          extraConfig = read ./.vimrc;
-         };
-         zsh = {
-           enable = true;
-           envExtra = read ./zsh/.zshenv;
-         };
+          zsh = {
+            enable = true;
+            envExtra = read ./zsh/.zshenv;
+          };
 
-         starship = {
-           enable = false;
-           # enableFishIntegration = true;
-           enableZshIntegration = true;
+          starship = {
+            enable = true;
+            enableZshIntegration = true;
 
-           settings = {
-             add_newline = true;
-             scan_timeout = 50;
-           };
-         };
+            settings = {
+              add_newline = true;
+              scan_timeout = 50;
+            };
+          };
 
-         fish = {
-           enable = false;
+          kitty = {
+            enable = true;
+            shellIntegration.enableZshIntegration = true;
+            keybindings = {
+              "ctrl+v" = "paste_from_clipboard";
+              "ctrl+-" = "change_font_size all -1.0";
+              "ctrl+=" = "change_font_size all +1.0";
+              "ctrl+0" = "change_font_size all 0";
+            };
 
-           shellAbbrs = {
-             zed = "zeditor";
-           };
+            settings = {
+              confirm_os_window_close = 0;
+              shell = "zsh";
+              hide_window_decorations = "yes";
+              window_padding_width = 8;
+              copy_on_select = true;
+              strip_trailing_spaces = "smart";
+              scrollback_fill_enlarged_window = "yes";
+              auto_reload_config = 0;
 
-           interactiveShellInit = # builtins.readFile ./fish/init.fish;
-             ''
-               set fish_greeting # Disable greeting
-               ${if config.vim then "fish_vi_key_bindings" else ""}
-               starship init fish | source
-             '';
+              cursor_shape = "block";
+              cursor_blink_interval = 1;
+              cursor_stop_blinking_after = 40.0;
+              cursor_trail = 1;
+              cursor_trail_start_threshold = 2;
 
-           plugins =
-             let
-               plugin = name: {
-                 name = name;
-                 src = pkgs.fishPlugins.${name}.src;
-               };
-             in
-             map plugin [ "z" ];
-         };
-
-         kitty = {
-           enable = true;
-           #shellIntegration.enableFishIntegration = true;
-           shellIntegration.enableZshIntegration = true;
-
-           settings = {
-             shell = "zsh";
-             hide_window_decorations = "yes";
-             window_padding_width = 8;
-             #background_opacity = lib.mkForce 0.8;
-           };
-         };
-       };
+              #background_opacity = lib.mkForce 0.8;
+            };
+          };
+        };
     };
 }

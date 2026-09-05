@@ -13,7 +13,7 @@
 [[ $- != *i* ]] && return
 
 # === Powerlevel10k Instant Prompt === (Keep low)
-[[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh" ]] && source "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh"
+# [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh" ]] && source "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # =====================================================================
 # GENERAL
@@ -43,6 +43,10 @@ SPROMPT="Posting cringe I see. Wanna change '%U%F{red}%R%u%f' to '%U%F{blue}%r%f
 # === Compdump Configuration ===
 export ZCOMPCACHE="${ZCACHEDIR}/zcompcache-${HOST}-${ZSH_VERSION}"
 export ZCOMPDUMP="${ZCACHEDIR}/zcompdump-${HOST}-${ZSH_VERSION}"
+
+#compinit bb
+[[ -s "$ZCOMPDUMP"(#qN.m-1) ]] && compinit -C -d "$ZCOMPDUMP" || compinit -d "$ZCOMPDUMP"
+_comp_options+=(globdots)
 
 # === Set Options ===
 setopt always_to_end
@@ -221,12 +225,8 @@ zplug() {
   [[ -r "$plugin" ]] && source "$plugin"
 }
 
-# === POWERLEVEL10K ===
-zplug powerlevel10k/powerlevel10k.zsh-theme
-#Choose prompt based on being in TTY or naaaaaaahh
-[[ "$TERM" == "linux" ]] &&
-  zplug powerlevel10k/.p10k-ascii.zsh ||
-  zplug powerlevel10k/.p10k.zsh
+# Source starship
+eval "$(starship init zsh)"
 
 # === BETTER VI MODE ===
 zplug zsh-vi-mode/zsh-vi-mode.plugin.zsh
@@ -296,10 +296,6 @@ bindkey -M vicmd 'j' history-substring-search-down
 # =====================================================================
 # FINIALIZATION
 # =====================================================================
-
-#compinit bb
-[[ -s "$ZCOMPDUMP"(#qN.m-1) ]] && compinit -C -d "$ZCOMPDUMP" || compinit -d "$ZCOMPDUMP"
-_comp_options+=(globdots)
 
 [[ "$ZPROF" == 1 ]] && zprof
 

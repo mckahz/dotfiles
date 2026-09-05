@@ -23,10 +23,9 @@
         environment.systemPackages = with pkgs; [
           # GUI Applications
           qview # Image viewer
-          nautilus # File manager
           krita # Image editor
+          nautilus
           libreoffice # Document editor
-
           obsidian
         ];
 
