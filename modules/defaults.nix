@@ -20,6 +20,13 @@
         boot.loader.systemd-boot.enable = true;
         boot.loader.efi.canTouchEfiVariables = true;
 
+        programs.nh = {
+          enable = true;
+          clean.enable = true;
+          clean.extraArgs = "--keep-since 4d --keep 3";
+          flake = "/home/mckahz/.dotfiles";
+        };
+
         environment.systemPackages = with pkgs; [
           # GUI Applications
           qview # Image viewer
@@ -27,6 +34,8 @@
           nautilus
           libreoffice # Document editor
           obsidian
+
+          flamegraph
         ];
 
         programs.dconf.enable = true;
@@ -46,6 +55,8 @@
 
     homeManager = { config, pkgs, ... }: {
       options = {
+        outOfStoreIfImpure = lib.mkOption {};
+
         vim = lib.mkOption {
           type = lib.types.bool;
           default = true;
@@ -62,6 +73,12 @@
         ];
 
         xdg.configHome = "${config.home.homeDirectory}/.config";
+
+        outOfStoreIfImpure = pure: impure:
+            if lib.trivial.inPureEvalMode then
+              builtins.readFile ./${pure}
+            else
+              builtins.readFile (config.lib.file.mkOutOfStoreSymlink impure);
       };
     };
 

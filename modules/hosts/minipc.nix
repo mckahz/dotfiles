@@ -8,43 +8,6 @@
   den.aspects.minipc = {
     includes = [ ];
 
-    # TODO: Uncomment when you've copied over hardware-configuration.nix,
-    # logged on, and run `sudo passwd gmang` to reset your password.
-    # Only activate if you want a lock screen
-    provides.to-users.homeManager = { config, ... }: {
-      vim = false;
-      theme.wallpapers = "${config.home.homeDirectory}/Pictures/wallpapers";
-
-      hyprland = {
-        lock.enable = true;
-        masterOrientation = "top";
-        # ordered left to right
-        monitors = ''
-          hl.monitor({
-            output = "HDMI-A-1",
-            mode = "1360x768@60",
-            position = "-1360x0",
-            transform = 0,
-            scale = 1,
-          })
-          hl.monitor({
-            output = "DP-2",
-            mode = "1920x1080@59.94000",
-            position = "0x0",
-            transform = 0,
-            scale = 1,
-          })
-          hl.monitor({
-            output = "DP-3",
-            mode = "1920x1080@60.00000",
-            position = "1920x0",
-            transform = 3,
-            scale = 1,
-          })
-        '';
-      };
-    };
-
     nixos =
       {
         config,

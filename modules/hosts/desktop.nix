@@ -10,16 +10,6 @@
       den.aspects.nvidia
     ];
 
-    provides.to-users.homeManager = { config, lib, ... }: {
-      theme.wallpapers = "${config.home.homeDirectory}/STORAGE/Pictures/wallpapers";
-
-      hyprland = {
-        lock.enable = false;
-        # ordered left to right
-        monitors = '''';
-      };
-    };
-
     nixos =
       {
         config,

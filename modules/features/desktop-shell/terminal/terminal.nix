@@ -37,23 +37,14 @@
       ];
 
       programs =
-        let
-          read =
-            file:
-            if lib.trivial.inPureEvalMode then
-              file
-            else
-              config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/modules/features/desktop-shell/terminal/zsh/.zshenv"
-              |> builtins.readFile;
-        in
         {
           vim = {
-            extraConfig = read ./.vimrc;
+            extraConfig = config.outOfStoreIfImpure ./.vimrc "/home/mckahz/.dotfiles/modules/features/desktop-shell/terminal/.vimrc" ;
           };
 
           zsh = {
             enable = true;
-            envExtra = read ./zsh/.zshenv;
+            envExtra = config.outOfStoreIfImpure ./zsh/.zshenv "/home/mckahz/.dotfiles/modules/features/desktop-shell/terminal/zsh/.zshenv" ;
           };
 
           starship = {
@@ -94,6 +85,10 @@
 
               #background_opacity = lib.mkForce 0.8;
             };
+
+            extraConfig = ''
+              color8 #777777
+            '';
           };
         };
     };

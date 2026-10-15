@@ -1,5 +1,6 @@
 -- See https://wiki.hypr.land/Configuring/Start/
 nix = require("nix")
+require("~/.config/hypr/monitors.lua")
 
 -- settings.animation
 hl.animation({
@@ -72,17 +73,6 @@ hl.on("hyprland.start", (function()
     hl.exec_cmd(nix.noctalia .. ' -d')
 end
 ))
-
--- hl.on("monitor.focused", (function(monitor)
---     if monitor.transform % 2 == 1 then
---         -- if the monitor is vertical ???
---         hl.dsp.layout("orientationtop")
---     else
---         hl.dsp.layout("orientationleft")
---     end
--- end
--- ))
-
 
 hl.workspace_rule({ workspace = "f[1]s[false]", gaps_out = 0, gaps_in = 0 })
 hl.window_rule({ match = { float = false, workspace = "f[1]s[false]" }, border_size = 0, rounding = 0 })

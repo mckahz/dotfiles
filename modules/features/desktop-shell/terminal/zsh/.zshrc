@@ -225,8 +225,11 @@ zplug() {
   [[ -r "$plugin" ]] && source "$plugin"
 }
 
-# Source starship
+# === STARSHIP ===
 eval "$(starship init zsh)"
+
+# === DIRENV ===
+eval "$(direnv hook zsh)"
 
 # === BETTER VI MODE ===
 zplug zsh-vi-mode/zsh-vi-mode.plugin.zsh

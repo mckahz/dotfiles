@@ -1,5 +1,6 @@
 { inputs, den, ... }:
 {
+  den.homes.x86_64-linux."mckahz@laptop" = {};
   den.hosts.x86_64-linux.laptop.users.mckahz.classes = [
     "homeManager"
     "nixos"
@@ -9,23 +10,6 @@
     includes = [
       den.aspects.school
     ];
-
-    provides.to-users.homeManager = { config, ... }: {
-      theme.wallpapers = "${config.home.homeDirectory}/Pictures/wallpapers";
-
-      hyprland = {
-        lock.enable = true;
-        monitors = ''
-          hl.monitor({
-            output = "eDP-1";
-            mode = "1920x1080@60";
-            position = "0x0";
-            transform = 0;
-            scale = 1;
-          })
-        '';
-      };
-    };
 
     nixos =
       {

@@ -37,82 +37,53 @@
         noctalia = lib.getExe inputs.noctalia.packages.${host.system}.default;
       in
       {
-        options.hyprland = {
-          monitors = lib.mkOption {
-            example = [
-              {
-                output = "eDP-1";
-                mode = "1920x1080@60";
-                position = "auto";
-                scale = 1;
-              }
-            ];
-          };
+        home = {
+          packages = with pkgs; [
+            libcamera
+            hyprshot
+            nwg-displays
+          ];
 
-          lock.enable = lib.mkOption { default = false; };
-
-          screenshots = lib.mkOption {
-            default = "${config.home.homeDirectory}/Pictures/Screenshots";
-            example = "/home/user/Pictures/Screenshots";
-            type = lib.types.str;
+          sessionVariables = {
+            ELECTRON_OZONE_PLATFORM_HINT = "wayland"; # does ozone need anything for this?
           };
         };
 
-        config = {
-          home = {
-            packages = with pkgs; [
-              libcamera
-              hyprshot
-              nwg-displays
-            ];
+        wayland.windowManager.hyprland = {
+          package = inputs.hyprland.packages.${host.system}.default;
+          portalPackage = inputs.hyprland.packages.${host.system}.xdg-desktop-portal-hyprland;
 
-            sessionVariables = {
-              ELECTRON_OZONE_PLATFORM_HINT = "wayland"; # does ozone need anything for this?
-            };
+          xwayland.enable = true;
+          enable = true;
+          systemd.variables = ["--all"];
+          systemd.enable = true;
+          configType = "lua";
+
+          # plugins = with pkgs.hyprlandPlugins; [ ];
+          #extraConfig = ''include("after.lua")'';
+          extraLuaFiles =
+          let mkFile = file: {
+            content =
+              config.outOfStoreIfImpure ./${file} "/home/mckahz/.dotfiles/modules/features/desktop-shell/hyprland/${file}";
+
+            autoLoad = true;
           };
+          in
+          {
+            "nix" = { content = ''
+              local M = {}
 
-          wayland.windowManager.hyprland = {
-            package = inputs.hyprland.packages.${host.system}.default;
-            portalPackage = inputs.hyprland.packages.${host.system}.xdg-desktop-portal-hyprland;
+              M.config_home = "${config.home.homeDirectory}/.dotfiles/modules/features/desktop-shell/hyprland"
+              M.hyprshot = "${lib.getExe pkgs.hyprshot}"
+              M.noctalia = "${lib.getExe inputs.noctalia.packages.${host.system}.default}"
+              M.wireplumber = "${pkgs.wireplumber}/bin/wpctl"
+              M.brightnessctl = "${lib.getExe pkgs.brightnessctl}"
+              M.playerctl = "${lib.getExe pkgs.playerctl}"
 
-            xwayland.enable = true;
-            enable = true;
-            systemd.variables = ["--all"];
-            systemd.enable = true;
-            configType = "lua";
-
-            # plugins = with pkgs.hyprlandPlugins; [ ];
-            #extraConfig = ''include("after.lua")'';
-            extraLuaFiles =
-            let mkFile = file: {
-              content =
-                if lib.trivial.inPureEvalMode then
-                  ./${file}
-                else
-                  config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/modules/features/desktop-shell/hyprland/${file}";
-
-              autoLoad = true;
-            };
-            in
-            {
-              "nix" = { content = ''
-                local M = {}
-
-                M.config_home = "${config.home.homeDirectory}/.dotfiles/modules/features/desktop-shell/hyprland"
-                M.hyprshot = "${lib.getExe pkgs.hyprshot}"
-                M.noctalia = "${lib.getExe inputs.noctalia.packages.${host.system}.default}"
-                M.wireplumber = "${pkgs.wireplumber}/bin/wpctl"
-                M.brightnessctl = "${lib.getExe pkgs.brightnessctl}"
-                M.playerctl = "${lib.getExe pkgs.playerctl}"
-
-                ${config.hyprland.monitors}
-
-                return M
-              ''; autoLoad = true; };
-              "init" = mkFile "init.lua";
-              "monitors" = mkFile "monitors.lua";
-              "keybinds" = mkFile "keybinds.lua";
-            };
+              return M
+            ''; autoLoad = true; };
+            "init" = mkFile "init.lua";
+            "keybinds" = mkFile "keybinds.lua";
           };
         };
       };
