@@ -39,12 +39,12 @@
       programs =
         {
           vim = {
-            extraConfig = config.outOfStoreIfImpure ./.vimrc "/home/mckahz/.dotfiles/modules/features/desktop-shell/terminal/.vimrc" ;
+            extraConfig = config.outOfStoreIfImpure ./.vimrc "/home/mckahz/.dotfiles/modules/features/terminal/.vimrc" ;
           };
 
           zsh = {
             enable = true;
-            envExtra = config.outOfStoreIfImpure ./zsh/.zshenv "/home/mckahz/.dotfiles/modules/features/desktop-shell/terminal/zsh/.zshenv" ;
+            envExtra = config.outOfStoreIfImpure ./zsh/.zshenv "/home/mckahz/.dotfiles/modules/features/terminal/zsh/.zshenv" ;
           };
 
           starship = {

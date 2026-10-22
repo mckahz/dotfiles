@@ -6,7 +6,7 @@ require("~/.config/hypr/monitors.lua")
 hl.animation({
     enabled = true,
     leaf = "workspaces",
-    speed = 5,
+    speed = 10,
     spring = "default",
     style = "slidevert"
 })

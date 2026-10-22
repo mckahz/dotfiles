@@ -23,6 +23,22 @@
         autologin.enable = true;
         autologin.user = "mckahz";
 
+        boot.zswap = {
+          enable = true;
+          maxPoolPercent = 50;
+          shrinkerEnabled = true;
+          compressor = "zstd";
+          acceptThresholdPercent = 90;
+        };
+
+        boot.kernelParams = [
+          "zswap.enabled=1"
+          "zswap.max_pool_percent=50"
+          "zswap.shrinker_enabled=1"
+          "zswap.compressor=zstd"
+          "zswap.accept_threshold_percent=90"
+        ];
+
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")
         ];
@@ -52,7 +68,10 @@
           ];
         };
 
-        swapDevices = [ ];
+        swapDevices =
+          [ { device = "/dev/disk/by-uuid/1e9765fa-1322-4eb9-87e0-f525c8de1aaf"; options = [ "discard" ]; }
+          ];
+        boot.resumeDevice =  "/dev/nvme0n1p3";
 
         nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
         hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

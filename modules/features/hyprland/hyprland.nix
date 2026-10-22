@@ -64,7 +64,7 @@
           extraLuaFiles =
           let mkFile = file: {
             content =
-              config.outOfStoreIfImpure ./${file} "/home/mckahz/.dotfiles/modules/features/desktop-shell/hyprland/${file}";
+              config.outOfStoreIfImpure ./${file} "/home/mckahz/.dotfiles/modules/features/hyprland/${file}";
 
             autoLoad = true;
           };
@@ -73,7 +73,7 @@
             "nix" = { content = ''
               local M = {}
 
-              M.config_home = "${config.home.homeDirectory}/.dotfiles/modules/features/desktop-shell/hyprland"
+              M.config_home = "${config.home.homeDirectory}/.dotfiles/modules/features/hyprland"
               M.hyprshot = "${lib.getExe pkgs.hyprshot}"
               M.noctalia = "${lib.getExe inputs.noctalia.packages.${host.system}.default}"
               M.wireplumber = "${pkgs.wireplumber}/bin/wpctl"
