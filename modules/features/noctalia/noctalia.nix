@@ -5,21 +5,19 @@
   };
 
   den.aspects.noctalia = { ... }: {
-    nixos = { lib, ... }: {
+    nixos = { lib, pkgs, ... }: {
       networking.networkmanager.enable = lib.mkForce true;
       hardware.bluetooth.enable = lib.mkForce true;
       services.power-profiles-daemon.enable = lib.mkForce true;
       services.upower.enable = lib.mkForce true;
+
+      environment.systemPackages = [
+        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      ];
     };
 
-    homeManager = { config, ... }: {
-      imports = [ inputs.noctalia.homeModules.default ];
-
-      programs.noctalia = {
-        enable = true;
-      };
-
-      programs.noctalia.settings = fromTOML (builtins.readFile ./noctalia-config.toml);
+    hjem = {
+      files.".config/noctalia/config.toml".source = "/home/mckahz/.dotfiles/modules/features/noctalia/config.toml";
     };
   };
 }

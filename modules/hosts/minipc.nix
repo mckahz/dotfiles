@@ -18,6 +18,8 @@
       }:
 
       {
+        networking.hostName = "minipc";
+
         autologin.enable = true;
         autologin.user = "gmang";
 

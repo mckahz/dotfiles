@@ -1,4 +1,4 @@
-{ lib, den, ... }:
+{ lib, den, inputs, ... }:
 {
   perSystem = { pkgs, ... }: {
     packages = den.lib.nh.denPackages { fromFlake = true; } pkgs;
@@ -6,7 +6,7 @@
 
   den.default = {
     nixos = { config, pkgs, ... }: {
-      imports = [./_cachix/cachix.nix];
+      imports = [./_cachix/cachix.nix ];
 
       options = {
         vim = lib.mkOption {
@@ -31,6 +31,7 @@
 
         environment.systemPackages = with pkgs; [
           cachix
+          inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.hjem
 
           # GUI Applications
           qview # Image viewer
@@ -59,37 +60,8 @@
       };
     };
 
-    homeManager = { config, pkgs, ... }: {
-      options = {
-        outOfStoreIfImpure = lib.mkOption {};
-
-        vim = lib.mkOption {
-          type = lib.types.bool;
-          default = true;
-        };
-      };
-
-      config = {
-        home.stateVersion = "26.05";
-
-        nix.settings.experimental-features = [
-          "nix-command"
-          "flakes"
-          "pipe-operators"
-        ];
-
-        xdg.configHome = "${config.home.homeDirectory}/.config";
-
-        outOfStoreIfImpure = pure: impure:
-            if lib.trivial.inPureEvalMode then
-              ./${pure}
-            else
-              config.lib.file.mkOutOfStoreSymlink impure;
-      };
-    };
-
   };
 
   # enable hm by default
-  den.schema.user.classes = lib.mkDefault [ "homeManager" ];
+  den.schema.user.classes = lib.mkDefault [ "hjem" ];
 }

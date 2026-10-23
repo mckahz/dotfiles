@@ -9,8 +9,8 @@
   flake-file.inputs = {
     den.url = "github:denful/den";
     flake-file.url = "github:vic/flake-file";
-    home-manager = {
-      url = "github:nix-community/home-manager";
+    hjem = {
+      url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

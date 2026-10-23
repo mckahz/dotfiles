@@ -1,8 +1,7 @@
 { inputs, den, ... }:
 {
-  den.homes.x86_64-linux."mckahz@laptop" = {};
   den.hosts.x86_64-linux.laptop.users.mckahz.classes = [
-    "homeManager"
+    "hjem"
     "nixos"
   ];
 
@@ -20,6 +19,8 @@
         ...
       }:
       {
+        networking.hostName = "laptop";
+
         autologin.enable = true;
         autologin.user = "mckahz";
 

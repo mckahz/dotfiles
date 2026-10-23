@@ -1,15 +1,5 @@
 { ... }: {
   den.aspects.school = {
-    homeManager = { host, ... }: {
-      dconf.settings = {
-        "org/virt-manager/virt-manager/connections" = {
-          autoconnect = [ "qemu:///system" ];
-          uris = [ "qemu:///system" ];
-        };
-      };
-      users.users.${host.name}.extraGroups = [ "libvirtd" "tss" ];
-    };
-
     nixos = { pkgs, lib, ... }: {
       programs.virt-manager.enable = true;
 
@@ -40,10 +30,6 @@
       virtualisation.spiceUSBRedirection.enable = true;
 
       nixpkgs.config.allowUnfree = lib.mkForce true;
-
-      # services.xserver.videoDrivers = [ "vmware" ];
-      # virtualisation.vmware.guest.enable = true;
-      # virtualisation.vmware.host.enable = true;
     };
   };
 }

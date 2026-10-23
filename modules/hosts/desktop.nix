@@ -19,6 +19,8 @@
         ...
       }:
       {
+        networking.hostName = "desktop";
+
         keyboard.enable = true;
         keyboard.device = "/dev/input/by-id/usb-Razer_Razer_Cynosa_Chroma-event-kbd";
 
