@@ -44,7 +44,7 @@
 
           zsh = {
             enable = true;
-            envExtra = config.outOfStoreIfImpure ./zsh/.zshenv "/home/mckahz/.dotfiles/modules/features/terminal/zsh/.zshenv" ;
+            envExtra = builtins.readFile (config.outOfStoreIfImpure ./zsh/.zshenv "/home/mckahz/.dotfiles/modules/features/terminal/zsh/.zshenv");
           };
 
           starship = {

@@ -6,6 +6,8 @@
 
   den.default = {
     nixos = { config, pkgs, ... }: {
+      imports = [./_cachix/cachix.nix];
+
       options = {
         vim = lib.mkOption {
           type = lib.types.bool;
@@ -28,6 +30,8 @@
         };
 
         environment.systemPackages = with pkgs; [
+          cachix
+
           # GUI Applications
           qview # Image viewer
           krita # Image editor
@@ -42,14 +46,16 @@
 
         nixpkgs.config.allowUnfree = true;
 
-        nix.settings.warn-dirty = false;
-
         networking.networkmanager.enable = true;
-        nix.settings.experimental-features = [
-          "nix-command"
-          "flakes"
-          "pipe-operators"
-        ];
+        nix.settings = {
+          trusted-users = [ "root" "mckahz" ];
+          warn-dirty = false;
+          experimental-features = [
+            "nix-command"
+            "flakes"
+            "pipe-operators"
+          ];
+        };
       };
     };
 
@@ -76,9 +82,9 @@
 
         outOfStoreIfImpure = pure: impure:
             if lib.trivial.inPureEvalMode then
-              builtins.readFile ./${pure}
+              ./${pure}
             else
-              builtins.readFile (config.lib.file.mkOutOfStoreSymlink impure);
+              config.lib.file.mkOutOfStoreSymlink impure;
       };
     };
 
