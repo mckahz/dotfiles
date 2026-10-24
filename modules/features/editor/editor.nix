@@ -17,8 +17,9 @@
       programs.direnv.enable = true;
     };
 
-    hjem = {osConfig, ...}: {
-      xdg.config.files."zed/settings.json".source = "${osConfig.flake}/modules/features/editor/settings.json";
+    hjem = { osConfig, ... }: {
+      xdg.config.files."zed/settings.json".source =
+        "${osConfig.flake}/modules/features/editor/settings.json";
     };
   };
 }

@@ -26,7 +26,12 @@ In order to add more system configuration, copy then rename `template.nix`. Furt
 
 # Debugging
 
-If themes aren't working, see the [noctalia documentation](https://docs.noctalia.dev/noctalia/templates/official/gtk-qt/)
+If themes aren't working, see the [noctalia documentation](https://docs.noctalia.dev/noctalia/templates/official/gtk-qt/). Additionally, spotify will require the following commands
+```bash
+spicetify config current_theme Colorful color_scheme noctalia
+spicetify config inject_css 1 replace_colors 1 overwrite_assets 1 inject_theme_js 1
+spicetify apply
+```
 
 If a catastrophe happens you can always return to your previous commit with
 ```bash

@@ -1,19 +1,19 @@
 {
   den.aspects.gaming = {
     nixos =
-    { pkgs, ... }:
+      { pkgs, ... }:
 
-    {
-      environment.systemPackages = with pkgs; [
-        steam
+      {
+        environment.systemPackages = with pkgs; [
+          steam
 
-        shtris
+          shtris
 
-        antimicrox
-        wine # exclusively for pkmcc
-      ];
+          antimicrox
+          wine # exclusively for pkmcc
+        ];
 
-      programs.steam.enable = true;
-    };
+        programs.steam.enable = true;
+      };
   };
 }

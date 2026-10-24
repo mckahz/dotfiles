@@ -71,10 +71,13 @@
           ];
         };
 
-        swapDevices =
-          [ { device = "/dev/disk/by-uuid/1e9765fa-1322-4eb9-87e0-f525c8de1aaf"; options = [ "discard" ]; }
-          ];
-        boot.resumeDevice =  "/dev/nvme0n1p3";
+        swapDevices = [
+          {
+            device = "/dev/disk/by-uuid/1e9765fa-1322-4eb9-87e0-f525c8de1aaf";
+            options = [ "discard" ];
+          }
+        ];
+        boot.resumeDevice = "/dev/nvme0n1p3";
 
         nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
         hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

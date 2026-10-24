@@ -4,7 +4,7 @@
   # };
 
   den.aspects.terminal = {
-    nixos = {pkgs, ...}: {
+    nixos = { pkgs, ... }: {
       environment.systemPackages = with pkgs; [
         kitty
         starship
@@ -33,11 +33,14 @@
       users.defaultUserShell = pkgs.zsh;
     };
 
-    hjem = {osConfig, ...}: {
-      xdg.config.files."kitty/kitty.conf".source = "${osConfig.flake}/modules/features/terminal/kitty/kitty.conf" ;
-      xdg.config.files."kitty/theme.conf".source = "${osConfig.flake}/modules/features/terminal/kitty/theme.conf" ;
-      xdg.config.files."starship.toml".source = "${osConfig.flake}/modules/features/terminal/starship.toml" ;
-      files.".vimrc".source = "${osConfig.flake}/modules/features/terminal/.vimrc" ;
+    hjem = { osConfig, ... }: {
+      xdg.config.files."kitty/kitty.conf".source =
+        "${osConfig.flake}/modules/features/terminal/kitty/kitty.conf";
+      xdg.config.files."kitty/theme.conf".source =
+        "${osConfig.flake}/modules/features/terminal/kitty/theme.conf";
+      xdg.config.files."starship.toml".source =
+        "${osConfig.flake}/modules/features/terminal/starship.toml";
+      files.".vimrc".source = "${osConfig.flake}/modules/features/terminal/.vimrc";
       files.".zshenv".source = "${osConfig.flake}/modules/features/terminal/zsh/.zshenv";
       files.".zshenv-nix".text = "export ZDOTDIR=\"${osConfig.flake}/modules/features/terminal/zsh\"";
       files.".zshrc".source = "${osConfig.flake}/modules/features/terminal/zsh/.zshrc";

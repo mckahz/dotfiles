@@ -1,4 +1,9 @@
-{ lib, den, inputs, ... }:
+{
+  lib,
+  den,
+  inputs,
+  ...
+}:
 {
   flake-file.inputs = {
     nix-fast-build.url = "github:Mic92/nix-fast-build";
@@ -11,6 +16,7 @@
 
   perSystem = { pkgs, ... }: {
     packages = den.lib.nh.denPackages { fromFlake = true; } pkgs;
+    formatter = pkgs.nixfmt-tree;
   };
 
   den.default = {
@@ -24,7 +30,10 @@
     ];
 
     nixos = { config, pkgs, ... }: {
-      imports = [./_cachix/cachix.nix inputs.spicetify.nixosModules.default ];
+      imports = [
+        ./_cachix/cachix.nix
+        inputs.spicetify.nixosModules.default
+      ];
 
       options = {
         vim = lib.mkOption {
@@ -32,7 +41,7 @@
           default = true;
         };
 
-        flake = lib.mkOption {};
+        flake = lib.mkOption { };
       };
 
       config = {
@@ -44,7 +53,7 @@
 
         nixpkgs.config.allowUnfree = true;
 
-        fonts.packages = with pkgs; [jetbrains-mono];
+        fonts.packages = with pkgs; [ jetbrains-mono ];
         environment.systemPackages = with pkgs; [
           cachix
           inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.hjem
@@ -89,7 +98,11 @@
 
         networking.networkmanager.enable = true;
         nix.settings = {
-          trusted-users = [ "root" "mckahz" "gmang" ];
+          trusted-users = [
+            "root"
+            "mckahz"
+            "gmang"
+          ];
           warn-dirty = false;
           experimental-features = [
             "nix-command"

@@ -23,7 +23,6 @@ let
             # openssl dgst -sha256 -binary ~/Downloads/CiscoPacketTracer_<Version>_Ubuntu_64bit.deb | openssl base64 -A
             hash = "sha256-NoPdh+d5iFNyrpo1wabllNEvST5knnxpdAhynBRZR5s=";
 
-
           };
         };
       in

@@ -25,7 +25,11 @@
       }:
       {
         # This is where nixos module configuration goes. For example-
-        environment.systemPackages = with pkgs; [ git vim neovim ];
+        environment.systemPackages = with pkgs; [
+          git
+          vim
+          neovim
+        ];
         # Any time documentation says "put this in your `configuration.nix`"
         # It's refering to here.
       };
