@@ -16,8 +16,8 @@
       ];
     };
 
-    hjem = {
-      files.".config/noctalia/config.toml".source = "/home/mckahz/.dotfiles/modules/features/noctalia/config.toml";
+    hjem = {osConfig, ...}: {
+      xdg.config.files."noctalia/config.toml".source = "${osConfig.flake}/modules/features/noctalia/config.toml";
     };
   };
 }

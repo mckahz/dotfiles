@@ -6,6 +6,7 @@
       den.batteries.primary-user
       # (den.batteries.user-shell "zsh")
 
+      den.aspects.theme
       den.aspects.torrent
       den.aspects.keyboard
       den.aspects.terminal

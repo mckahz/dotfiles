@@ -20,6 +20,7 @@
       }:
       {
         networking.hostName = "laptop";
+        flake = "/home/mckahz/.dotfiles";
 
         autologin.enable = true;
         autologin.user = "mckahz";

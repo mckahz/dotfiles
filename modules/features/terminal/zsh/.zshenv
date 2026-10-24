@@ -24,7 +24,7 @@ export XDG_TEMPLATES_DIR="${XDG_TEMPLATES_DIR:-$HOME/Templates}"
 # =====================================================================
 # APPLICATION INTERACTIVE PATH ROUTING
 # =====================================================================
-export ZDOTDIR="/home/mckahz/.dotfiles/modules/features/terminal/zsh"
+source "$HOME/.zshenv-nix"
 export ZCACHEDIR="$XDG_CACHE_HOME/zsh"
 export ZPLUGINDIR="$ZDOTDIR/plugins"
 export GOPATH="$XDG_DATA_HOME/go"

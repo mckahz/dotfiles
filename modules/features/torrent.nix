@@ -1,6 +1,4 @@
 { inputs, ... }: {
-  flake-file.inputs.spotatui.url = "github:LargeModGames/spotatui";
-
   den.aspects.torrent.nixos =
     {
       config,

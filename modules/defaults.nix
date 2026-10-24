@@ -1,5 +1,9 @@
 { lib, den, inputs, ... }:
 {
+  flake-file.inputs.nix-fast-build = {
+    url = "github:Mic92/nix-fast-build";
+  };
+
   perSystem = { pkgs, ... }: {
     packages = den.lib.nh.denPackages { fromFlake = true; } pkgs;
   };
@@ -13,6 +17,8 @@
           type = lib.types.bool;
           default = true;
         };
+
+        flake = lib.mkOption {};
       };
 
       config = {
@@ -26,12 +32,13 @@
           enable = true;
           clean.enable = true;
           clean.extraArgs = "--keep-since 4d --keep 3";
-          flake = "/home/mckahz/.dotfiles";
+          flake = config.flake;
         };
 
         environment.systemPackages = with pkgs; [
           cachix
           inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.hjem
+          inputs.nix-fast-build.packages.${pkgs.stdenv.hostPlatform.system}.default
 
           # GUI Applications
           qview # Image viewer

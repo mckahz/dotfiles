@@ -19,13 +19,14 @@
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    matugen-nix = {
+      url = "github:MOIS3Y/matugen-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-fast-build.url = "github:Mic92/nix-fast-build";
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     spicetify.url = "github:Gerg-L/spicetify-nix";
-    spotatui = {
-      url = "github:LargeModGames/spotatui";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -1,7 +1,7 @@
 { inputs, den, ... }:
 {
   den.hosts.x86_64-linux.desktop.users.mckahz.classes = [
-    "homeManager"
+    "hjem"
     "nixos"
   ];
 
@@ -20,6 +20,7 @@
       }:
       {
         networking.hostName = "desktop";
+        flake = "/home/mckahz/.dotfiles";
 
         keyboard.enable = true;
         keyboard.device = "/dev/input/by-id/usb-Razer_Razer_Cynosa_Chroma-event-kbd";

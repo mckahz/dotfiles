@@ -16,9 +16,9 @@
       programs.mango.enable = true;
     };
 
-    hjem = {
-      files.".config/mango/config.conf".source = "/home/mckahz/.dotfiles/modules/features/mango/config.conf";
-      files.".config/mango/binds.conf".source = "/home/mckahz/.dotfiles/modules/features/mango/binds.conf";
+    hjem = {osConfig, ...}: {
+      xdg.config.files."mango/config.conf".source = "${osConfig.flake}/modules/features/mango/config.conf";
+      xdg.config.files."mango/binds.conf".source = "${osConfig.flake}/modules/features/mango/binds.conf";
     };
   };
 }

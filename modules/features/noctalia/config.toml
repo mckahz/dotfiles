@@ -256,8 +256,7 @@ icon_color = "on_surface"
 show_label = false
 
 [theme]
-builtin = "Noctalia"
-custom_palette = "stylix"
+builtin = "Ayu"
 # mode = "auto"
 source = "custom"
 wallpaper_scheme = "m3-content"

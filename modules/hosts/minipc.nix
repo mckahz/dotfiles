@@ -1,7 +1,7 @@
 { inputs, den, ... }:
 {
   den.hosts.x86_64-linux.minipc.users.gmang.classes = [
-    "homeManager"
+    "hjem"
     "nixos"
   ];
 
@@ -19,6 +19,7 @@
 
       {
         networking.hostName = "minipc";
+        flake = "/home/gmang/dotfiles";
 
         autologin.enable = true;
         autologin.user = "gmang";
