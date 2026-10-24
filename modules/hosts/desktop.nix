@@ -23,10 +23,8 @@
         flake = "/home/mckahz/.dotfiles";
 
         keyboard.enable = true;
-        keyboard.device = "/dev/input/by-id/usb-Razer_Razer_Cynosa_Chroma-event-kbd";
-
-        autologin.enable = true;
-        autologin.user = "mckahz";
+        login.automatic = true;
+        login.defaultUser = "mckahz";
 
         nixpkgs.config.permittedInsecurePackages = [
           "broadcom-sta-6.30.223.271-59-6.18.38"

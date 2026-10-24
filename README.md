@@ -1,29 +1,19 @@
-# Getting Started
-
-If this is your first time booting this configuration run `NIX_CONFIG="extra-experimental-features = nix-command flakes pipe-operators" nix run .#minipc -- boot` and optionally set a password with `passwd gmang`
-e.g.
-```bash
-NIX_CONFIG="extra-experimental-features = nix-command flakes pipe-operators" nix run .#minipc -- test
-```
-
-You may replace `minipc` with your host name and `gmang` with your username.
-
 # Rebuilding
 
 ```bash
 git add . # whenever you add or move files
 ```
 ```bash
-nix run .#write-flake # when flake-parts.inputs changes
+nix run '.#write-flake' # when flake-parts.inputs changes
 ```
 ```bash
-nix run .#minipc -- test # build and test the system
+nh os test . # build and test the system
 ```
 ```bash
-nix run .#minipc -- boot # build and set as boot configuration
+nh os boot . # add an option to boot into the current configuration
 ```
 ```bash
-nix run .#vm # build and test the system in a VM
+nh os switch . # do both test and boot
 ```
 
 # Updating
@@ -32,27 +22,13 @@ To update upstream dependencies use-
 ```bash
 nix flake update den # update your system
 ```
-In order to add more system configuration, copy/rename `template.nix`. Further instructions are in the template.
+In order to add more system configuration, copy then rename `template.nix`. Further instructions are in the template.
 
 # Debugging
 
-In the event of OOM crashing, use the following before rebuilding your configuration.
+If themes aren't working, see the [noctalia documentation](https://docs.noctalia.dev/noctalia/templates/official/gtk-qt/)
 
-```bash
-sudo fallocate -l 8G /swapfile
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
-```
-
-If you get `home-manager_<user>.service` failed to launch check out your journal to see what's wrong. Usually it's a file conflict which can simply be resolved by `rm` it.
-```bash
-journalctl -n 50
-```
-```bash
-rm -rf ~/.config/path/to/your/problem/file
-```
-If all else fails, you can return to your previous commit with
+If a catastrophe happens you can always return to your previous commit with
 ```bash
 git reset --hard
 ```

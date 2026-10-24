@@ -189,26 +189,6 @@
         "type": "github"
       }
     },
-    "matugen-nix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1792737935,
-        "narHash": "sha256-xwNIJYOhsySNH3wZEh4pOUCL4hqQF6KCzdGFhVzq4f4=",
-        "owner": "MOIS3Y",
-        "repo": "matugen-nix",
-        "rev": "502a767f2e47e1014f470ffcd271f5c29394151e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MOIS3Y",
-        "repo": "matugen-nix",
-        "type": "github"
-      }
-    },
     "nix-fast-build": {
       "inputs": {
         "flake-parts": "flake-parts_3",
@@ -318,6 +298,26 @@
         "type": "github"
       }
     },
+    "noctalia-greeter": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792782888,
+        "narHash": "sha256-aURVafwEQ2TobqPLV4YbgCivbHRVENb/hFnuK/WGqMQ=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-greeter",
+        "rev": "8cc00abfdce3d8c1e68709a44eb0efc055932ada",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia-greeter",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "den": "den",
@@ -326,10 +326,10 @@
         "hjem": "hjem",
         "import-tree": "import-tree",
         "mango": "mango",
-        "matugen-nix": "matugen-nix",
         "nix-fast-build": "nix-fast-build",
         "nixpkgs": "nixpkgs_2",
         "noctalia": "noctalia",
+        "noctalia-greeter": "noctalia-greeter",
         "spicetify": "spicetify",
         "zen-browser": "zen-browser"
       }

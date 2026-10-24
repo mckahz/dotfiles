@@ -7,14 +7,14 @@ order = [ "sidebar" ]
     [bar.sidebar]
     background_opacity = 0.73999998345971107
     capsule_thickness = 0.61999998986721039
-    center = [ "screenshot", "clock", "cpu", "temp", "ram" ]
-    end = [ "tray", "network", "bluetooth", "volume", "wallpaper", "battery", "control-center", "session" ]
+    center = [ "clock", "cpu", "temp", "ram" ]
+    end = [ "control-center", "tray", "network", "bluetooth", "volume", "wallpaper", "battery", "session" ]
     margin_ends = 0
     position = "left"
     radius_bottom_left = 0
     radius_top_left = 0
     scale = 1.2500000111758709
-    start = [ "launcher", "workspaces", "active_window", "media", "audio_visualizer" ]
+    start = [ "launcher", "workspaces", "active_window", "screenshot", "media", "audio_visualizer" ]
     thickness = 46
     widget_spacing = 12
 
@@ -72,8 +72,8 @@ widget_order = [
     cx = 960.0
     cy = 961.0
     output = "HDMI-A-1"
-    placement_height = 0.0
-    placement_width = 0.0
+    placement_height = 1080.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "login_box"
 
@@ -97,7 +97,7 @@ widget_order = [
     box_height = 196.0
     box_width = 720.0
     cx = 960.0
-    cy = 956.0
+    cy = 956.00006103515625
     output = "eDP-1"
     placement_height = 1080.0
     placement_width = 1920.0
@@ -165,7 +165,7 @@ widget_order = [
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
     box_height = 0.0
     box_width = 0.0
-    cx = 1741.0
+    cx = 1741.0001220703125
     cy = 994.0
     output = "eDP-1"
     placement_height = 1080.0
@@ -176,7 +176,7 @@ widget_order = [
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000004]
     box_height = 144.0
     box_width = 192.0
-    cx = 109.0
+    cx = 109.00000762939453
     cy = 993.0
     output = "eDP-1"
     placement_height = 1080.0
@@ -236,6 +236,9 @@ lang = "en"
 password_style = "random"
 polkit_agent = true
 
+    [shell.greeter_sync]
+    auto_sync = true
+
     [shell.panel]
     clipboard_position = "auto"
     open_near_click_clipboard = true
@@ -256,25 +259,37 @@ icon_color = "on_surface"
 show_label = false
 
 [theme]
-builtin = "Ayu"
-# mode = "auto"
-source = "custom"
+builtin = "Tokyo-Night"
+community_palette = "Catppuccin Mocha Mauve-Lavender"
+custom_palette = "stylix"
+mode = "dark"
+source = "builtin"
 wallpaper_scheme = "m3-content"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "gtk3", "gtk4", "kitty", "mango", "qt", "starship" ]
+    community_ids = [
+        "spicetify",
+        "zen-browser",
+        "discord",
+        "musescore",
+        "obsidian",
+        "zed",
+        "steam",
+        "fastfetch",
+        "obs",
+        "bat",
+        "fzf",
+        "starship",
+        "yazi"
+    ]
+    enable_builtin_templates = true
 
 [volume]
 show_label = false
 
-[wallpaper]
-directory = "/home/mckahz/Pictures/wallpapers"
-
-    [wallpaper.default]
-    path = "/home/mckahz/Pictures/wallpapers/b-139.jpg"
-
-    [wallpaper.last]
-    path = "/home/mckahz/Pictures/wallpapers/b-139.jpg"
-
-    [wallpaper.monitors.eDP-1]
-    path = "/home/mckahz/Pictures/wallpapers/b-139.jpg"
+    [wallpaper.automation]
+    enabled = true
 
 [widget.active_window]
 icon_size = 22
@@ -294,11 +309,17 @@ color = "on_primary"
 timezone = "Australia/Melbourne"
 vertical_format = "{:%H\\n%M}"
 
+[widget.control-center]
+glyph = "settings"
+
 [widget.cpu]
 color = "secondary"
 icon_color = "on_surface"
 show_label = false
 show_value = false
+
+[widget.media]
+hide_when_no_media = true
 
 [widget.network]
 show_label = false
@@ -324,6 +345,7 @@ show_value = false
 show_label = false
 
 [widget.workspaces]
+hide_when_empty = true
 scale = 1.25
 
 [workspaces]

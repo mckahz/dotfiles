@@ -22,8 +22,9 @@
         networking.hostName = "laptop";
         flake = "/home/mckahz/.dotfiles";
 
-        autologin.enable = true;
-        autologin.user = "mckahz";
+        keyboard.enable = true;
+        login.automatic = false;
+        login.defaultUser = "mckahz";
 
         boot.zswap = {
           enable = true;

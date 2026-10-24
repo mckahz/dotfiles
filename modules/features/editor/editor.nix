@@ -19,7 +19,6 @@
 
     hjem = {osConfig, ...}: {
       xdg.config.files."zed/settings.json".source = "${osConfig.flake}/modules/features/editor/settings.json";
-      xdg.config.files."zed/theme.json".source = osConfig.theme.substitute ./theme.json;
     };
   };
 }

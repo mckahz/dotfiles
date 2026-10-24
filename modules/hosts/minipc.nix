@@ -21,8 +21,8 @@
         networking.hostName = "minipc";
         flake = "/home/gmang/dotfiles";
 
-        autologin.enable = true;
-        autologin.user = "gmang";
+        login.automatic = true;
+        login.defaultUser = "gmang";
 
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")

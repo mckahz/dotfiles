@@ -39,7 +39,7 @@
       xdg.config.files."starship.toml".source = "${osConfig.flake}/modules/features/terminal/starship.toml" ;
       files.".vimrc".source = "${osConfig.flake}/modules/features/terminal/.vimrc" ;
       files.".zshenv".source = "${osConfig.flake}/modules/features/terminal/zsh/.zshenv";
-      files.".zshenv-nix".text = "export ZDOTDIR=\"/home/mckahz/.dotfiles/modules/features/terminal/zsh\"";
+      files.".zshenv-nix".text = "export ZDOTDIR=\"${osConfig.flake}/modules/features/terminal/zsh\"";
       files.".zshrc".source = "${osConfig.flake}/modules/features/terminal/zsh/.zshrc";
       files.".bashrc".source = "${osConfig.flake}/modules/features/terminal/.bashrc";
     };

@@ -5,16 +5,20 @@
   };
 
   den.aspects.mango = {
-    includes = [ den.aspects.autologin ];
+    nixos =
+      {
+        config,
+        pkgs,
+        lib,
+        ...
+      }:
+      {
+        imports = [
+          inputs.mango.nixosModules.mango
+        ];
 
-    nixos = {pkgs, ...}: {
-      imports = [
-        inputs.mango.nixosModules.mango
-      ];
-
-      autologin.session = "mango";
-      programs.mango.enable = true;
-    };
+        programs.mango.enable = true;
+      };
 
     hjem = {osConfig, ...}: {
       xdg.config.files."mango/config.conf".source = "${osConfig.flake}/modules/features/mango/config.conf";
