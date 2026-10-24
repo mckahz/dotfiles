@@ -82,7 +82,42 @@
           flake = config.flake;
         };
 
-        programs.spicetify.enable = true;
+#         programs.spicetify =
+#         let
+#           spicePkgs = inputs.spicetify.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+#         in
+#         {
+#           enable = true;
+#
+#           theme = spicePkgs.themes.catppuccin;
+#           colorScheme = "mocha";
+#         };
+
+        programs.spicetify = {
+          enable = true;
+
+          theme = {
+            name = "Tokyo";
+            colorScheme = "Night";
+            src = pkgs.fetchFromGitHub {
+              owner = "evening-hs";
+              repo = "Spotify-Tokyo-Night-Theme";
+              rev = "d88ca06eaeeb424d19e0d6f7f8e614e4bce962be";
+              hash = "sha256-cLj9v8qtHsdV9FfzV2Qf4pWO8AOBXu51U/lUMvdEXAk=";
+            };
+
+            # Additional theme options all set to defaults
+            # the docs of the theme should say which of these
+            # if any you have to change
+            injectCss = true;
+            injectThemeJs = true;
+            replaceColors = true;
+            sidebarConfig = true;
+            homeConfig = true;
+            overwriteAssets = false;
+            additonalCss = "";
+          };
+        };
 
         # For localsend
         programs.localsend.enable = true;
