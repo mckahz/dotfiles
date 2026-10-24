@@ -19,6 +19,7 @@
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    millennium.url = "github:nolight132/millennium-nix";
     nix-fast-build.url = "github:Mic92/nix-fast-build";
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";

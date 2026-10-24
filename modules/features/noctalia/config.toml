@@ -8,7 +8,7 @@ order = [ "sidebar" ]
     background_opacity = 0.73999998345971107
     capsule_thickness = 0.61999998986721039
     center = [ "clock", "cpu", "temp", "ram" ]
-    end = [ "control-center", "tray", "network", "bluetooth", "volume", "wallpaper", "battery", "session" ]
+    end = [ "tray", "control-center", "network", "bluetooth", "volume", "wallpaper", "battery", "session" ]
     margin_ends = 0
     position = "left"
     radius_bottom_left = 0
@@ -288,8 +288,8 @@ wallpaper_scheme = "m3-content"
 [volume]
 show_label = false
 
-    [wallpaper.automation]
-    enabled = true
+[wallpaper.automation]
+enabled = true
 
 [widget.active_window]
 icon_size = 22

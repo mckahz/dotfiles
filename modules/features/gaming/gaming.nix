@@ -1,19 +1,18 @@
-{
-  den.aspects.gaming = {
-    nixos =
-      { pkgs, ... }:
+{ inputs, ... }: {
+  flake-file.inputs.millennium.url = "github:nolight132/millennium-nix";
 
-      {
-        environment.systemPackages = with pkgs; [
-          steam
+  den.aspects.gaming.nixos = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [
+      shtris
+      antimicrox
+      wine # exclusively for pkmcc
+    ];
 
-          shtris
+    nixpkgs.overlays = [ inputs.millennium.overlays.default ];
 
-          antimicrox
-          wine # exclusively for pkmcc
-        ];
-
-        programs.steam.enable = true;
-      };
+    programs.steam = {
+      enable = true;
+      package = pkgs.millennium-steam;
+    };
   };
 }
