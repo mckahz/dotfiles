@@ -72,7 +72,8 @@
           nautilus # File explorer
           libreoffice # Document editor
           flamegraph # Profiler visualiser
-          transmission_4-qt # Torrent client
+          transmission_4-qt # Torrent
+          wdisplays # Monitor configuration
           obsidian
           localsend
           (discord.override {
