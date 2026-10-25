@@ -29,7 +29,7 @@
       den.aspects.gaming
     ];
 
-    nixos = { config, pkgs, ... }: {
+    nixos = { config, pkgs, options, ... }: {
       imports = [
         ./_cachix/cachix.nix
         inputs.spicetify.nixosModules.default
@@ -46,7 +46,13 @@
 
       config = {
         system.stateVersion = "25.11";
+        time.timeZone = "Australia/Melbourne";
         hardware.uinput.enable = true;
+
+        services.pipewire = {
+          enable = true;
+          alsa.enable = true;
+        };
 
         boot.loader.systemd-boot.enable = true;
         boot.loader.efi.canTouchEfiVariables = true;

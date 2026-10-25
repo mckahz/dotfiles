@@ -7,14 +7,14 @@ order = [ "sidebar" ]
     [bar.sidebar]
     background_opacity = 0.73999998345971107
     capsule_thickness = 0.61999998986721039
-    center = [ "clock", "cpu", "temp", "ram" ]
+    center = [ "audio_visualizer", "media", "clock", "cpu", "temp", "ram" ]
     end = [ "tray", "control-center", "network", "bluetooth", "volume", "wallpaper", "battery", "session" ]
     margin_ends = 0
     position = "left"
     radius_bottom_left = 0
     radius_top_left = 0
     scale = 1.2500000111758709
-    start = [ "launcher", "workspaces", "active_window", "screenshot", "media", "audio_visualizer" ]
+    start = [ "launcher", "workspaces", "active_window", "screenshot" ]
     thickness = 46
     widget_spacing = 12
 
