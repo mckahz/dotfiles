@@ -47,6 +47,7 @@
       config = {
         system.stateVersion = "25.11";
         time.timeZone = "Australia/Melbourne";
+        boot.kernelPackages = pkgs.linuxPackages_latest;
         hardware.uinput.enable = true;
 
         services.pipewire = {
