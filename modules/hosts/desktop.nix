@@ -31,7 +31,6 @@
         ];
 
         environment.systemPackages = with pkgs; [ wl-mirror ];
-        boot.kernelPackages = with pkgs; [ linuxKernel.packages.linux_7_2.broadcom_sta ];
 
         # HARDWARE
      	  imports =
@@ -41,7 +40,8 @@
      	  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
      	  boot.initrd.kernelModules = [ ];
      	  boot.kernelModules = [ "kvm-intel" ];
-     	  boot.extraModulePackages = [ ];
+     	  #boot.extraModulePackages = [ ];
+        boot.extraModulePackages = with config.boot.kernelPackages; [ rtw89 ];
 
      	  fileSystems."/" =
      	    { device = "/dev/disk/by-uuid/da1c89ab-917e-4418-b4ce-ab6496983fd6";

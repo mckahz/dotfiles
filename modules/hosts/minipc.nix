@@ -24,6 +24,12 @@
         login.automatic = true;
         login.defaultUser = "gmang";
 
+        environment.systemPackages = with pkgs; [ openrgb-with-all-plugins ];
+
+        services.hardware.openrgb.enable = true;
+
+        # DO NOT TOUCH PAST HERE!!!
+
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")
         ];
