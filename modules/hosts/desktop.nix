@@ -27,11 +27,11 @@
         login.defaultUser = "mckahz";
 
         nixpkgs.config.permittedInsecurePackages = [
-          "broadcom-sta-6.30.223.271-59-6.18.38"
-          "broadcom-sta-6.30.223.271-63-6.18.41"
+          "broadcom-sta-6.30.223.271-63-7.2.12"
         ];
 
         environment.systemPackages = with pkgs; [ wl-mirror ];
+        boot.kernelPackages = with pkgs; [ linuxKernel.packages.linux_7_2.broadcom_sta ];
 
         # HARDWARE
      	  imports =

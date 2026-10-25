@@ -19,7 +19,7 @@
 
       {
         networking.hostName = "minipc";
-        flake = "/home/gmang/dotfiles";
+        flake = "/home/gmang/.dotfiles";
 
         login.automatic = true;
         login.defaultUser = "gmang";
