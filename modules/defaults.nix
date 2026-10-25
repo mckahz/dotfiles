@@ -88,17 +88,6 @@
           flake = config.flake;
         };
 
-#         programs.spicetify =
-#         let
-#           spicePkgs = inputs.spicetify.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-#         in
-#         {
-#           enable = true;
-#
-#           theme = spicePkgs.themes.catppuccin;
-#           colorScheme = "mocha";
-#         };
-
         programs.spicetify = {
           enable = true;
 

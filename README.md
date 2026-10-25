@@ -18,7 +18,7 @@ nh os switch . # do both test and boot
 
 # Updating
 
-To update upstream dependencies use-
+To update your system use-
 ```bash
 nix flake update # update your system
 ```
