@@ -34,60 +34,49 @@
         environment.systemPackages = with pkgs; [ wl-mirror ];
 
         # HARDWARE
-        imports = [
-          (modulesPath + "/installer/scan/not-detected.nix")
-        ];
+     	  imports =
+     	    [ (modulesPath + "/installer/scan/not-detected.nix")
+     	    ];
 
-        boot.initrd.availableKernelModules = [
-          "xhci_pci"
-          "ahci"
-          "usbhid"
-          "sd_mod"
-        ];
-        boot.initrd.kernelModules = [ ];
-        boot.kernelModules = [
-          "kvm-intel"
-          "wl"
-          "uinput"
-        ];
-        boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+     	  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+     	  boot.initrd.kernelModules = [ ];
+     	  boot.kernelModules = [ "kvm-intel" ];
+     	  boot.extraModulePackages = [ ];
 
-        fileSystems."/" = {
-          device = "/dev/disk/by-uuid/dd19768c-f638-4558-8f82-eb2fc0adb424";
-          fsType = "ext4";
-        };
+     	  fileSystems."/" =
+     	    { device = "/dev/disk/by-uuid/da1c89ab-917e-4418-b4ce-ab6496983fd6";
+     	      fsType = "ext4";
+     	    };
 
-        fileSystems."/boot" = {
-          device = "/dev/disk/by-uuid/92B7-59A2";
-          fsType = "vfat";
-          options = [
-            "fmask=0077"
-            "dmask=0077"
-          ];
-        };
+     	  fileSystems."/boot" =
+     	    { device = "/dev/disk/by-uuid/D2C8-D811";
+     	      fsType = "vfat";
+     	      options = [ "fmask=0077" "dmask=0077" ];
+     	    };
 
-        fileSystems."/home/mckahz/STORAGE" = {
-          device = "/dev/disk/by-uuid/4C3A432F3A4314FC";
-          fsType = "ntfs3";
-          options = [
-            "uid=1000"
-          ];
-        };
+          fileSystems."/home/mckahz/STORAGE" =
+              { device = "/dev/disk/by-uuid/49345380-2f15-427f-92c7-a5163611a8d1";
+                fsType = "ext4";
+                options = [
+                  "nofail"
+                ];
+              };
 
-        fileSystems."/home/mckahz/GAMES" = {
-          device = "/dev/disk/by-uuid/6CEADB28EADAED78";
-          fsType = "ntfs3";
-          options = [
-            "uid=1000"
-          ];
-        };
+          fileSystems."/home/mckahz/GAMES" =
+            { device = "/dev/disk/by-uuid/29054fdb-aae1-44a3-988e-a525ffcca5c2";
+              fsType = "ext4";
+              options = [
+                "nofail"
+                "exec"
+              ];
+            };
 
-        swapDevices = [
-          { device = "/dev/disk/by-uuid/88e6d414-81f6-4f65-9758-e34dcb215751"; }
-        ];
+          swapDevices =
+     	    [ { device = "/dev/disk/by-uuid/5c75cc8a-2cb7-4369-8b67-7215f12fa2c5"; }
+     	    ];
 
-        nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-        hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+     	  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+     	  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
       };
-  };
+    };
 }
