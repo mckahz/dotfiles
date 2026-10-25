@@ -20,7 +20,7 @@ nh os switch . # do both test and boot
 
 To update upstream dependencies use-
 ```bash
-nix flake update den # update your system
+nix flake update # update your system
 ```
 In order to add more system configuration, copy then rename `template.nix`. Further instructions are in the template.
 
