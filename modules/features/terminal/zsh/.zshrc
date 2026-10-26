@@ -232,7 +232,7 @@ eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 
 # === BETTER VI MODE ===
-zplug zsh-vi-mode/zsh-vi-mode.plugin.zsh
+source ~/.zshrc-vim
 
 # === FZF + FZF-TAB ===
 if (( ${+commands[fzf]} )); then

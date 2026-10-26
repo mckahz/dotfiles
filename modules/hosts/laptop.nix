@@ -42,6 +42,8 @@
           "zswap.accept_threshold_percent=90"
         ];
 
+        system.stateVersion = "25.11";
+
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")
         ];

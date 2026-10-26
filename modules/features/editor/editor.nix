@@ -17,9 +17,16 @@
       programs.direnv.enable = true;
     };
 
-    hjem = { osConfig, ... }: {
+    hjem = { osConfig, pkgs, ... }: {
       xdg.config.files."zed/settings.json".source =
-        "${osConfig.flake}/modules/features/editor/settings.json";
+        if osConfig.vim then
+           "${osConfig.flake}/modules/features/editor/settings.json"
+        else
+          pkgs.substitute { src = ./settings.json; substitutions = [
+            "--replace"
+            ''"vim_mode": true''
+            ''"vim_mode": false''
+          ]; };
     };
   };
 }

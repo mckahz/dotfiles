@@ -45,11 +45,10 @@
       };
 
       config = {
-        system.stateVersion = "25.11";
         time.timeZone = "Australia/Melbourne";
-        boot.kernelPackages = pkgs.linuxPackages_latest;
         hardware.uinput.enable = true;
 
+        services.dbus.enable = true;
         services.pipewire = {
           enable = true;
           alsa.enable = true;
@@ -74,7 +73,6 @@
           libreoffice # Document editor
           flamegraph # Profiler visualiser
           transmission_4-qt # Torrent
-          wdisplays # Monitor configuration
           obsidian
           localsend
           (discord.override {
@@ -129,6 +127,7 @@
         programs.dconf.enable = true;
 
         networking.networkmanager.enable = true;
+        # networking.wireless.enable = true;
         nix.settings = {
           trusted-users = [
             "root"

@@ -20,6 +20,7 @@
       {
         networking.hostName = "minipc";
         flake = "/home/gmang/.dotfiles";
+        vim = false;
 
         login.automatic = true;
         login.defaultUser = "gmang";
@@ -29,6 +30,8 @@
         services.hardware.openrgb.enable = true;
 
         # DO NOT TOUCH PAST HERE!!!
+
+        system.stateVersion = "25.11";
 
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")
@@ -63,5 +66,13 @@
         nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
         hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
       };
+
+    provides.to-users.hjem = {
+      xdg.config.files."mango/monitors.conf".text = ''
+        monitor_rule=name:HDMI-A-1,width:1360,height:768,refresh:60,x:0,y:0
+        monitor_rule=name:DP-2,width:1920,height:1080,refresh:59.94000,x:1360,y:0,primary:1
+        monitor_rule=name:DP-3,width:1920,height:1080,refresh:60,x:3280,y:0
+      '';
+    };
   };
 }
