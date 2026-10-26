@@ -20,13 +20,16 @@
     hjem = { osConfig, pkgs, ... }: {
       xdg.config.files."zed/settings.json".source =
         if osConfig.vim then
-           "${osConfig.flake}/modules/features/editor/settings.json"
+          "${osConfig.flake}/modules/features/editor/settings.json"
         else
-          pkgs.substitute { src = ./settings.json; substitutions = [
-            "--replace"
-            ''"vim_mode": true''
-            ''"vim_mode": false''
-          ]; };
+          pkgs.substitute {
+            src = ./settings.json;
+            substitutions = [
+              "--replace"
+              ''"vim_mode": true''
+              ''"vim_mode": false''
+            ];
+          };
     };
   };
 }
