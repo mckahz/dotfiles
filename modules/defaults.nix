@@ -57,7 +57,10 @@
           time.timeZone = "Australia/Melbourne";
 
           xdg.portal.enable = true;
-          environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
+          environment.pathsToLink = [
+            "/share/xdg-desktop-portal"
+            "/share/applications"
+          ];
 
           services.dbus.enable = true;
           services.pipewire = {
