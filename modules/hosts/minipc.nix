@@ -22,7 +22,7 @@
         flake = "/home/gmang/.dotfiles";
         vim = false;
 
-        login.automatic = false;
+        login.automatic = true;
         login.defaultUser = "gmang";
 
         environment.systemPackages = with pkgs; [ openrgb-with-all-plugins ];
