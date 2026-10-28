@@ -22,7 +22,7 @@
         flake = "/home/gmang/.dotfiles";
         vim = false;
 
-        login.automatic = true;
+        login.automatic = false;
         login.defaultUser = "gmang";
 
         environment.systemPackages = with pkgs; [ openrgb-with-all-plugins ];
@@ -41,6 +41,7 @@
           "xhci_pci"
           "ahci"
           "usbhid"
+          "uas"
           "sd_mod"
         ];
         boot.initrd.kernelModules = [ ];
@@ -61,7 +62,9 @@
           ];
         };
 
-        swapDevices = [ ];
+        swapDevices = [
+          { device = "/dev/disk/by-uuid/61c9fc0a-ab0f-4fde-bd92-cbc3c9325c69"; }
+        ];
 
         nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
         hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

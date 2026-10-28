@@ -53,7 +53,6 @@
 
         config = {
           time.timeZone = "Australia/Melbourne";
-          hardware.uinput.enable = true;
 
           services.dbus.enable = true;
           services.pipewire = {
@@ -63,6 +62,12 @@
 
           boot.loader.systemd-boot.enable = true;
           boot.loader.efi.canTouchEfiVariables = true;
+
+          hardware.uinput.enable = true;
+          hardware.graphics = {
+            enable = true;
+            enable32Bit = true;
+          };
 
           nixpkgs.config.allowUnfree = true;
 
@@ -136,7 +141,6 @@
           programs.dconf.enable = true;
 
           networking.networkmanager.enable = true;
-          # networking.wireless.enable = true;
           nix.settings = {
             trusted-users = [
               "root"
