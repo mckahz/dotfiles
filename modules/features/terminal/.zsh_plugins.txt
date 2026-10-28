@@ -1,0 +1,7 @@
+zdharma-continuum/fast-syntax-highlighting
+junegunn/fzf path:shell/completion.zsh
+junegunn/fzf path:shell/key-bindings.zsh
+Aloxaf/fzf-tab
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions

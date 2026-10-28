@@ -20,6 +20,7 @@
         gh
 
         devenv
+        antidote
 
         # CLI Utilities
         btop # System Monitor
@@ -33,25 +34,30 @@
       users.defaultUserShell = pkgs.zsh;
     };
 
-    hjem = { osConfig, ... }: {
+    hjem = { osConfig, pkgs, ... }: {
       xdg.config.files."kitty/kitty.conf".source =
         "${osConfig.flake}/modules/features/terminal/kitty/kitty.conf";
       xdg.config.files."kitty/theme.conf".source =
         "${osConfig.flake}/modules/features/terminal/kitty/theme.conf";
       xdg.config.files."starship.toml".source =
         "${osConfig.flake}/modules/features/terminal/starship.toml";
+
       files.".vimrc".source = "${osConfig.flake}/modules/features/terminal/.vimrc";
-      files.".zshenv".source = "${osConfig.flake}/modules/features/terminal/zsh/.zshenv";
-      files.".zshenv-nix".text = "export ZDOTDIR=\"${osConfig.flake}/modules/features/terminal/zsh\"";
-      files.".zshrc-vim".text =
-        if osConfig.vim then
-          ''
-            zplug zsh-vi-mode/zsh-vi-mode.plugin.zsh
-          ''
-        else
-          "";
-      files.".zshrc".source = "${osConfig.flake}/modules/features/terminal/zsh/.zshrc";
-      files.".bashrc".source = "${osConfig.flake}/modules/features/terminal/.bashrc";
+
+      files.".zshrc".source = "${osConfig.flake}/modules/features/terminal/.zshrc";
+      files.".zsh_plugins.txt".source = "${osConfig.flake}/modules/features/terminal/.zsh_plugins.txt";
+      files.".zsh_plugins_vim.txt".text = ''
+        ${if osConfig.vim then "jeffreytse/zsh-vi-mode" else ""}
+      '';
+      files.".antidote.zsh".text = ''
+        source ${pkgs.antidote}/share/antidote/antidote.zsh
+
+        antidote bundle <~/.zsh_plugins.txt >~/.zsh_plugins.zsh
+        antidote bundle <~/.zsh_plugins_vim.txt >~/.zsh_plugins_vim.zsh
+
+        source ~/.zsh_plugins.zsh
+        source ~/.zsh_plugins_vim.zsh
+      '';
     };
   };
 }

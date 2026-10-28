@@ -29,6 +29,8 @@
       den.aspects.gaming
     ];
 
+    hjem.clobberFiles = true;
+
     nixos =
       {
         config,
