@@ -1,6 +1,6 @@
 result*
 game.ini
-nixos.qcow2
+*.qcow2
 
 # Devenv
 .devenv*

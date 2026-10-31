@@ -28,6 +28,7 @@
         environment.systemPackages = with pkgs; [ openrgb-with-all-plugins ];
 
         services.hardware.openrgb.enable = true;
+        # users.users.gmang.hashedPassword = "$6$ViKUvMFrL0cUsQh5$FzTwFXKBBTacGN7GjF0NOCW0nemcQtPO8.TLJ7WhLY19nCJOZnYj.8CQu7eoqLkabKSQc49W6K8FexP7LFxHp0";
 
         # DO NOT TOUCH PAST HERE!!!
 
